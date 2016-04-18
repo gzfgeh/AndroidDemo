@@ -14,6 +14,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Bind(R.id.custom_viewgroup)
     Button customViewgroup;
+    @Bind(R.id.custom_viewgroup_flow)
+    Button customViewgroupFlow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,14 +26,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setSupportActionBar(toolbar);
 
         customViewgroup.setOnClickListener(this);
+        customViewgroupFlow.setOnClickListener(this);
     }
 
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.custom_viewgroup:
                 startActivity(new Intent(this, CustomViewGroupActivity.class));
+                break;
+
+            case R.id.custom_viewgroup_flow:
+                startActivity(new Intent(this, CustomFlowLayoutActivity.class));
                 break;
         }
     }
