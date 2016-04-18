@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="TagLayout">
+        <attr name="lineMargin" format="dimension" />
+        <attr name="tagMargin" format="dimension" />
+    </declare-styleable>
+</resources>

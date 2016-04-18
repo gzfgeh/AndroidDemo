@@ -16,6 +16,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button customViewgroup;
     @Bind(R.id.custom_viewgroup_flow)
     Button customViewgroupFlow;
+    @Bind(R.id.custom_viewgroup_tag)
+    Button customViewgroupTag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         customViewgroup.setOnClickListener(this);
         customViewgroupFlow.setOnClickListener(this);
+        customViewgroupTag.setOnClickListener(this);
     }
 
 
@@ -39,6 +42,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.custom_viewgroup_flow:
                 startActivity(new Intent(this, CustomFlowLayoutActivity.class));
+                break;
+
+            case R.id.custom_viewgroup_tag:
+                startActivity(new Intent(this, CustomTagLayoutActivity.class));
                 break;
         }
     }

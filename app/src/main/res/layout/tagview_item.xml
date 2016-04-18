@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="86px"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/tv_tag_item_contain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:textColor="#4889db"
+        android:textSize="40px"
+        android:background="@drawable/tgclick"/>
+
+</LinearLayout>

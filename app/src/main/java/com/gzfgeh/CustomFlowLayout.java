@@ -13,12 +13,6 @@ import java.util.List;
  * Created by guzhenfu on 2016/4/18 11:35.
  */
 public class CustomFlowLayout extends ViewGroup {
-    private List<String> tags = new ArrayList<>();
-
-    public void setTags(List<String> tags) {
-        this.tags = tags;
-        invalidate();
-    }
 
     public CustomFlowLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
@@ -132,4 +126,5 @@ public class CustomFlowLayout extends ViewGroup {
             top += lineHeight;
         }
     }
+
 }
