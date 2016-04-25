@@ -14,16 +14,16 @@ import java.util.List;
  */
 public class CustomFlowLayout extends ViewGroup {
 
-    public CustomFlowLayout(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
+    public CustomFlowLayout(Context context) {
+        this(context, null);
     }
 
     public CustomFlowLayout(Context context, AttributeSet attrs) {
-        super(context, attrs);
+        this(context, attrs, 0);
     }
 
-    public CustomFlowLayout(Context context) {
-        super(context);
+    public CustomFlowLayout(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
     }
 
     @Override
