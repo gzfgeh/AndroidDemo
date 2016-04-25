@@ -1,7 +1,10 @@
 package com.gzfgeh;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.animation.PropertyValuesHolder;
 import android.animation.TypeEvaluator;
 import android.animation.ValueAnimator;
 import android.app.Activity;
@@ -26,12 +29,14 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.gzfgeh.ExplosionField.ExplosionField;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class TagLayout extends RelativeLayout {
 
-    //private ExplosionField mExplosionField;
+    private ExplosionField mExplosionField;
     /**
      * tag list
      */
@@ -58,7 +63,7 @@ public class TagLayout extends RelativeLayout {
      */
     private boolean mInitialized = false;
 
-    private Tag tagAdd;
+    private Tag tagAdd, tagRemove;
     private float[] endLocation;
 
     /**
@@ -115,7 +120,7 @@ public class TagLayout extends RelativeLayout {
      */
     private void initialize(Context ctx, AttributeSet attrs, int defStyle) {
         this.context = ctx;
-        //mExplosionField = ExplosionField.attach2Window((Activity)ctx);
+        mExplosionField = ExplosionField.attach2Window((Activity)ctx);
         mInflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         mViewTreeObserber = getViewTreeObserver();
         mViewTreeObserber.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -212,6 +217,7 @@ public class TagLayout extends RelativeLayout {
                 public void onClick(View v) {
                     if (mClickListener != null) {
                         //mExplosionField.explode(v);
+                        deleteAnimator(v);
                         mClickListener.onTagClick(tag, position);
                     }
                 }
@@ -258,8 +264,12 @@ public class TagLayout extends RelativeLayout {
                 endLocation = new float[2];
                 endLocation[0] = total;
                 endLocation[1] = tagLayout.getTop() + lineNum * (tagHeight + lineMargin);
-                moveAnimator(tagLayout, endLocation);
+                moveAnimator(tagLayout, tagParams, endLocation);
             }
+
+//            if (tag == tagRemove){
+//                deleteAnimator(tagLayout);
+//            }
 
             total += tagWidth;
             addView(tagLayout, tagParams);
@@ -271,7 +281,18 @@ public class TagLayout extends RelativeLayout {
 
     }
 
-    public void moveAnimator(final View v,float endLocation[]) {
+    private void deleteAnimator(View v){
+        ObjectAnimator animator1 = ObjectAnimator.ofFloat(v, "alpha", 1f, 0f);
+        ObjectAnimator animator2 = ObjectAnimator.ofFloat(v, "scaleX", 1f, 0f);
+        ObjectAnimator animator3 = ObjectAnimator.ofFloat(v, "scaleY", 1f, 0f);
+        AnimatorSet set = new AnimatorSet();
+        set.play(animator1).with(animator2);
+        set.play(animator2).with(animator3);
+        set.setDuration(1000);
+        set.start();
+    }
+
+    private void moveAnimator(final View v,final ViewGroup.LayoutParams params, float endLocation[]) {
         ObjectAnimator animator1 = ObjectAnimator.ofFloat(v, "x", 0, endLocation[0]);
         ObjectAnimator animator2 = ObjectAnimator.ofFloat(v, "y", 0, endLocation[1]);
         AnimatorSet set = new AnimatorSet();
@@ -279,6 +300,14 @@ public class TagLayout extends RelativeLayout {
         set.setDuration(500);
         set.setInterpolator(new AccelerateDecelerateInterpolator());
         set.start();
+
+        animator2.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+                //TagLayout.this.addView(v, params);
+            }
+        });
     }
 
     private Drawable getSelector(Tag tag) {
@@ -309,6 +338,7 @@ public class TagLayout extends RelativeLayout {
     public void addTag(Tag tag) {
         mTags.add(tag);
         tagAdd = tag;
+        tagRemove = null;
         drawTags();
     }
 
@@ -376,6 +406,8 @@ public class TagLayout extends RelativeLayout {
      */
     public void remove(int position) {
         if (position < mTags.size()) {
+            tagAdd = null;
+            tagRemove = mTags.get(position);
             mTags.remove(position);
             drawTags();
         }
