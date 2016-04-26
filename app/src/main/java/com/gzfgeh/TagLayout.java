@@ -63,8 +63,9 @@ public class TagLayout extends RelativeLayout {
      */
     private boolean mInitialized = false;
 
-    private Tag tagAdd, tagRemove;
+    private Tag tagAdd;
     private float[] endLocation;
+    private boolean isNewLine = false;
 
     /**
      * custom layout param
@@ -217,8 +218,8 @@ public class TagLayout extends RelativeLayout {
                 public void onClick(View v) {
                     if (mClickListener != null) {
                         //mExplosionField.explode(v);
-                        deleteAnimator(v);
-                        mClickListener.onTagClick(tag, position);
+                        deleteAnimator(v, tag, position);
+                        //mClickListener.onTagClick(tag, position);
                     }
                 }
             });
@@ -247,6 +248,7 @@ public class TagLayout extends RelativeLayout {
                 indexBottom = listIndex;
                 indexHeader = listIndex;
                 lineNum++;
+                isNewLine = true;
             } else {
                 //no need to new line
                 tagParams.addRule(RelativeLayout.ALIGN_TOP, indexHeader);
@@ -259,37 +261,47 @@ public class TagLayout extends RelativeLayout {
                         indexBottom = listIndex;
                     }
                 }
+                isNewLine = false;
             }
+
             if (tag == tagAdd){
+                addView(tagLayout, new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
                 endLocation = new float[2];
                 endLocation[0] = total;
-                endLocation[1] = tagLayout.getTop() + lineNum * (tagHeight + lineMargin);
+                endLocation[1] = lineNum * (tagHeight + lineMargin);
                 moveAnimator(tagLayout, tagParams, endLocation);
+            }else{
+                addView(tagLayout, tagParams);
             }
 
-//            if (tag == tagRemove){
-//                deleteAnimator(tagLayout);
-//            }
-
             total += tagWidth;
-            addView(tagLayout, tagParams);
+            if (isNewLine) {
+                removeView(tagLayout);
+                addView(tagLayout, tagParams);
+            }
             tagPre = tag;
             listIndex++;
-            LogUtils.i("new line -- mWidth " + mWidth + "--other--" + total + tagWidth + Utils.dipToPx(this.getContext(), Constants.LAYOUT_WIDTH_OFFSET));
-            LogUtils.i("new line -- getWidth " + tagLayout.getMeasuredWidth());
         }
 
     }
 
-    private void deleteAnimator(View v){
+    private void deleteAnimator(View v, final Tag tag, final int position){
         ObjectAnimator animator1 = ObjectAnimator.ofFloat(v, "alpha", 1f, 0f);
         ObjectAnimator animator2 = ObjectAnimator.ofFloat(v, "scaleX", 1f, 0f);
         ObjectAnimator animator3 = ObjectAnimator.ofFloat(v, "scaleY", 1f, 0f);
         AnimatorSet set = new AnimatorSet();
         set.play(animator1).with(animator2);
         set.play(animator2).with(animator3);
-        set.setDuration(1000);
+        set.setDuration(300);
         set.start();
+
+        animator3.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+                mClickListener.onTagClick(tag, position);
+            }
+        });
     }
 
     private void moveAnimator(final View v,final ViewGroup.LayoutParams params, float endLocation[]) {
@@ -297,17 +309,20 @@ public class TagLayout extends RelativeLayout {
         ObjectAnimator animator2 = ObjectAnimator.ofFloat(v, "y", 0, endLocation[1]);
         AnimatorSet set = new AnimatorSet();
         set.play(animator1).with(animator2);
-        set.setDuration(500);
+        set.setDuration(300);
         set.setInterpolator(new AccelerateDecelerateInterpolator());
         set.start();
 
-        animator2.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                super.onAnimationEnd(animation);
-                //TagLayout.this.addView(v, params);
-            }
-        });
+//        animator2.addListener(new AnimatorListenerAdapter() {
+//            @Override
+//            public void onAnimationEnd(Animator animation) {
+//                super.onAnimationEnd(animation);
+//                if (isNewLine) {
+//                    TagLayout.this.removeView(v);
+//                    TagLayout.this.addView(v, params);
+//                }
+//            }
+//        });
     }
 
     private Drawable getSelector(Tag tag) {
@@ -338,7 +353,6 @@ public class TagLayout extends RelativeLayout {
     public void addTag(Tag tag) {
         mTags.add(tag);
         tagAdd = tag;
-        tagRemove = null;
         drawTags();
     }
 
@@ -407,7 +421,6 @@ public class TagLayout extends RelativeLayout {
     public void remove(int position) {
         if (position < mTags.size()) {
             tagAdd = null;
-            tagRemove = mTags.get(position);
             mTags.remove(position);
             drawTags();
         }
