@@ -19,9 +19,10 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".CustomViewGroupActivity"/>
-        <activity android:name=".CustomFlowLayoutActivity"/>
-        <activity android:name=".CustomTagLayoutActivity"/>
+        <activity android:name=".CustomViewGroup.CustomViewGroupActivity"/>
+        <activity android:name=".CustomFlowLayout.CustomFlowLayoutActivity"/>
+        <activity android:name=".CustomTag.CustomTagLayoutActivity"/>
+        <activity android:name=".CustomTextView.CustomTextviewActivity"/>
 
     </application>
 

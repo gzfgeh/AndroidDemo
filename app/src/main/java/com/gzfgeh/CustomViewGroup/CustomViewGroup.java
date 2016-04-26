@@ -1,4 +1,4 @@
-package com.gzfgeh;
+package com.gzfgeh.CustomViewGroup;
 
 import android.content.Context;
 import android.util.AttributeSet;

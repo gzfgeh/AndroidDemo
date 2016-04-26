@@ -6,7 +6,7 @@
     android:background="#E1E6F6"
     android:orientation="vertical" >
 
-    <com.gzfgeh.CustomFlowLayout
+    <com.gzfgeh.CustomFlowLayout.CustomFlowLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" >
 
@@ -37,5 +37,5 @@
         <TextView
             style="@style/text_flag_01"
             android:text="I thick i can" />
-    </com.gzfgeh.CustomFlowLayout>
+    </com.gzfgeh.CustomFlowLayout.CustomFlowLayout>
 </LinearLayout>

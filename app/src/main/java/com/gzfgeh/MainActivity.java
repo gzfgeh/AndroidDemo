@@ -7,6 +7,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 
+import com.gzfgeh.CustomFlowLayout.CustomFlowLayoutActivity;
+import com.gzfgeh.CustomTag.CustomTagLayoutActivity;
+import com.gzfgeh.CustomTextView.CustomTextviewActivity;
+import com.gzfgeh.CustomViewGroup.CustomViewGroupActivity;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
@@ -18,6 +23,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button customViewgroupFlow;
     @Bind(R.id.custom_viewgroup_tag)
     Button customViewgroupTag;
+    @Bind(R.id.custom_text_view)
+    Button customTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         customViewgroup.setOnClickListener(this);
         customViewgroupFlow.setOnClickListener(this);
         customViewgroupTag.setOnClickListener(this);
+        customTextView.setOnClickListener(this);
     }
 
 
@@ -46,6 +54,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.custom_viewgroup_tag:
                 startActivity(new Intent(this, CustomTagLayoutActivity.class));
+                break;
+
+            case R.id.custom_text_view:
+                startActivity(new Intent(this, CustomTextviewActivity.class));
                 break;
         }
     }

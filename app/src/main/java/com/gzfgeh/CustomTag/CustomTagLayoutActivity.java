@@ -1,4 +1,4 @@
-package com.gzfgeh;
+package com.gzfgeh.CustomTag;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -7,6 +7,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.gzfgeh.LogUtils;
+import com.gzfgeh.R;
 
 import java.util.ArrayList;
 import java.util.List;

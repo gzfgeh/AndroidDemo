@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.gzfgeh.CustomTextView.MyTextView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/text1"
+        app:textSize="20px"
+        app:textColor="@android:color/black"/>
+
+    <com.gzfgeh.CustomTextView.MyTextView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/text2"
+        app:textSize="30px"
+        app:textColor="@android:color/holo_blue_bright"/>
+
+    <com.gzfgeh.CustomTextView.MyTextView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/text3"
+        app:textSize="30px"
+        app:textColor="@android:color/holo_blue_bright"
+        app:text="我非常好"/>
+
+</LinearLayout>

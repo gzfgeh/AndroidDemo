@@ -1,7 +1,9 @@
-package com.gzfgeh;
+package com.gzfgeh.CustomTag;
 
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
+
+import com.gzfgeh.Constants;
 
 
 public class Tag {

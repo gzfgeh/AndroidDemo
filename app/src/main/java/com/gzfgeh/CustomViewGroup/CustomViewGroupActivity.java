@@ -1,7 +1,9 @@
-package com.gzfgeh;
+package com.gzfgeh.CustomViewGroup;
 
 import android.app.Activity;
 import android.os.Bundle;
+
+import com.gzfgeh.R;
 
 /**
  * Description:

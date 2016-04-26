@@ -1,7 +1,9 @@
-package com.gzfgeh;
+package com.gzfgeh.CustomFlowLayout;
 
 import android.app.Activity;
 import android.os.Bundle;
+
+import com.gzfgeh.R;
 
 /**
  * Description:

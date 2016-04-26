@@ -25,4 +25,11 @@
         android:layout_height="wrap_content"
         android:id="@+id/custom_viewgroup_tag"
         android:layout_below="@+id/custom_viewgroup_flow"/>
+
+    <Button android:text="Custom TextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/custom_text_view"
+        android:layout_below="@+id/custom_viewgroup_tag"/>
+
 </RelativeLayout>
