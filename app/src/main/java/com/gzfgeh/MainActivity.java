@@ -6,8 +6,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.gzfgeh.CustomFlowLayout.CustomFlowLayoutActivity;
+import com.gzfgeh.CustomRxBus.CustomRxBusActivity;
+import com.gzfgeh.CustomRxBus.PostEvent;
+import com.gzfgeh.CustomRxBus.accept.Accept;
 import com.gzfgeh.CustomTag.CustomTagLayoutActivity;
 import com.gzfgeh.CustomTextView.CustomTextviewActivity;
 import com.gzfgeh.CustomViewGroup.CustomViewGroupActivity;
@@ -15,7 +19,7 @@ import com.gzfgeh.CustomViewGroup.CustomViewGroupActivity;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     @Bind(R.id.custom_viewgroup)
     Button customViewgroup;
@@ -25,6 +29,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button customViewgroupTag;
     @Bind(R.id.custom_text_view)
     Button customTextView;
+    @Bind(R.id.custom_rx_bus)
+    Button customRxBus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +44,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         customViewgroupFlow.setOnClickListener(this);
         customViewgroupTag.setOnClickListener(this);
         customTextView.setOnClickListener(this);
+        customRxBus.setOnClickListener(this);
     }
 
 
@@ -59,6 +66,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.custom_text_view:
                 startActivity(new Intent(this, CustomTextviewActivity.class));
                 break;
+
+            case R.id.custom_rx_bus:
+                startActivity(new Intent(this, CustomRxBusActivity.class));
+                break;
         }
+    }
+
+    @Accept
+    public void onPostAccept(Object tag, PostEvent event){
+        Toast.makeText(this, event.getMsg() + "main", Toast.LENGTH_SHORT).show();
     }
 }

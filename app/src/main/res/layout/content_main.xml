@@ -32,4 +32,10 @@
         android:id="@+id/custom_text_view"
         android:layout_below="@+id/custom_viewgroup_tag"/>
 
+    <Button android:text="Custom RxBus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/custom_rx_bus"
+        android:layout_below="@+id/custom_text_view"/>
+
 </RelativeLayout>
