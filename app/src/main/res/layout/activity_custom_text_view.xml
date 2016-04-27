@@ -26,4 +26,25 @@
         app:textColor="@android:color/holo_blue_bright"
         app:text="我非常好"/>
 
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <com.gzfgeh.CustomTextView.MyTextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/text4"
+            app:textSize="30px"
+            app:textColor="@android:color/holo_blue_bright"
+            app:text="我非常好"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/text4"
+            android:text="123456"
+            android:textSize="36px"
+            android:layout_toRightOf="@+id/text4"/>
+    </RelativeLayout>
+
 </LinearLayout>
