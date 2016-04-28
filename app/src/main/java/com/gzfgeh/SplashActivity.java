@@ -45,7 +45,7 @@ public class SplashActivity extends Activity {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
                 float cVal = (Float) animation.getAnimatedValue();
-                view.setAlpha(2 - cVal);
+                //view.setAlpha(2 - cVal);
                 view.setScaleX(cVal);
                 view.setScaleY(cVal);
             }
@@ -58,6 +58,7 @@ public class SplashActivity extends Activity {
                 Intent intent = new Intent(SplashActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
+                overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
             }
         });
     }

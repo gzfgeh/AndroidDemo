@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".MainActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".MainActivity"/>
         <activity android:name=".CustomViewGroup.CustomViewGroupActivity"/>
         <activity android:name=".CustomFlowLayout.CustomFlowLayoutActivity"/>
         <activity android:name=".CustomTag.CustomTagLayoutActivity"/>
