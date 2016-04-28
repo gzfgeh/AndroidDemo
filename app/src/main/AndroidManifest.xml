@@ -24,7 +24,8 @@
         <activity android:name=".CustomFlowLayout.CustomFlowLayoutActivity"/>
         <activity android:name=".CustomTag.CustomTagLayoutActivity"/>
         <activity android:name=".CustomTextView.CustomTextviewActivity"/>
-        <activity android:name=".CustomRxBus.CustomRxBusActivity"/>
+        <activity android:name=".CustomRxBus.CustomRxBusActivity"
+            android:theme="@style/MyAppTheme"/>
 
     </application>
 

@@ -22,4 +22,10 @@
         <item name="android:textColor">#ffffff</item>
     </style>
 
+    <style name="MyAppTheme" parent="AppTheme">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowAnimationStyle">@null</item>
+    </style>
+
 </resources>
