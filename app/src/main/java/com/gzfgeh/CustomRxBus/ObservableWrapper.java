@@ -2,11 +2,6 @@ package com.gzfgeh.CustomRxBus;
 
 import rx.Observable;
 
-/**
- * Author: wangjie
- * Email: tiantian.china.2@gmail.com
- * Date: 6/11/15.
- */
 public class ObservableWrapper<T> {
     private Observable<T> observable;
     private Object tag;

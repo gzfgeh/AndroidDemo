@@ -2,16 +2,16 @@ package com.gzfgeh.CustomRxBus;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.gzfgeh.BaseActivity;
-import com.gzfgeh.CustomRxBus.accept.Accept;
+import com.gzfgeh.CustomRxBus.annotation.Accept;
+import com.gzfgeh.CustomRxBus.annotation.AcceptType;
 import com.gzfgeh.R;
-import com.wangjie.androidinject.annotation.present.AIAppCompatActivity;
 
-import java.lang.reflect.Method;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -32,14 +32,14 @@ public class CustomRxBusActivity extends BaseActivity {
         bus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RxBus.getInstance().post(new PostEvent().setMsg("123"));
+                RxBus.get().post("456", "123");
             }
         });
     }
 
-    @Accept
-    public void onPostAccept(Object tag, PostEvent event){
-        Toast.makeText(this, event.getMsg(), Toast.LENGTH_SHORT).show();
+    @Accept(value = {@AcceptType(tag = "456", clazz = String.class)})
+    public void onPostAccept(String tag, String event){
+         Toast.makeText(this, event, Toast.LENGTH_SHORT).show();
     }
 
 

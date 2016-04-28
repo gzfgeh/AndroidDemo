@@ -2,7 +2,6 @@ package com.gzfgeh;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
@@ -10,8 +9,7 @@ import android.widget.Toast;
 
 import com.gzfgeh.CustomFlowLayout.CustomFlowLayoutActivity;
 import com.gzfgeh.CustomRxBus.CustomRxBusActivity;
-import com.gzfgeh.CustomRxBus.PostEvent;
-import com.gzfgeh.CustomRxBus.accept.Accept;
+import com.gzfgeh.CustomRxBus.annotation.Accept;
 import com.gzfgeh.CustomTag.CustomTagLayoutActivity;
 import com.gzfgeh.CustomTextView.CustomTextviewActivity;
 import com.gzfgeh.CustomViewGroup.CustomViewGroupActivity;
@@ -74,7 +72,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
     @Accept
-    public void onPostAccept(Object tag, PostEvent event){
-        Toast.makeText(this, event.getMsg() + "main", Toast.LENGTH_SHORT).show();
+    public void onPostAccept(Object tag, String event){
+        Toast.makeText(this, event + "main", Toast.LENGTH_SHORT).show();
     }
 }

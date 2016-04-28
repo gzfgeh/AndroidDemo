@@ -12,6 +12,9 @@ import android.util.TypedValue;
 import android.view.View;
 import android.widget.ImageView;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * Description:
  * Created by guzhenfu on 2016/2/26 16:32.
@@ -109,5 +112,30 @@ public class Utils {
             return null;
         }
     }
+
+    /**
+     * 判断集合是否为空
+     * @param list 待判断的集合
+     * @return 是否为空
+     */
+    public static boolean isEmpty(List list){
+        if(null == list || list.isEmpty()){
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * 判断集合是否为空
+     * @param map 待判断的集合
+     * @return 是否为空
+     */
+    public static boolean isEmpty(Map map){
+        if(null == map || map.isEmpty()){
+            return true;
+        }
+        return false;
+    }
+
 
 }

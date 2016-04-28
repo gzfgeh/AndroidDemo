@@ -1,36 +1,29 @@
 package com.gzfgeh;
 
+
 import android.app.Activity;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
-import com.gzfgeh.CustomRxBus.RxBusAnnotationManager;
-import com.gzfgeh.CustomRxBus.accept.Accept;
-import com.wangjie.androidinject.annotation.present.AIAppCompatActivity;
-
-import java.lang.reflect.Method;
+import com.gzfgeh.CustomRxBus.RxAnnotationManager;
+import com.gzfgeh.CustomRxBus.annotation.Accept;
 
 /**
  * Description:
  * Created by guzhenfu on 2016/4/27 17:27.
  */
-public class BaseActivity extends AIAppCompatActivity {
-    private RxBusAnnotationManager rxBusAnnotationManager;
+public class BaseActivity extends AppCompatActivity {
 
     @Override
-    public void parserMethodAnnotations(Method method) throws Exception {
-        if (method.isAnnotationPresent(Accept.class)) {
-            if (null == rxBusAnnotationManager) {
-                rxBusAnnotationManager = new RxBusAnnotationManager(this);
-            }
-            rxBusAnnotationManager.parserObservableEventAnnotations(method);
-        }
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        RxAnnotationManager.bind(this);
     }
 
-
+    @Accept
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (null != rxBusAnnotationManager) {
-            rxBusAnnotationManager.clear();
-        }
+        RxAnnotationManager.unBind(this);
     }
 }
