@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.andexert.library.RippleView;
 import com.gzfgeh.CustomFlowLayout.CustomFlowLayoutActivity;
 import com.gzfgeh.CustomRxBus.CustomRxBusActivity;
 import com.gzfgeh.CustomRxBus.annotation.Accept;
@@ -73,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Accept
-    public void onPostAccept(Object tag, String event){
+    public void onPostAccept(Object tag, String event) {
         Toast.makeText(this, event + "main", Toast.LENGTH_SHORT).show();
     }
 }

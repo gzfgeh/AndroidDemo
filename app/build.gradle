@@ -34,4 +34,5 @@ dependencies {
     // ReactiveX
     compile 'io.reactivex:rxjava:1.0.16'
     compile 'io.reactivex:rxandroid:1.0.1'
+    compile 'com.github.traex.rippleeffect:library:1.3'
 }
