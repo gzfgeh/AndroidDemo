@@ -17,7 +17,6 @@ import com.gzfgeh.CustomRxBus.annotation.Accept;
  * Created by guzhenfu on 2016/4/27 17:27.
  */
 public class BaseActivity extends AppCompatActivity {
-    protected View rootView;
     private Bundle bundle;
 
     @Override
@@ -30,18 +29,17 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     public void setContentView(int layoutResID) {
         super.setContentView(layoutResID);
-        setRootView(bundle);
+        setRootView(bundle, ((ViewGroup)findViewById(android.R.id.content)).getChildAt(0));
     }
 
-    protected void setRootView(Bundle savedInstanceState){
+    private void setRootView(Bundle savedInstanceState, View rootView){
         if (savedInstanceState == null){
-            rootView = ((ViewGroup)findViewById(android.R.id.content)).getChildAt(0);
             if (rootView != null) {
                 rootView.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
                     @Override
                     public boolean onPreDraw() {
                         rootView.getViewTreeObserver().removeOnPreDrawListener(this);
-                        startRootAnimation();
+                        startRootAnimation(rootView);
                         return true;
                     }
                 });
@@ -49,7 +47,7 @@ public class BaseActivity extends AppCompatActivity {
         }
     }
 
-    private void startRootAnimation() {
+    private void startRootAnimation(View rootView) {
         rootView.setScaleY(0.1f);
         rootView.setScaleX(0.1f);
         rootView.setPivotY(rootView.getY() + rootView.getHeight() / 2);
