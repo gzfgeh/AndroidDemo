@@ -27,6 +27,7 @@
         <activity android:name=".CustomTextView.CustomTextviewActivity"/>
         <activity android:name=".CustomRxBus.CustomRxBusActivity"
             android:theme="@style/MyAppTheme"/>
+        <activity android:name=".CustomChart.CustomChartActivity"/>
 
     </application>
 

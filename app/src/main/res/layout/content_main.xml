@@ -46,4 +46,10 @@
         android:layout_below="@+id/custom_text_view"/>
     </com.andexert.library.RippleView>
 
+    <Button android:text="Custom ChartView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/custom_chart_view"
+        android:layout_below="@+id/more"/>
+
 </RelativeLayout>
