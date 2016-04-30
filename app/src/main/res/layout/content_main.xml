@@ -52,4 +52,10 @@
         android:id="@+id/custom_chart_view"
         android:layout_below="@+id/more"/>
 
+    <Button android:text="波纹效果"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/custom_btn"
+        android:layout_below="@+id/custom_chart_view"/>
+
 </RelativeLayout>

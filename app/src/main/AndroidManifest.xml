@@ -28,6 +28,7 @@
         <activity android:name=".CustomRxBus.CustomRxBusActivity"
             android:theme="@style/MyAppTheme"/>
         <activity android:name=".CustomChart.CustomChartActivity"/>
+        <activity android:name=".CustomBtn.CustomBtnActivity"/>
 
     </application>
 

@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.gzfgeh.CustomBtn.CustomBtnActivity;
 import com.gzfgeh.CustomChart.CustomChartActivity;
 import com.gzfgeh.CustomFlowLayout.CustomFlowLayoutActivity;
 import com.gzfgeh.CustomRxBus.CustomRxBusActivity;
@@ -32,6 +33,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button customRxBus;
     @Bind(R.id.custom_chart_view)
     Button customChartView;
+    @Bind(R.id.custom_btn)
+    Button customBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +48,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         customTextView.setOnClickListener(this);
         customRxBus.setOnClickListener(this);
         customChartView.setOnClickListener(this);
+        customBtn.setOnClickListener(this);
     }
 
 
@@ -73,6 +77,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.custom_chart_view:
                 startActivity(new Intent(this, CustomChartActivity.class));
+                break;
+
+            case R.id.custom_btn:
+                startActivity(new Intent(this, CustomBtnActivity.class));
                 break;
         }
     }
