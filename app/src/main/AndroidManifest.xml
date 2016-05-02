@@ -29,6 +29,7 @@
             android:theme="@style/MyAppTheme"/>
         <activity android:name=".CustomChart.CustomChartActivity"/>
         <activity android:name=".CustomBtn.CustomBtnActivity"/>
+        <activity android:name=".CustomBottomTab.BottomTabLayoutActivity"/>
 
     </application>
 

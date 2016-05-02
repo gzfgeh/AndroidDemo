@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.gzfgeh.CustomBottomTab.BottomTabLayoutActivity;
 import com.gzfgeh.CustomBtn.CustomBtnActivity;
 import com.gzfgeh.CustomChart.CustomChartActivity;
 import com.gzfgeh.CustomFlowLayout.CustomFlowLayoutActivity;
@@ -35,6 +36,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button customChartView;
     @Bind(R.id.custom_btn)
     Button customBtn;
+    @Bind(R.id.bottom_tablayout)
+    Button bottomTablayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +52,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         customRxBus.setOnClickListener(this);
         customChartView.setOnClickListener(this);
         customBtn.setOnClickListener(this);
+        bottomTablayout.setOnClickListener(this);
     }
 
 
@@ -81,6 +85,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.custom_btn:
                 startActivity(new Intent(this, CustomBtnActivity.class));
+                break;
+
+            case R.id.bottom_tablayout:
+                startActivity(new Intent(this, BottomTabLayoutActivity.class));
                 break;
         }
     }
