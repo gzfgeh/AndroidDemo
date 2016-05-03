@@ -64,4 +64,10 @@
         android:id="@+id/bottom_tablayout"
         android:layout_below="@+id/custom_btn"/>
 
+    <Button android:text="bottom Chart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/chart"
+        android:layout_below="@+id/bottom_tablayout"/>
+
 </RelativeLayout>

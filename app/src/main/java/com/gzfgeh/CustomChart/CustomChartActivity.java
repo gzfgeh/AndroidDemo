@@ -12,26 +12,66 @@ import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import lecho.lib.hellocharts.gesture.ZoomType;
+import lecho.lib.hellocharts.model.Axis;
+import lecho.lib.hellocharts.model.Line;
+import lecho.lib.hellocharts.model.LineChartData;
+import lecho.lib.hellocharts.model.PointValue;
+import lecho.lib.hellocharts.model.Viewport;
+import lecho.lib.hellocharts.util.ChartUtils;
+import lecho.lib.hellocharts.view.LineChartView;
 
 /**
  * Description:
  * Created by guzhenfu on 2016/4/29 10:01.
  */
 public class CustomChartActivity extends BaseActivity {
+    @Bind(R.id.chart)
+    LineChartView chart;
 
-    @Bind(R.id.chart_view)
-    CustomChartView chartView;
-
-    private String[] x = {"08", "09", "10", "11", "12", "13", "14", "15"};
-    private String[] y = {"1000", "2000", "3000", "4000", "5000", "6000", "7000", "8000"};
+    private LineChartData data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chart_view);
         ButterKnife.bind(this);
-        chartView.setAxis(x, y);
-        chartView.setData(getData());
+
+        generateDefaultData();
+        chart.setLineChartData(data);
+//        chart.setZoomEnabled(false);
+        chart.setScrollEnabled(true);
+        previewX();
+    }
+
+    private void generateDefaultData() {
+        int numValues = 5000;
+
+        List<PointValue> values = new ArrayList<PointValue>();
+        for (int i = 0; i < numValues; ++i) {
+            values.add(new PointValue(i, (float) Math.random() * 100f));
+        }
+
+        Line line = new Line(values);
+        line.setColor(ChartUtils.COLOR_GREEN);
+        line.setHasPoints(false);// too many values so don't draw points.
+
+        List<Line> lines = new ArrayList<Line>();
+        lines.add(line);
+
+        data = new LineChartData(lines);
+        data.setAxisXBottom(new Axis());
+        data.setAxisYLeft(new Axis().setHasLines(true));
+
+    }
+
+    private void previewX() {
+        Viewport tempViewport = new Viewport(chart.getMaximumViewport());
+        //float dx = tempViewport.width() / 4;
+        tempViewport.insetX(tempViewport.width()-5);
+
+        chart.setCurrentViewport(tempViewport);
+        chart.setZoomType(ZoomType.HORIZONTAL);
     }
 
     public List<Map<String, String>> getData() {

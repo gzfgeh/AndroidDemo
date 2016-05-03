@@ -38,6 +38,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button customBtn;
     @Bind(R.id.bottom_tablayout)
     Button bottomTablayout;
+    @Bind(R.id.chart)
+    Button chart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
