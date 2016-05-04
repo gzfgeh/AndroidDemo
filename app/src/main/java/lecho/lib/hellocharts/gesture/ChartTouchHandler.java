@@ -6,6 +6,8 @@ import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.ViewParent;
 
+import com.gzfgeh.LogUtils;
+
 import lecho.lib.hellocharts.computator.ChartComputator;
 import lecho.lib.hellocharts.gesture.ChartScroller.ScrollResult;
 import lecho.lib.hellocharts.model.SelectedValue;
@@ -284,6 +286,7 @@ public class ChartTouchHandler {
 
         @Override
         public boolean onDown(MotionEvent e) {
+            LogUtils.i("getRawX: " + e.getRawX() + "----getRawY: " + e.getRawY());
             if (isScrollEnabled) {
 
                 disallowParentInterceptTouchEvent();
@@ -306,6 +309,7 @@ public class ChartTouchHandler {
 
         @Override
         public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+            LogUtils.i("distanceX: " + distanceX + "----distanceY: " + distanceY);
             if (isScrollEnabled) {
                 boolean canScroll = chartScroller
                         .scroll(computator, distanceX, distanceY, scrollResult);

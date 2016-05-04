@@ -32,10 +32,10 @@ import lecho.lib.hellocharts.util.ChartUtils;
  * @author Leszek Wach
  */
 public abstract class AbstractChartView extends View implements Chart {
-    protected ChartComputator chartComputator;
-    protected AxesRenderer axesRenderer;
-    protected ChartTouchHandler touchHandler;
-    protected ChartRenderer chartRenderer;
+    protected ChartComputator chartComputator;      //控制显示视图
+    protected AxesRenderer axesRenderer;            //轴线渲染
+    protected ChartTouchHandler touchHandler;       //手势处理
+    protected ChartRenderer chartRenderer;          //表格渲染
     protected ChartDataAnimator dataAnimator;
     protected ChartViewportAnimator viewportAnimator;
     protected boolean isInteractive = true;
