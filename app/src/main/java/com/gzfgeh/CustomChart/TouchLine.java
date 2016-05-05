@@ -16,7 +16,7 @@ public class TouchLine{
     private LineChartData data;
     private Paint paint;
     private float[] lines;
-    private float x, y;
+    private float x, y, valueX, valueY;
 
     public TouchLine(ChartComputator chartComputator, LineChartData data) {
         this.chartComputator = chartComputator;
@@ -27,7 +27,7 @@ public class TouchLine{
     }
 
     public void drawLine(Canvas canvas){
-        lines[0] = 0;
+        lines[0] = chartComputator.computeRawX(0);
         lines[1] = y;
         lines[2] = chartComputator.getChartWidth();
         lines[3] = y;
@@ -35,13 +35,30 @@ public class TouchLine{
         lines[4] = x;
         lines[5] = 0;
         lines[6] = x;
-        lines[7] = chartComputator.getChartHeight();
+        lines[7] = chartComputator.computeRawY(0);
 
         canvas.drawLines(lines, paint);
+
+        paint.setTextSize(20f);
+        paint.setAntiAlias(true);
+        paint.setStyle(Paint.Style.FILL);
+        canvas.drawText(String.valueOf(valueX), x - getStringWidth(String.valueOf(valueX))/2, chartComputator.getChartHeight(), paint);
+        canvas.drawText(String.valueOf(valueY), 0, y + getStringHeight(String.valueOf(valueY))/3, paint);
     }
 
-    public void setPos(float x, float y) {
-        this.x = x;
-        this.y = y;
+    private int getStringWidth(String str) {
+        return (int) paint.measureText(str);
+    }
+
+    private int getStringHeight(String str) {
+        Paint.FontMetrics fr = paint.getFontMetrics();
+        return (int) Math.ceil(fr.descent - fr.ascent)-2;  //ceil() 函数向上舍入为最接近的整数。
+    }
+
+    public void setPos(float valueX, float valueY) {
+        this.valueX = valueX;
+        this.valueY = valueY;
+        this.x = chartComputator.computeRawX(valueX);
+        this.y = chartComputator.computeRawY(valueY);
     }
 }

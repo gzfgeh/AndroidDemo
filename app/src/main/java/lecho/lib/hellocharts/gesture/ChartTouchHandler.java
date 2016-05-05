@@ -212,7 +212,7 @@ public class ChartTouchHandler {
                 }
                 break;
             case MotionEvent.ACTION_MOVE:
-                LogUtils.i("ACTION_MOVE---getX: " + event.getX() + "----getY: " + event.getY());
+                LogUtils.i("select :   rawValueX:  renderer.isTouched(): " + renderer.isTouched() + "----getY: " + event.getY());
                 // If value was touched and now touch point is outside of value area - clear touch and invalidate, user
                 // probably moved finger away from given chart value.
                 if (renderer.isTouched()) {
