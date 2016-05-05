@@ -4,6 +4,8 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Log;
 
+import com.gzfgeh.CustomChart.TouchLine;
+
 import lecho.lib.hellocharts.BuildConfig;
 import lecho.lib.hellocharts.listener.ComboLineColumnChartOnValueSelectListener;
 import lecho.lib.hellocharts.listener.DummyCompoLineColumnChartOnValueSelectListener;
@@ -68,6 +70,11 @@ public class ComboLineColumnChartView extends AbstractChartView implements Combo
         }
 
         super.onChartDataChange();
+    }
+
+    @Override
+    public TouchLine getTouchLine() {
+        return null;
     }
 
     @Override

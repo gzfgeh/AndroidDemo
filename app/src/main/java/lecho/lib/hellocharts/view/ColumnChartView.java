@@ -4,6 +4,8 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Log;
 
+import com.gzfgeh.CustomChart.TouchLine;
+
 import lecho.lib.hellocharts.BuildConfig;
 import lecho.lib.hellocharts.listener.ColumnChartOnValueSelectListener;
 import lecho.lib.hellocharts.listener.DummyColumnChartOnValueSelectListener;
@@ -56,6 +58,11 @@ public class ColumnChartView extends AbstractChartView implements ColumnChartDat
 
         super.onChartDataChange();
 
+    }
+
+    @Override
+    public TouchLine getTouchLine() {
+        return null;
     }
 
     @Override

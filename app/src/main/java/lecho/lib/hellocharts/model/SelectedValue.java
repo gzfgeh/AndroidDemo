@@ -15,6 +15,9 @@ public class SelectedValue {
      */
     private int secondIndex;
 
+
+    private float x, y;
+
     /**
      * Used only for combo charts, in other cases should have value NONE.
      */
@@ -28,6 +31,19 @@ public class SelectedValue {
         set(firstIndex, secondIndex, type);
     }
 
+    public void set(float x, float y){
+        this.x = x;
+        this.y = y;
+    }
+
+    public float getX() {
+        return x;
+    }
+
+    public float getY() {
+        return y;
+    }
+
     public void set(int firstIndex, int secondIndex, SelectedValueType type) {
         this.firstIndex = firstIndex;
         this.secondIndex = secondIndex;
@@ -37,6 +53,7 @@ public class SelectedValue {
             this.type = SelectedValueType.NONE;
         }
     }
+
 
     public void set(SelectedValue selectedValue) {
         this.firstIndex = selectedValue.firstIndex;

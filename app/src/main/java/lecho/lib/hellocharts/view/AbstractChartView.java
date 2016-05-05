@@ -8,6 +8,8 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.gzfgeh.CustomChart.TouchLine;
+
 import lecho.lib.hellocharts.animation.ChartAnimationListener;
 import lecho.lib.hellocharts.animation.ChartDataAnimator;
 import lecho.lib.hellocharts.animation.ChartDataAnimatorV14;
@@ -31,7 +33,7 @@ import lecho.lib.hellocharts.util.ChartUtils;
  *
  * @author Leszek Wach
  */
-public abstract class AbstractChartView extends View implements Chart {
+public abstract class AbstractChartView extends View implements Chart, ChartTouchHandler.RefreshTouchLineListener {
     protected ChartComputator chartComputator;      //控制显示视图
     protected AxesRenderer axesRenderer;            //轴线渲染
     protected ChartTouchHandler touchHandler;       //手势处理
@@ -54,6 +56,7 @@ public abstract class AbstractChartView extends View implements Chart {
         super(context, attrs, defStyleAttr);
         chartComputator = new ChartComputator();
         touchHandler = new ChartTouchHandler(context, this);
+        touchHandler.setTouchLine(this);
         axesRenderer = new AxesRenderer(context, this);
 
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
@@ -64,6 +67,8 @@ public abstract class AbstractChartView extends View implements Chart {
             this.dataAnimator = new ChartDataAnimatorV14(this);
         }
     }
+
+    public abstract TouchLine getTouchLine();
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
@@ -91,6 +96,8 @@ public abstract class AbstractChartView extends View implements Chart {
             canvas.restoreToCount(clipRestoreCount);
             chartRenderer.drawUnclipped(canvas);
             axesRenderer.drawInForeground(canvas);
+            touchHandler.drawHandlerLine(canvas);
+
         } else {
             canvas.drawColor(ChartUtils.DEFAULT_COLOR);
         }
@@ -470,6 +477,7 @@ public abstract class AbstractChartView extends View implements Chart {
         chartComputator.resetContentRect();
         chartRenderer.onChartDataChanged();
         axesRenderer.onChartDataChanged();
+        touchHandler.setTouchLineData(getTouchLine());
         ViewCompat.postInvalidateOnAnimation(this);
     }
 
@@ -503,5 +511,10 @@ public abstract class AbstractChartView extends View implements Chart {
         } else {
             return currentViewport.right < maximumViewport.right;
         }
+    }
+
+    @Override
+    public void onRefreshTouchLineListener() {
+        invalidate();
     }
 }

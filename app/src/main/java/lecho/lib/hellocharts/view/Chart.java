@@ -1,5 +1,7 @@
 package lecho.lib.hellocharts.view;
 
+import com.gzfgeh.CustomChart.TouchLine;
+
 import lecho.lib.hellocharts.animation.ChartAnimationListener;
 import lecho.lib.hellocharts.computator.ChartComputator;
 import lecho.lib.hellocharts.gesture.ChartTouchHandler;

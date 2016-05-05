@@ -10,6 +10,8 @@ import android.graphics.Path;
 import android.graphics.PorterDuff.Mode;
 import android.graphics.Rect;
 
+import com.gzfgeh.LogUtils;
+
 import lecho.lib.hellocharts.model.Line;
 import lecho.lib.hellocharts.model.LineChartData;
 import lecho.lib.hellocharts.model.PointValue;
@@ -152,6 +154,7 @@ public class LineChartRenderer extends AbstractChartRenderer {
         selectedValue.clear();
         final LineChartData data = dataProvider.getLineChartData();
         int lineIndex = 0;
+        float closedIndex = touchX;
         for (Line line : data.getLines()) {
             if (checkIfShouldDrawPoints(line)) {
                 int pointRadius = ChartUtils.dp2px(density, line.getPointRadius());
@@ -159,9 +162,13 @@ public class LineChartRenderer extends AbstractChartRenderer {
                 for (PointValue pointValue : line.getValues()) {
                     final float rawValueX = computator.computeRawX(pointValue.getX());
                     final float rawValueY = computator.computeRawY(pointValue.getY());
-                    if (isInArea(rawValueX, rawValueY, touchX, touchY, pointRadius + touchToleranceMargin)) {
-                        selectedValue.set(lineIndex, valueIndex, SelectedValueType.LINE);
+                    if (Math.abs(rawValueX - touchX) < closedIndex){
+                        selectedValue.set(pointValue.getX(), pointValue.getY());
+                        LogUtils.i("select :   pointValue.getX(): " + pointValue.getX() + "-----pointValue.getY() : " + pointValue.getY());
                     }
+//                    if (isInArea(rawValueX, rawValueY, touchX, touchY, pointRadius + touchToleranceMargin)) {
+//                        selectedValue.set(lineIndex, valueIndex, SelectedValueType.LINE);
+//                    }
                     ++valueIndex;
                 }
             }

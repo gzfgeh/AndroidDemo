@@ -47,17 +47,6 @@ public class CustomChartActivity extends BaseActivity {
         chart.setZoomEnabled(true);
         chart.setScrollEnabled(true);
         previewX(chart);
-        chart.setOnValueTouchListener(new LineChartOnValueSelectListener() {
-            @Override
-            public void onValueSelected(int lineIndex, int pointIndex, PointValue value) {
-                Toast.makeText(CustomChartActivity.this, value.toString(), Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onValueDeselected() {
-                Toast.makeText(CustomChartActivity.this, "value.toString()", Toast.LENGTH_SHORT).show();
-            }
-        });
 
     }
 

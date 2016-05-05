@@ -8,6 +8,8 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 
+import com.gzfgeh.CustomChart.TouchLine;
+
 import lecho.lib.hellocharts.BuildConfig;
 import lecho.lib.hellocharts.animation.PieChartRotationAnimator;
 import lecho.lib.hellocharts.animation.PieChartRotationAnimatorV14;
@@ -76,6 +78,11 @@ public class PieChartView extends AbstractChartView implements PieChartDataProvi
         }
 
         super.onChartDataChange();
+    }
+
+    @Override
+    public TouchLine getTouchLine() {
+        return null;
     }
 
     @Override

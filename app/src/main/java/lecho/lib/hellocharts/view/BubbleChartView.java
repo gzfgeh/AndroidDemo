@@ -5,6 +5,8 @@ import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.util.Log;
 
+import com.gzfgeh.CustomChart.TouchLine;
+
 import lecho.lib.hellocharts.BuildConfig;
 import lecho.lib.hellocharts.listener.BubbleChartOnValueSelectListener;
 import lecho.lib.hellocharts.listener.DummyBubbleChartOnValueSelectListener;
@@ -60,6 +62,11 @@ public class BubbleChartView extends AbstractChartView implements BubbleChartDat
         }
 
         super.onChartDataChange();
+    }
+
+    @Override
+    public TouchLine getTouchLine() {
+        return null;
     }
 
     @Override

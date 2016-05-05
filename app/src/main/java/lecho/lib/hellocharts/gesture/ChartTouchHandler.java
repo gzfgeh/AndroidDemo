@@ -1,11 +1,15 @@
 package lecho.lib.hellocharts.gesture;
 
 import android.content.Context;
+import android.graphics.Canvas;
+import android.support.v4.view.ViewCompat;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
+import android.view.View;
 import android.view.ViewParent;
 
+import com.gzfgeh.CustomChart.TouchLine;
 import com.gzfgeh.LogUtils;
 
 import lecho.lib.hellocharts.computator.ChartComputator;
@@ -25,11 +29,23 @@ public class ChartTouchHandler {
     protected Chart chart;
     protected ChartComputator computator;
     protected ChartRenderer renderer;
+    protected TouchLine touchLine;
 
     protected boolean isZoomEnabled = true;
     protected boolean isScrollEnabled = true;
     protected boolean isValueTouchEnabled = true;
     protected boolean isValueSelectionEnabled = false;
+    private RefreshTouchLineListener touchLineListener;
+
+    public void setTouchLine(RefreshTouchLineListener listener) {
+        if (touchLineListener == null)
+            this.touchLineListener = listener;
+    }
+
+    public void setTouchLineData(TouchLine touchLine) {
+        if (touchLine != null)
+            this.touchLine = touchLine;
+    }
 
     /**
      * Used only for selection mode to avoid calling listener multiple times for the same selection. Small thing but it
@@ -148,10 +164,17 @@ public class ChartTouchHandler {
         }
     }
 
+    public void drawHandlerLine(Canvas canvas){
+        if (!isScrollEnabled)
+            touchLine.drawLine(canvas);
+    }
+
     private boolean computeTouch(MotionEvent event) {
         boolean needInvalidate = false;
+        //touchLine.setPos(event.getX(), event.getY());
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
+                LogUtils.i("ACTION_DOWN---getX: " + event.getRawX() + "----getY: " + event.getRawY());
                 boolean wasTouched = renderer.isTouched();
                 boolean isTouched = checkTouch(event.getX(), event.getY());
                 if (wasTouched != isTouched) {
@@ -166,6 +189,8 @@ public class ChartTouchHandler {
                 }
                 break;
             case MotionEvent.ACTION_UP:
+                isScrollEnabled = true;
+                LogUtils.i("ACTION_UP---getX: " + event.getX() + "----getY: " + event.getY());
                 if (renderer.isTouched()) {
                     if (checkTouch(event.getX(), event.getY())) {
                         if (isValueSelectionEnabled) {
@@ -187,6 +212,7 @@ public class ChartTouchHandler {
                 }
                 break;
             case MotionEvent.ACTION_MOVE:
+                LogUtils.i("ACTION_MOVE---getX: " + event.getX() + "----getY: " + event.getY());
                 // If value was touched and now touch point is outside of value area - clear touch and invalidate, user
                 // probably moved finger away from given chart value.
                 if (renderer.isTouched()) {
@@ -198,12 +224,16 @@ public class ChartTouchHandler {
 
                 break;
             case MotionEvent.ACTION_CANCEL:
+                isScrollEnabled = true;
                 if (renderer.isTouched()) {
                     renderer.clearTouch();
                     needInvalidate = true;
                 }
                 break;
         }
+        touchLine.setPos(renderer.getSelectedValue().getX(), renderer.getSelectedValue().getY());
+        LogUtils.i("select :   renderer.getSelectedValue().getX(): " + renderer.getSelectedValue().getX() +
+                "-----renderer.getSelectedValue().getY() : " + renderer.getSelectedValue().getY());
         return needInvalidate;
     }
 
@@ -214,6 +244,9 @@ public class ChartTouchHandler {
         if (renderer.checkTouch(touchX, touchY)) {
             selectedValue.set(renderer.getSelectedValue());
         }
+
+        LogUtils.i("select :   renderer.checkTouch(touchX, touchY): " + renderer.checkTouch(touchX, touchY) + selectedValue.getX() +
+                "-----renderer.getSelectedValue().getY() : " + selectedValue.getY());
 
         // Check if selection is still on the same value, if not return false.
         if (oldSelectedValue.isSet() && selectedValue.isSet() && !oldSelectedValue.equals(selectedValue)) {
@@ -264,6 +297,10 @@ public class ChartTouchHandler {
         this.isValueSelectionEnabled = isValueSelectionEnabled;
     }
 
+    public interface RefreshTouchLineListener{
+        void onRefreshTouchLineListener();
+    }
+
     protected class ChartScaleGestureListener extends ScaleGestureDetector.SimpleOnScaleGestureListener {
 
         @Override
@@ -285,8 +322,16 @@ public class ChartTouchHandler {
         protected ScrollResult scrollResult = new ScrollResult();
 
         @Override
+        public void onLongPress(MotionEvent e) {
+            super.onLongPress(e);
+            isScrollEnabled = false;
+            if (touchLineListener != null)
+                touchLineListener.onRefreshTouchLineListener();
+        }
+
+        @Override
         public boolean onDown(MotionEvent e) {
-            LogUtils.i("getRawX: " + e.getRawX() + "----getRawY: " + e.getRawY());
+            LogUtils.i("onDown---getX:");
             if (isScrollEnabled) {
 
                 disallowParentInterceptTouchEvent();
@@ -309,7 +354,7 @@ public class ChartTouchHandler {
 
         @Override
         public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-            LogUtils.i("distanceX: " + distanceX + "----distanceY: " + distanceY);
+            LogUtils.i("onScroll---getX:");
             if (isScrollEnabled) {
                 boolean canScroll = chartScroller
                         .scroll(computator, distanceX, distanceY, scrollResult);
@@ -325,6 +370,7 @@ public class ChartTouchHandler {
 
         @Override
         public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+            LogUtils.i("onFling---getX:");
             if (isScrollEnabled) {
                 return chartScroller.fling((int) -velocityX, (int) -velocityY, computator);
             }

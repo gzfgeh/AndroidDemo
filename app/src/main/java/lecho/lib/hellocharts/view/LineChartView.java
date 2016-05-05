@@ -4,6 +4,8 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Log;
 
+import com.gzfgeh.CustomChart.TouchLine;
+
 import lecho.lib.hellocharts.listener.DummyLineChartOnValueSelectListener;
 import lecho.lib.hellocharts.listener.LineChartOnValueSelectListener;
 import lecho.lib.hellocharts.model.ChartData;
@@ -39,19 +41,23 @@ public class LineChartView extends AbstractChartView implements LineChartDataPro
     }
 
     @Override
+    public TouchLine getTouchLine() {
+        return new TouchLine(chartComputator, data);
+    }
+
+    @Override
     public LineChartData getLineChartData() {
         return data;
     }
 
     @Override
     public void setLineChartData(LineChartData data) {
-
         if (null == data) {
             this.data = LineChartData.generateDummyData();
         } else {
             this.data = data;
         }
-
+        getTouchLine();
         super.onChartDataChange();
     }
 
