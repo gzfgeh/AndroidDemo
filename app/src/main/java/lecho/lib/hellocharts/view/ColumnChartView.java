@@ -83,6 +83,7 @@ public class ColumnChartView extends AbstractChartView implements ColumnChartDat
         }
     }
 
+
     public ColumnChartOnValueSelectListener getOnValueTouchListener() {
         return onValueTouchListener;
     }

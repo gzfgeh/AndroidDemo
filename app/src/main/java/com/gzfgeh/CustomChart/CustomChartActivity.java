@@ -1,6 +1,7 @@
 package com.gzfgeh.CustomChart;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 
@@ -25,7 +26,7 @@ import lecho.lib.hellocharts.view.LineChartView;
  * Description:
  * Created by guzhenfu on 2016/4/29 10:01.
  */
-public class CustomChartActivity extends BaseActivity implements View.OnClickListener {
+public class CustomChartActivity extends BaseActivity implements View.OnClickListener, LineChartView.LoadMoreListener {
     @Bind(R.id.chart)
     LineChartView chart;
     @Bind(R.id.go)
@@ -33,7 +34,6 @@ public class CustomChartActivity extends BaseActivity implements View.OnClickLis
 
     private LineChartData data;
     private int numValues = 500;
-    private LineChartData previewData;
     private Viewport tempViewport;
 
     @Override
@@ -51,7 +51,7 @@ public class CustomChartActivity extends BaseActivity implements View.OnClickLis
         chart.setZoomType(ZoomType.HORIZONTAL);
         tempViewport = new Viewport(chart.getMaximumViewport());
         showCurrentViewChart(0, tempViewport.width() / 8);
-
+        chart.setListener(this);
         go.setOnClickListener(this);
     }
 
@@ -74,9 +74,6 @@ public class CustomChartActivity extends BaseActivity implements View.OnClickLis
         data = new LineChartData(lines);
         data.setAxisXBottom(new Axis());
         data.setAxisYLeft(new Axis().setHasLines(true));
-
-        previewData = new LineChartData(data);
-        previewData.getLines().get(0).setColor(ChartUtils.DEFAULT_DARKEN_COLOR);
     }
 
     private void showCurrentViewChart(float left, float right) {
@@ -88,5 +85,43 @@ public class CustomChartActivity extends BaseActivity implements View.OnClickLis
     @Override
     public void onClick(View v) {
         showCurrentViewChart(100, chart.getCurrentViewport().width() + 100);
+    }
+
+    @Override
+    public void onLoadMore() {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                List<PointValue> moreData = new ArrayList<>();
+                moreData.addAll(data.getLines().get(0).getValues());
+                //generateDefaultData();
+
+                List<PointValue> values = new ArrayList<>();
+                for (int i = 500; i < numValues + 500; ++i) {
+                    if (i > 100)
+                        values.add(new PointValue(i, (float) Math.random() * 100f + 50f));
+                    else
+                        values.add(new PointValue(i, (float) Math.random() * 100f));
+                }
+
+                Line line = new Line(values);
+                line.setColor(ChartUtils.COLOR_GREEN);
+                line.setHasPoints(false);// too many values so don't draw points.
+
+                List<Line> lines = new ArrayList<>();
+                lines.add(line);
+
+                data = new LineChartData(lines);
+                data.setAxisXBottom(new Axis());
+                data.setAxisYLeft(new Axis().setHasLines(true));
+                moreData.addAll(data.getLines().get(0).getValues());
+                data.getLines().get(0).setValues(moreData);
+                float left = chart.getCurrentViewport().left;
+                float right = chart.getCurrentViewport().right;
+                chart.setLineChartData(data);
+                showCurrentViewChart(left, right);
+            }
+        }, 1000);
+
     }
 }

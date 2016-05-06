@@ -37,7 +37,7 @@ import lecho.lib.hellocharts.util.ChartUtils;
  *
  * @author Leszek Wach
  */
-public abstract class AbstractChartView extends View implements Chart, ChartTouchHandler.RefreshTouchLineListener {
+public abstract class AbstractChartView extends View implements Chart {
     protected ChartComputator chartComputator;      //控制显示视图
     protected AxesRenderer axesRenderer;            //轴线渲染
     protected ChartTouchHandler touchHandler;       //手势处理
@@ -47,6 +47,11 @@ public abstract class AbstractChartView extends View implements Chart, ChartTouc
     protected boolean isInteractive = true;
     protected boolean isContainerScrollEnabled = false;
     protected ContainerScrollType containerScrollType;
+    private LoadMoreListener listener;
+
+    public void setListener(LoadMoreListener listener) {
+        this.listener = listener;
+    }
 
     public AbstractChartView(Context context) {
         this(context, null, 0);
@@ -60,7 +65,6 @@ public abstract class AbstractChartView extends View implements Chart, ChartTouc
         super(context, attrs, defStyleAttr);
         chartComputator = new ChartComputator();
         touchHandler = new ChartTouchHandler(context, this);
-        touchHandler.setTouchLine(this);
         axesRenderer = new AxesRenderer(context, this);
 
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
@@ -536,7 +540,19 @@ public abstract class AbstractChartView extends View implements Chart, ChartTouc
     }
 
     @Override
-    public void onRefreshTouchLineListener() {
+    public void touchShowLine() {
         invalidate();
     }
+
+    @Override
+    public void loadMore() {
+        if (listener != null)
+            listener.onLoadMore();
+    }
+
+    public interface LoadMoreListener{
+        void onLoadMore();
+    }
+
+
 }

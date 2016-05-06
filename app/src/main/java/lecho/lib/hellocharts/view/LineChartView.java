@@ -26,6 +26,7 @@ public class LineChartView extends AbstractChartView implements LineChartDataPro
     protected LineChartData data;
     protected LineChartOnValueSelectListener onValueTouchListener = new DummyLineChartOnValueSelectListener();
 
+
     public LineChartView(Context context) {
         this(context, null, 0);
     }
@@ -79,6 +80,7 @@ public class LineChartView extends AbstractChartView implements LineChartDataPro
         }
     }
 
+
     public LineChartOnValueSelectListener getOnValueTouchListener() {
         return onValueTouchListener;
     }
@@ -88,4 +90,5 @@ public class LineChartView extends AbstractChartView implements LineChartDataPro
             this.onValueTouchListener = touchListener;
         }
     }
+
 }

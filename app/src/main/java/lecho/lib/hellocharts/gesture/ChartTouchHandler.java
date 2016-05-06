@@ -35,12 +35,6 @@ public class ChartTouchHandler {
     protected boolean isScrollEnabled = true;
     protected boolean isValueTouchEnabled = true;
     protected boolean isValueSelectionEnabled = false;
-    private RefreshTouchLineListener refreshTouchLineListener;
-
-    public void setTouchLine(RefreshTouchLineListener listener) {
-        if (refreshTouchLineListener == null)
-            this.refreshTouchLineListener = listener;
-    }
 
     public void setTouchLineData(TouchLine touchLine) {
         if (touchLine != null)
@@ -293,11 +287,11 @@ public class ChartTouchHandler {
     public void setValueSelectionEnabled(boolean isValueSelectionEnabled) {
         this.isValueSelectionEnabled = isValueSelectionEnabled;
     }
-
-    public interface RefreshTouchLineListener{
-        void onRefreshTouchLineListener();
-        //void loadMore();
-    }
+//
+//    public interface RefreshTouchLineListener{
+//        void onRefreshTouchLineListener();
+//        void loadMore();
+//    }
 
     protected class ChartScaleGestureListener extends ScaleGestureDetector.SimpleOnScaleGestureListener {
 
@@ -323,8 +317,7 @@ public class ChartTouchHandler {
         public void onLongPress(MotionEvent e) {
             super.onLongPress(e);
             isScrollEnabled = false;
-            if (refreshTouchLineListener != null)
-                refreshTouchLineListener.onRefreshTouchLineListener();
+            chart.touchShowLine();
         }
 
         @Override
@@ -354,10 +347,12 @@ public class ChartTouchHandler {
             if (isScrollEnabled) {
                 boolean canScroll = chartScroller
                         .scroll(computator, distanceX, distanceY, scrollResult);
-                LogUtils.i("canScroll : " + canScroll);
-                if (!canScroll){
-//                    if (refreshTouchLineListener != null)
-//                        refreshTouchLineListener.loadMore();
+                LogUtils.i("canScroll : " + canScroll +
+                        "---canScrollY: " + scrollResult.canScrollY
+                    + "---canScrollX: " + scrollResult.canScrollX
+                        + "---distanceX:" + distanceX);
+                if (!canScroll && distanceX >= 0){
+                    chart.loadMore();
                 }
                 allowParentInterceptTouchEvent(scrollResult);
                 return canScroll;
