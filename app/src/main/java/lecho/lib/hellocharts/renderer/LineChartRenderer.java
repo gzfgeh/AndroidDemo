@@ -163,12 +163,9 @@ public class LineChartRenderer extends AbstractChartRenderer {
 
                     final float rawValueX = computator.computeRawX(pointValue.getX());
                     final float rawValueY = computator.computeRawY(pointValue.getY());
-                    LogUtils.i("select :   rawValueX: " + rawValueX + "----touchX :" + touchX
-                            + "-----closedIndex :" + closedIndex + (Math.abs(rawValueX - touchX) < closedIndex));
                     if (Math.abs(rawValueX - touchX) < closedIndex){
                         closedIndex = Math.abs(rawValueX - touchX);
                         selectedValue.set(pointValue.getX(), pointValue.getY());
-                        LogUtils.i("select :   pointValue.getX(): " + pointValue.getX() + "-----pointValue.getY() : " + pointValue.getY());
                     }
                     selectedValue.set(lineIndex, valueIndex, SelectedValueType.LINE);
 //                    if (isInArea(rawValueX, rawValueY, touchX, touchY, pointRadius + touchToleranceMargin)) {

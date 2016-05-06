@@ -9,6 +9,9 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import com.gzfgeh.CustomChart.TouchLine;
+import com.gzfgeh.LogUtils;
+
+import java.util.List;
 
 import lecho.lib.hellocharts.animation.ChartAnimationListener;
 import lecho.lib.hellocharts.animation.ChartDataAnimator;
@@ -22,6 +25,7 @@ import lecho.lib.hellocharts.gesture.ChartTouchHandler;
 import lecho.lib.hellocharts.gesture.ContainerScrollType;
 import lecho.lib.hellocharts.gesture.ZoomType;
 import lecho.lib.hellocharts.listener.ViewportChangeListener;
+import lecho.lib.hellocharts.model.PointValue;
 import lecho.lib.hellocharts.model.SelectedValue;
 import lecho.lib.hellocharts.model.Viewport;
 import lecho.lib.hellocharts.renderer.AxesRenderer;
@@ -95,12 +99,27 @@ public abstract class AbstractChartView extends View implements Chart, ChartTouc
             chartRenderer.draw(canvas);
             canvas.restoreToCount(clipRestoreCount);
             chartRenderer.drawUnclipped(canvas);
+            setAxesY();
             axesRenderer.drawInForeground(canvas);
             touchHandler.drawHandlerLine(canvas);
 
         } else {
             canvas.drawColor(ChartUtils.DEFAULT_COLOR);
         }
+    }
+
+    private void setAxesY(){
+        float top = 0;
+        List<PointValue> list = getTouchLine().getData().getLines().get(0).getValues();
+        for (PointValue value : list){
+            if (value.getX() > chartRenderer.getCurrentViewport().left && value.getX() < chartRenderer.getCurrentViewport().right){
+                if (value.getY() > top){
+                    top = value.getY();
+                }
+            }
+        }
+        chartRenderer.getMaximumViewport().top = top;
+        chartRenderer.getCurrentViewport().top = top;
     }
 
     @Override
@@ -131,6 +150,7 @@ public abstract class AbstractChartView extends View implements Chart, ChartTouc
     @Override
     public void computeScroll() {
         super.computeScroll();
+        LogUtils.i("isInteractive: " + isInteractive);
         if (isInteractive) {
             if (touchHandler.computeScroll()) {
                 ViewCompat.postInvalidateOnAnimation(this);
@@ -420,6 +440,8 @@ public abstract class AbstractChartView extends View implements Chart, ChartTouc
     public void setCurrentViewport(Viewport targetViewport) {
         if (null != targetViewport) {
             chartRenderer.setCurrentViewport(targetViewport);
+            chartComputator.setCurrentViewport(targetViewport);
+            setAxesY();
         }
         ViewCompat.postInvalidateOnAnimation(this);
     }

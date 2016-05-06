@@ -212,7 +212,6 @@ public class ChartTouchHandler {
                 }
                 break;
             case MotionEvent.ACTION_MOVE:
-                LogUtils.i("select :   rawValueX:  renderer.isTouched(): " + renderer.isTouched() + "----getY: " + event.getY());
                 // If value was touched and now touch point is outside of value area - clear touch and invalidate, user
                 // probably moved finger away from given chart value.
                 if (renderer.isTouched()) {
@@ -232,8 +231,6 @@ public class ChartTouchHandler {
                 break;
         }
         touchLine.setPos(renderer.getSelectedValue().getX(), renderer.getSelectedValue().getY());
-        LogUtils.i("select :   renderer.getSelectedValue().getX(): " + renderer.getSelectedValue().getX() +
-                "-----renderer.getSelectedValue().getY() : " + renderer.getSelectedValue().getY());
         return needInvalidate;
     }
 
@@ -354,7 +351,9 @@ public class ChartTouchHandler {
 
         @Override
         public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-            LogUtils.i("onScroll---getX:");
+            LogUtils.i("renderer.getCurrentViewport().left : " + renderer.getCurrentViewport().left
+                    + "----renderer.getCurrentViewport().right : " + renderer.getCurrentViewport().right);
+
             if (isScrollEnabled) {
                 boolean canScroll = chartScroller
                         .scroll(computator, distanceX, distanceY, scrollResult);

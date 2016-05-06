@@ -44,16 +44,20 @@ public class CustomChartActivity extends BaseActivity {
         generateDefaultData();
 
         chart.setLineChartData(data);
+        chart.setZoomType(ZoomType.HORIZONTAL);
         chart.setZoomEnabled(true);
         chart.setScrollEnabled(true);
-        previewX(chart);
+        showCurrentViewChart(chart);
 
     }
 
     private void generateDefaultData() {
         List<PointValue> values = new ArrayList<>();
         for (int i = 0; i < numValues; ++i) {
-            values.add(new PointValue(i, (float) Math.random() * 100f));
+            if(i > 100)
+                values.add(new PointValue(i, (float) Math.random() * 100f + 50f));
+            else
+                values.add(new PointValue(i, (float) Math.random() * 100f));
         }
 
         Line line = new Line(values);
@@ -68,7 +72,7 @@ public class CustomChartActivity extends BaseActivity {
         data.setAxisYLeft(new Axis().setHasLines(true));
     }
 
-    private void previewX(LineChartView chart) {
+    private void showCurrentViewChart(LineChartView chart) {
         Viewport tempViewport = new Viewport(chart.getMaximumViewport());
         float dx = tempViewport.width() / 8;
         tempViewport.set(0, tempViewport.top, dx, tempViewport.bottom);

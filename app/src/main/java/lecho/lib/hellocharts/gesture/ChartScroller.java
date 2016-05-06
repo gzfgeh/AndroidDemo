@@ -5,6 +5,8 @@ import android.graphics.Point;
 import android.graphics.Rect;
 import android.support.v4.widget.ScrollerCompat;
 
+import com.gzfgeh.LogUtils;
+
 import lecho.lib.hellocharts.computator.ChartComputator;
 import lecho.lib.hellocharts.model.Viewport;
 
@@ -83,6 +85,7 @@ public class ChartScroller {
             // currently active.
 
             final Viewport maxViewport = computator.getMaximumViewport();
+//            final Viewport maxViewport = computator.getCurrentViewport();
 
             computator.computeScrollSurfaceSize(surfaceSizeBuffer);
 
@@ -90,12 +93,10 @@ public class ChartScroller {
                     surfaceSizeBuffer.x;
             final float currYRange = maxViewport.top - maxViewport.height() * scroller.getCurrY() /
                     surfaceSizeBuffer.y;
-
             computator.setViewportTopLeft(currXRange, currYRange);
 
             return true;
         }
-
         return false;
     }
 
