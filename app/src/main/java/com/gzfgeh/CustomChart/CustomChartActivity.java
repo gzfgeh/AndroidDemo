@@ -1,6 +1,8 @@
 package com.gzfgeh.CustomChart;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import com.gzfgeh.BaseActivity;
 import com.gzfgeh.R;
@@ -11,7 +13,6 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import lecho.lib.hellocharts.gesture.ZoomType;
-import lecho.lib.hellocharts.listener.ViewportChangeListener;
 import lecho.lib.hellocharts.model.Axis;
 import lecho.lib.hellocharts.model.Line;
 import lecho.lib.hellocharts.model.LineChartData;
@@ -19,19 +20,21 @@ import lecho.lib.hellocharts.model.PointValue;
 import lecho.lib.hellocharts.model.Viewport;
 import lecho.lib.hellocharts.util.ChartUtils;
 import lecho.lib.hellocharts.view.LineChartView;
-import lecho.lib.hellocharts.view.PreviewLineChartView;
 
 /**
  * Description:
  * Created by guzhenfu on 2016/4/29 10:01.
  */
-public class CustomChartActivity extends BaseActivity {
+public class CustomChartActivity extends BaseActivity implements View.OnClickListener {
     @Bind(R.id.chart)
     LineChartView chart;
+    @Bind(R.id.go)
+    Button go;
 
     private LineChartData data;
     private int numValues = 500;
     private LineChartData previewData;
+    private Viewport tempViewport;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +48,11 @@ public class CustomChartActivity extends BaseActivity {
         chart.setZoomType(ZoomType.HORIZONTAL);
         chart.setZoomEnabled(true);
         chart.setScrollEnabled(true);
-        showCurrentViewChart(chart);
+        chart.setZoomType(ZoomType.HORIZONTAL);
+        tempViewport = new Viewport(chart.getMaximumViewport());
+        showCurrentViewChart(0, tempViewport.width() / 8);
+
+        go.setOnClickListener(this);
     }
 
     private void generateDefaultData() {
@@ -72,13 +79,14 @@ public class CustomChartActivity extends BaseActivity {
         previewData.getLines().get(0).setColor(ChartUtils.DEFAULT_DARKEN_COLOR);
     }
 
-    private void showCurrentViewChart(LineChartView chart) {
-        Viewport tempViewport = new Viewport(chart.getMaximumViewport());
-        float dx = tempViewport.width() / 8;
-        tempViewport.set(0, tempViewport.top, dx, tempViewport.bottom);
+    private void showCurrentViewChart(float left, float right) {
+        tempViewport.set(left, tempViewport.top, right, tempViewport.bottom);
         chart.setCurrentViewport(tempViewport);
-        chart.setZoomType(ZoomType.HORIZONTAL);
     }
 
 
+    @Override
+    public void onClick(View v) {
+        showCurrentViewChart(100, chart.getCurrentViewport().width() + 100);
+    }
 }

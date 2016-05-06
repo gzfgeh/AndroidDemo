@@ -35,11 +35,11 @@ public class ChartTouchHandler {
     protected boolean isScrollEnabled = true;
     protected boolean isValueTouchEnabled = true;
     protected boolean isValueSelectionEnabled = false;
-    private RefreshTouchLineListener touchLineListener;
+    private RefreshTouchLineListener refreshTouchLineListener;
 
     public void setTouchLine(RefreshTouchLineListener listener) {
-        if (touchLineListener == null)
-            this.touchLineListener = listener;
+        if (refreshTouchLineListener == null)
+            this.refreshTouchLineListener = listener;
     }
 
     public void setTouchLineData(TouchLine touchLine) {
@@ -296,6 +296,7 @@ public class ChartTouchHandler {
 
     public interface RefreshTouchLineListener{
         void onRefreshTouchLineListener();
+        //void loadMore();
     }
 
     protected class ChartScaleGestureListener extends ScaleGestureDetector.SimpleOnScaleGestureListener {
@@ -322,8 +323,8 @@ public class ChartTouchHandler {
         public void onLongPress(MotionEvent e) {
             super.onLongPress(e);
             isScrollEnabled = false;
-            if (touchLineListener != null)
-                touchLineListener.onRefreshTouchLineListener();
+            if (refreshTouchLineListener != null)
+                refreshTouchLineListener.onRefreshTouchLineListener();
         }
 
         @Override
@@ -335,7 +336,6 @@ public class ChartTouchHandler {
 
                 return chartScroller.startScroll(computator);
             }
-
             return false;
 
         }
@@ -351,15 +351,15 @@ public class ChartTouchHandler {
 
         @Override
         public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-            LogUtils.i("renderer.getCurrentViewport().left : " + renderer.getCurrentViewport().left
-                    + "----renderer.getCurrentViewport().right : " + renderer.getCurrentViewport().right);
-
             if (isScrollEnabled) {
                 boolean canScroll = chartScroller
                         .scroll(computator, distanceX, distanceY, scrollResult);
-
+                LogUtils.i("canScroll : " + canScroll);
+                if (!canScroll){
+//                    if (refreshTouchLineListener != null)
+//                        refreshTouchLineListener.loadMore();
+                }
                 allowParentInterceptTouchEvent(scrollResult);
-
                 return canScroll;
             }
 
