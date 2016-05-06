@@ -4,6 +4,8 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
+import com.gzfgeh.LogUtils;
+
 import lecho.lib.hellocharts.computator.ChartComputator;
 import lecho.lib.hellocharts.model.LineChartData;
 
@@ -27,7 +29,7 @@ public class TouchLine{
     }
 
     public void drawLine(Canvas canvas){
-        lines[0] = chartComputator.computeRawX(0);
+        lines[0] =chartComputator.getContentRectMinusAllMargins().left;
         lines[1] = y;
         lines[2] = chartComputator.getChartWidth();
         lines[3] = y;
@@ -36,7 +38,10 @@ public class TouchLine{
         lines[5] = 0;
         lines[6] = x;
         lines[7] = chartComputator.computeRawY(0);
-
+        LogUtils.i("lines[0] :" + lines[0] + "-----lines[1] :" + lines[1]
+                        + "-----lines[2] :" + lines[2] + "-----lines[3] :" + lines[3]
+                        + "-----lines[4] :" + lines[4] + "-----lines[5] :" + lines[5]
+                        + "-----lines[6] :" + lines[6] + "-----lines[7] :" + lines[7]);
         canvas.drawLines(lines, paint);
 
         paint.setTextSize(20f);

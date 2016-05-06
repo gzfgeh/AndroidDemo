@@ -1,12 +1,8 @@
 package com.gzfgeh.CustomChart;
 
 import android.os.Bundle;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.Toast;
 
 import com.gzfgeh.BaseActivity;
-import com.gzfgeh.LogUtils;
 import com.gzfgeh.R;
 
 import java.util.ArrayList;
@@ -15,7 +11,7 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import lecho.lib.hellocharts.gesture.ZoomType;
-import lecho.lib.hellocharts.listener.LineChartOnValueSelectListener;
+import lecho.lib.hellocharts.listener.ViewportChangeListener;
 import lecho.lib.hellocharts.model.Axis;
 import lecho.lib.hellocharts.model.Line;
 import lecho.lib.hellocharts.model.LineChartData;
@@ -23,6 +19,7 @@ import lecho.lib.hellocharts.model.PointValue;
 import lecho.lib.hellocharts.model.Viewport;
 import lecho.lib.hellocharts.util.ChartUtils;
 import lecho.lib.hellocharts.view.LineChartView;
+import lecho.lib.hellocharts.view.PreviewLineChartView;
 
 /**
  * Description:
@@ -34,6 +31,7 @@ public class CustomChartActivity extends BaseActivity {
 
     private LineChartData data;
     private int numValues = 500;
+    private LineChartData previewData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,13 +46,12 @@ public class CustomChartActivity extends BaseActivity {
         chart.setZoomEnabled(true);
         chart.setScrollEnabled(true);
         showCurrentViewChart(chart);
-
     }
 
     private void generateDefaultData() {
         List<PointValue> values = new ArrayList<>();
         for (int i = 0; i < numValues; ++i) {
-            if(i > 100)
+            if (i > 100)
                 values.add(new PointValue(i, (float) Math.random() * 100f + 50f));
             else
                 values.add(new PointValue(i, (float) Math.random() * 100f));
@@ -62,7 +59,7 @@ public class CustomChartActivity extends BaseActivity {
 
         Line line = new Line(values);
         line.setColor(ChartUtils.COLOR_GREEN);
-        line.setHasPoints(true);// too many values so don't draw points.
+        line.setHasPoints(false);// too many values so don't draw points.
 
         List<Line> lines = new ArrayList<>();
         lines.add(line);
@@ -70,6 +67,9 @@ public class CustomChartActivity extends BaseActivity {
         data = new LineChartData(lines);
         data.setAxisXBottom(new Axis());
         data.setAxisYLeft(new Axis().setHasLines(true));
+
+        previewData = new LineChartData(data);
+        previewData.getLines().get(0).setColor(ChartUtils.DEFAULT_DARKEN_COLOR);
     }
 
     private void showCurrentViewChart(LineChartView chart) {
@@ -79,7 +79,6 @@ public class CustomChartActivity extends BaseActivity {
         chart.setCurrentViewport(tempViewport);
         chart.setZoomType(ZoomType.HORIZONTAL);
     }
-
 
 
 }

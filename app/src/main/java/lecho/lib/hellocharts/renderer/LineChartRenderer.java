@@ -156,7 +156,7 @@ public class LineChartRenderer extends AbstractChartRenderer {
         int lineIndex = 0;
         float closedIndex = touchX;
         for (Line line : data.getLines()) {
-            if (checkIfShouldDrawPoints(line)) {
+            //if (checkIfShouldDrawPoints(line)) {
                 int pointRadius = ChartUtils.dp2px(density, line.getPointRadius());
                 int valueIndex = 0;
                 for (PointValue pointValue : line.getValues()) {
@@ -173,7 +173,7 @@ public class LineChartRenderer extends AbstractChartRenderer {
 //                    }
                     ++valueIndex;
                 }
-            }
+            //}
             ++lineIndex;
         }
         return isTouched();
