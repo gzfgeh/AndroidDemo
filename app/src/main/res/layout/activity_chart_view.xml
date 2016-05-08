@@ -5,12 +5,6 @@
     android:layout_height="match_parent"
     android:padding="50px">
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="跳转"
-        android:id="@+id/go"/>
-
     <lecho.lib.hellocharts.view.LineChartView
         android:id="@+id/chart"
         android:layout_width="match_parent"

@@ -286,5 +286,5 @@ public interface Chart {
 
     void touchShowLine();
     void loadMore();
-
+    boolean isLoading();
 }

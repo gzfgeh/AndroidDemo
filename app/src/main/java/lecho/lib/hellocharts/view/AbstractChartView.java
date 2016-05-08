@@ -48,6 +48,7 @@ public abstract class AbstractChartView extends View implements Chart {
     protected boolean isContainerScrollEnabled = false;
     protected ContainerScrollType containerScrollType;
     private LoadMoreListener listener;
+    private boolean isLoading = false;
 
     public void setListener(LoadMoreListener listener) {
         this.listener = listener;
@@ -443,6 +444,7 @@ public abstract class AbstractChartView extends View implements Chart {
     @Override
     public void setCurrentViewport(Viewport targetViewport) {
         if (null != targetViewport) {
+            isLoading = false;
             chartRenderer.setCurrentViewport(targetViewport);
             chartComputator.setCurrentViewport(targetViewport);
             setAxesY();
@@ -545,9 +547,20 @@ public abstract class AbstractChartView extends View implements Chart {
     }
 
     @Override
+    public boolean isLoading() {
+        return isLoading;
+    }
+
+    @Override
     public void loadMore() {
-        if (listener != null)
+        LogUtils.i("canScrollHorizontally:" + canScrollHorizontally(0)
+            + "---currentViewport.right:" + getCurrentViewport().right
+            + "---maximumViewport.right:" + getMaximumViewport().right);
+
+        if (listener != null) {
+            isLoading = true;
             listener.onLoadMore();
+        }
     }
 
     public interface LoadMoreListener{

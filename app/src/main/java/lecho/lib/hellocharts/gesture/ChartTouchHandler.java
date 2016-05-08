@@ -347,11 +347,10 @@ public class ChartTouchHandler {
             if (isScrollEnabled) {
                 boolean canScroll = chartScroller
                         .scroll(computator, distanceX, distanceY, scrollResult);
-                LogUtils.i("canScroll : " + canScroll +
-                        "---canScrollY: " + scrollResult.canScrollY
+                LogUtils.i("canScroll : " + canScroll
                     + "---canScrollX: " + scrollResult.canScrollX
                         + "---distanceX:" + distanceX);
-                if (!canScroll && distanceX >= 0){
+                if (!canScroll && distanceX >= 0 && !chart.isLoading()){
                     chart.loadMore();
                 }
                 allowParentInterceptTouchEvent(scrollResult);
