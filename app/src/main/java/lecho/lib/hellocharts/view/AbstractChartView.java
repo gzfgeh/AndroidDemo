@@ -446,7 +446,7 @@ public abstract class AbstractChartView extends View implements Chart {
         if (null != targetViewport) {
             isLoading = false;
             chartRenderer.setCurrentViewport(targetViewport);
-            chartComputator.setCurrentViewport(targetViewport);
+            //chartComputator.setCurrentViewport(targetViewport);
             setAxesY();
         }
         ViewCompat.postInvalidateOnAnimation(this);

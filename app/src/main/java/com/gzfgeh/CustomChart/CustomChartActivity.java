@@ -34,7 +34,7 @@ public class CustomChartActivity extends BaseActivity implements LineChartView.L
     private LineChartData data;
     private int page = 200, pageNum = 0;
     private Viewport tempViewport;
-    List<PointValue> moreData = new ArrayList<>();
+    private List<PointValue> moreData = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +51,7 @@ public class CustomChartActivity extends BaseActivity implements LineChartView.L
         chart.setScrollEnabled(true);
         chart.setZoomType(ZoomType.HORIZONTAL);
         tempViewport = new Viewport(chart.getMaximumViewport());
-        showCurrentViewChart(0, tempViewport.width() / 8);
+        chart.setZoomLevel(0, data.getLines().get(0).getValues().get(0).getY(), 8.0f);
         chart.setListener(this);
     }
 
@@ -79,6 +79,7 @@ public class CustomChartActivity extends BaseActivity implements LineChartView.L
     private void showCurrentViewChart(float left, float right) {
         tempViewport.set(left, tempViewport.top, right, tempViewport.bottom);
         chart.setCurrentViewport(tempViewport);
+        chart.setMaxZoom(chart.getMaxZoom() * 2);
     }
 
     @Override
@@ -94,7 +95,7 @@ public class CustomChartActivity extends BaseActivity implements LineChartView.L
                 float left = chart.getCurrentViewport().left;
                 float right = chart.getCurrentViewport().right;
                 chart.setLineChartData(data);
-                LogUtils.i("left:" + left + "---right:"+ right
+                LogUtils.i("left:" + left + "---right:" + right
                         + "---tempLeft:" + tempViewport.left
                         + "---tempRight:" + tempViewport.right);
                 showCurrentViewChart(left, right);
