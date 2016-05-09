@@ -68,6 +68,7 @@
         <activity android:name=".CustomBottomTab.BottomTabLayoutActivity"/>
         <activity android:name=".CustomChart.ChartViewActivity"
             android:screenOrientation="landscape"/>
+        <activity android:name=".CustomDagger.Dagger2Activity"/>
 
     </application>
 
