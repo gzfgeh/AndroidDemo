@@ -349,7 +349,7 @@ public class ChartTouchHandler {
                     chart.loadRightMore();
                 }
 
-                if (!canScroll && distanceY >= 0 && !chart.isLoading()){
+                if (!canScroll && distanceX <= 0 && !chart.isLoading()){
                     chart.loadLeftMore();
                 }
 

@@ -40,9 +40,10 @@ public class CustomChartActivity extends BaseActivity implements LineChartView.L
     View empty;
 
     private LineChartData data;
-    private int page = 200, pageNum = 0;
+    private int pageSize = 200, pageNum = 0, startPoine = 200;
     private Viewport tempViewport;
     private List<PointValue> moreData = new ArrayList<>();
+    private boolean first = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +61,7 @@ public class CustomChartActivity extends BaseActivity implements LineChartView.L
         chart.setScrollEnabled(true);
         chart.setZoomType(ZoomType.HORIZONTAL);
         tempViewport = new Viewport(chart.getMaximumViewport());
-        chart.setZoomLevel(0, data.getLines().get(0).getValues().get(0).getY(), 8.0f);
+        chart.setZoomLevel(startPoine, data.getLines().get(0).getValues().get(0).getY(), 8.0f);
         chart.setListener(this);
         if (data.getLines().get(0).getValues().size() == 0){
             chart.setVisibility(View.GONE);
@@ -70,8 +71,8 @@ public class CustomChartActivity extends BaseActivity implements LineChartView.L
 
     private void generateDefaultData() {
         List<PointValue> values = new ArrayList<>();
-        for (int i = 0 + pageNum * page; i < (pageNum + 1) * page; ++i) {
-            if (i > 100 + pageNum * page)
+        for (int i = startPoine + pageNum * pageSize; i < (pageNum + 1) * pageSize + startPoine; ++i) {
+            if (i > startPoine + 100 + pageNum * pageSize)
                 values.add(new PointValue(i, (float) Math.random() * 100f + 50f));
             else
                 values.add(new PointValue(i, (float) Math.random() * 100f));
@@ -97,6 +98,7 @@ public class CustomChartActivity extends BaseActivity implements LineChartView.L
 
     @Override
     public void onLoadRightMore() {
+        LogUtils.i("left:" + "---right:");
         float left = chart.getCurrentViewport().left;
         float right = chart.getCurrentViewport().right;
 
@@ -132,6 +134,7 @@ public class CustomChartActivity extends BaseActivity implements LineChartView.L
 
     @Override
     public void onLoadLeftMore() {
+        LogUtils.i("left:" + "---left:");
         float left = chart.getCurrentViewport().left;
         float right = chart.getCurrentViewport().right;
 
@@ -141,19 +144,43 @@ public class CustomChartActivity extends BaseActivity implements LineChartView.L
                 @Override
                 public void run() {
                     leftProgress.setVisibility(View.GONE);
+                    if (first) {
+                        List<PointValue> values = new ArrayList<>();
+                        for (int i = 0; i < startPoine; ++i) {
+                            if (i > startPoine - 100)
+                                values.add(new PointValue(i, (float) Math.random() * 100f + 50f));
+                            else
+                                values.add(new PointValue(i, (float) Math.random() * 100f));
+                        }
+
+                        Line line = new Line(values);
+                        line.setColor(ChartUtils.COLOR_GREEN);
+                        line.setHasPoints(false);// too many values so don't draw points.
+
+                        List<Line> lines = new ArrayList<>();
+                        lines.add(line);
+
+                        data = new LineChartData(lines);
+                        data.setAxisXBottom(new Axis());
+                        data.setAxisYLeft(new Axis().setHasLines(true));
 
 //                    ++pageNum;
 //                    generateDefaultData();
-//                    if (data.getLines().get(0).getValues().size() == 0){
-//                        Toast.makeText(CustomChartActivity.this, "没有更多数据了", Toast.LENGTH_SHORT).show();
-//                    }
+                        if (data.getLines().get(0).getValues().size() == 0) {
+                            Toast.makeText(CustomChartActivity.this, "没有更多数据了", Toast.LENGTH_SHORT).show();
+                        }
+                        List<PointValue> tempValue = new ArrayList<>();
+                        tempValue.addAll(data.getLines().get(0).getValues());
+                        tempValue.addAll(moreData);
 //                    moreData.addAll(data.getLines().get(0).getValues());
-//                    data.getLines().get(0).setValues(moreData);
-//
-//                    chart.setLineChartData(data);
-//                    LogUtils.i("left:" + left + "---right:" + right
-//                            + "---tempLeft:" + tempViewport.left
-//                            + "---tempRight:" + tempViewport.right);
+                        data.getLines().get(0).setValues(tempValue);
+
+                        chart.setLineChartData(data);
+                        LogUtils.i("left:" + left + "---right:" + right
+                                + "---tempLeft:" + tempViewport.left
+                                + "---tempRight:" + tempViewport.right);
+                        first = false;
+                    }
                     showCurrentViewChart(left, right);
 
                 }
