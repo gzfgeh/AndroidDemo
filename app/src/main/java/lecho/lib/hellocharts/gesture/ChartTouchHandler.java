@@ -346,8 +346,13 @@ public class ChartTouchHandler {
                     + "---canScrollX: " + scrollResult.canScrollX
                         + "---distanceX:" + distanceX);
                 if (!canScroll && distanceX >= 0 && !chart.isLoading()){
-                    chart.loadMore();
+                    chart.loadRightMore();
                 }
+
+                if (!canScroll && distanceY >= 0 && !chart.isLoading()){
+                    chart.loadLeftMore();
+                }
+
                 allowParentInterceptTouchEvent(scrollResult);
                 return canScroll;
             }

@@ -285,6 +285,7 @@ public interface Chart {
     public void setContainerScrollEnabled(boolean isContainerScrollEnabled, ContainerScrollType containerScrollType);
 
     void touchShowLine();
-    void loadMore();
+    void loadRightMore();
+    void loadLeftMore();
     boolean isLoading();
 }

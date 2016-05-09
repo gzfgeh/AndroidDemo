@@ -553,19 +553,28 @@ public abstract class AbstractChartView extends View implements Chart {
     }
 
     @Override
-    public void loadMore() {
+    public void loadRightMore() {
         LogUtils.i("canScrollHorizontally:" + canScrollHorizontally(0)
             + "---currentViewport.right:" + getCurrentViewport().right
             + "---maximumViewport.right:" + getMaximumViewport().right);
 
         if (listener != null) {
             isLoading = true;
-            listener.onLoadMore();
+            listener.onLoadRightMore();
+        }
+    }
+
+    @Override
+    public void loadLeftMore() {
+        if (listener != null) {
+            isLoading = true;
+            listener.onLoadLeftMore();
         }
     }
 
     public interface LoadMoreListener{
-        void onLoadMore();
+        void onLoadRightMore();
+        void onLoadLeftMore();
     }
 
 

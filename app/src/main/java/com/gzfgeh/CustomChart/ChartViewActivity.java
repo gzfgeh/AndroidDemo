@@ -82,7 +82,7 @@ public class ChartViewActivity extends Activity implements AbstractChartView.Loa
     }
 
     @Override
-    public void onLoadMore() {
+    public void onLoadRightMore() {
         if (!NetWorkUtils.isNetworkAvailable()){
             chartView.showError();
         }else{
@@ -110,6 +110,12 @@ public class ChartViewActivity extends Activity implements AbstractChartView.Loa
                 }
             }, 1000);
         }
+
+    }
+
+
+    @Override
+    public void onLoadLeftMore() {
 
     }
 }

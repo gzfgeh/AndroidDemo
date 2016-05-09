@@ -32,8 +32,10 @@ import lecho.lib.hellocharts.view.LineChartView;
 public class CustomChartActivity extends BaseActivity implements LineChartView.LoadMoreListener {
     @Bind(R.id.chart)
     LineChartView chart;
-    @Bind(R.id.progress)
-    ProgressBar progress;
+    @Bind(R.id.right_progress)
+    ProgressBar rightProgress;
+    @Bind(R.id.left_progress)
+    ProgressBar leftProgress;
     @Bind(R.id.empty)
     View empty;
 
@@ -60,10 +62,10 @@ public class CustomChartActivity extends BaseActivity implements LineChartView.L
         tempViewport = new Viewport(chart.getMaximumViewport());
         chart.setZoomLevel(0, data.getLines().get(0).getValues().get(0).getY(), 8.0f);
         chart.setListener(this);
-//        if (data.getLines().get(0).getValues().size() < 1000){
-//            chart.setVisibility(View.GONE);
-//            empty.setVisibility(View.VISIBLE);
-//        }
+        if (data.getLines().get(0).getValues().size() == 0){
+            chart.setVisibility(View.GONE);
+            empty.setVisibility(View.VISIBLE);
+        }
     }
 
     private void generateDefaultData() {
@@ -94,23 +96,25 @@ public class CustomChartActivity extends BaseActivity implements LineChartView.L
     }
 
     @Override
-    public void onLoadMore() {
+    public void onLoadRightMore() {
+        float left = chart.getCurrentViewport().left;
+        float right = chart.getCurrentViewport().right;
+
         if (NetWorkUtils.isNetworkAvailable()) {
-            progress.setVisibility(View.VISIBLE);
+            rightProgress.setVisibility(View.VISIBLE);
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    progress.setVisibility(View.GONE);
+                    rightProgress.setVisibility(View.GONE);
 
                     ++pageNum;
                     generateDefaultData();
-                    if (data.getLines().get(0).getValues().size() < 500){
+                    if (data.getLines().get(0).getValues().size() == 0){
                         Toast.makeText(CustomChartActivity.this, "没有更多数据了", Toast.LENGTH_SHORT).show();
                     }
                     moreData.addAll(data.getLines().get(0).getValues());
                     data.getLines().get(0).setValues(moreData);
-                    float left = chart.getCurrentViewport().left;
-                    float right = chart.getCurrentViewport().right;
+
                     chart.setLineChartData(data);
                     LogUtils.i("left:" + left + "---right:" + right
                             + "---tempLeft:" + tempViewport.left
@@ -121,7 +125,42 @@ public class CustomChartActivity extends BaseActivity implements LineChartView.L
             }, 1000);
         }else{
             Toast.makeText(this, "网络错误", Toast.LENGTH_SHORT).show();
+            showCurrentViewChart(left, right);
         }
 
+    }
+
+    @Override
+    public void onLoadLeftMore() {
+        float left = chart.getCurrentViewport().left;
+        float right = chart.getCurrentViewport().right;
+
+        if (NetWorkUtils.isNetworkAvailable()) {
+            leftProgress.setVisibility(View.VISIBLE);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    leftProgress.setVisibility(View.GONE);
+
+//                    ++pageNum;
+//                    generateDefaultData();
+//                    if (data.getLines().get(0).getValues().size() == 0){
+//                        Toast.makeText(CustomChartActivity.this, "没有更多数据了", Toast.LENGTH_SHORT).show();
+//                    }
+//                    moreData.addAll(data.getLines().get(0).getValues());
+//                    data.getLines().get(0).setValues(moreData);
+//
+//                    chart.setLineChartData(data);
+//                    LogUtils.i("left:" + left + "---right:" + right
+//                            + "---tempLeft:" + tempViewport.left
+//                            + "---tempRight:" + tempViewport.right);
+                    showCurrentViewChart(left, right);
+
+                }
+            }, 2000);
+        }else{
+            Toast.makeText(this, "网络错误", Toast.LENGTH_SHORT).show();
+            showCurrentViewChart(left, right);
+        }
     }
 }
