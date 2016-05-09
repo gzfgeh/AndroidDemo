@@ -14,4 +14,11 @@
         <attr name="textSize" format="dimension" />
         <attr name="text" format="string" />
     </declare-styleable>
+
+    <declare-styleable name="CustomChartView">
+        <attr name="layout_empty_id" format="reference" />
+        <attr name="layout_progress_id" format="reference" />
+        <attr name="layout_error_id" format="reference" />
+        <attr name="layout_nomore_id" format="reference"/>
+    </declare-styleable>
 </resources>

@@ -135,7 +135,7 @@ public class ChartTouchHandler {
      * Disallow parent view from intercepting touch events. Use it for chart that is within some scroll container i.e.
      * ViewPager.
      */
-    private void disallowParentInterceptTouchEvent() {
+    public void disallowParentInterceptTouchEvent() {
         if (null != viewParent) {
             viewParent.requestDisallowInterceptTouchEvent(true);
         }
@@ -287,11 +287,6 @@ public class ChartTouchHandler {
     public void setValueSelectionEnabled(boolean isValueSelectionEnabled) {
         this.isValueSelectionEnabled = isValueSelectionEnabled;
     }
-//
-//    public interface RefreshTouchLineListener{
-//        void onRefreshTouchLineListener();
-//        void loadMore();
-//    }
 
     protected class ChartScaleGestureListener extends ScaleGestureDetector.SimpleOnScaleGestureListener {
 
@@ -351,8 +346,13 @@ public class ChartTouchHandler {
                     + "---canScrollX: " + scrollResult.canScrollX
                         + "---distanceX:" + distanceX);
                 if (!canScroll && distanceX >= 0 && !chart.isLoading()){
-                    chart.loadMore();
+                    chart.loadRightMore();
                 }
+
+                if (!canScroll && distanceX <= 0 && !chart.isLoading()){
+                    chart.loadLeftMore();
+                }
+
                 allowParentInterceptTouchEvent(scrollResult);
                 return canScroll;
             }

@@ -9,7 +9,9 @@ import android.widget.Toast;
 
 import com.gzfgeh.CustomBottomTab.BottomTabLayoutActivity;
 import com.gzfgeh.CustomBtn.CustomBtnActivity;
+import com.gzfgeh.CustomChart.ChartViewActivity;
 import com.gzfgeh.CustomChart.CustomChartActivity;
+import com.gzfgeh.CustomDagger.Dagger2Activity;
 import com.gzfgeh.CustomFlowLayout.CustomFlowLayoutActivity;
 import com.gzfgeh.CustomRxBus.CustomRxBusActivity;
 import com.gzfgeh.CustomRxBus.annotation.Accept;
@@ -40,6 +42,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button bottomTablayout;
     @Bind(R.id.chart)
     Button chart;
+    @Bind(R.id.dragger2)
+    Button dragger2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +59,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         customChartView.setOnClickListener(this);
         customBtn.setOnClickListener(this);
         bottomTablayout.setOnClickListener(this);
+        chart.setOnClickListener(this);
+        dragger2.setOnClickListener(this);
     }
 
 
@@ -91,6 +97,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.bottom_tablayout:
                 startActivity(new Intent(this, BottomTabLayoutActivity.class));
+                break;
+
+            case R.id.chart:
+                startActivity(new Intent(this, ChartViewActivity.class));
+                break;
+
+            case R.id.dragger2:
+                startActivity(new Intent(this, Dagger2Activity.class));
                 break;
         }
     }

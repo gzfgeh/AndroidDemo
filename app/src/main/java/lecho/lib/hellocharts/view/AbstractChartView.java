@@ -7,6 +7,7 @@ import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ProgressBar;
 
 import com.gzfgeh.CustomChart.TouchLine;
 import com.gzfgeh.LogUtils;
@@ -446,7 +447,7 @@ public abstract class AbstractChartView extends View implements Chart {
         if (null != targetViewport) {
             isLoading = false;
             chartRenderer.setCurrentViewport(targetViewport);
-            chartComputator.setCurrentViewport(targetViewport);
+            //chartComputator.setCurrentViewport(targetViewport);
             setAxesY();
         }
         ViewCompat.postInvalidateOnAnimation(this);
@@ -552,19 +553,28 @@ public abstract class AbstractChartView extends View implements Chart {
     }
 
     @Override
-    public void loadMore() {
+    public void loadRightMore() {
         LogUtils.i("canScrollHorizontally:" + canScrollHorizontally(0)
             + "---currentViewport.right:" + getCurrentViewport().right
             + "---maximumViewport.right:" + getMaximumViewport().right);
 
         if (listener != null) {
             isLoading = true;
-            listener.onLoadMore();
+            listener.onLoadRightMore();
+        }
+    }
+
+    @Override
+    public void loadLeftMore() {
+        if (listener != null) {
+            isLoading = true;
+            listener.onLoadLeftMore();
         }
     }
 
     public interface LoadMoreListener{
-        void onLoadMore();
+        void onLoadRightMore();
+        void onLoadLeftMore();
     }
 
 

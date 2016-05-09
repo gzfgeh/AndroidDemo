@@ -64,10 +64,16 @@
         android:id="@+id/bottom_tablayout"
         android:layout_below="@+id/custom_btn"/>
 
-    <Button android:text="bottom Chart"
+    <Button android:text="Custom Chart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/chart"
         android:layout_below="@+id/bottom_tablayout"/>
+
+    <Button android:text="Dragger2 Study"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/dragger2"
+        android:layout_below="@+id/chart"/>
 
 </RelativeLayout>
