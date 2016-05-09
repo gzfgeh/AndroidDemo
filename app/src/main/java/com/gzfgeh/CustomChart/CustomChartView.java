@@ -1,32 +1,36 @@
 package com.gzfgeh.CustomChart;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Rect;
+import android.content.res.TypedArray;
 import android.util.AttributeSet;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
 
-import com.gzfgeh.LogUtils;
+import com.gzfgeh.R;
+import com.jude.easyrecyclerview.swipe.SwipeRefreshLayout;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import lecho.lib.hellocharts.gesture.ZoomType;
+import lecho.lib.hellocharts.view.Chart;
+import lecho.lib.hellocharts.view.LineChartView;
 
 /**
  * Description:
  * Created by guzhenfu on 2016/4/29 10:04.
  */
-public class CustomChartView extends View {
-    private int width, height, maxPrice;
-    private List<Map<String, String>> data;
-    private int distance = 10;
-    private float x = 0f, y = 0f;
-    private String[] axisX, axisY;
-    private float maxX, maxY;
-    private Rect rect;
-    private Paint paint;
+public class CustomChartView extends FrameLayout {
+    private int mProgressId;
+    private int mEmptyId;
+    private int mErrorId;
+    private int mNoMoreId;
+    protected ViewGroup mNoMoreView;
+    protected ViewGroup mProgressView;
+    protected ViewGroup mEmptyView;
+    protected ViewGroup mErrorView;
+    private LineChartView chart;
+    //protected SwipeRefreshLayout mPtrLayout;
 
     public CustomChartView(Context context) {
         this(context, null);
@@ -38,105 +42,96 @@ public class CustomChartView extends View {
 
     public CustomChartView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        rect = new Rect();
-        paint = new Paint();
+        TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.CustomChartView);
+        mEmptyId = array.getResourceId(R.styleable.CustomChartView_layout_empty_id, 0);
+        mProgressId = array.getResourceId(R.styleable.CustomChartView_layout_progress_id, 0);
+        mErrorId = array.getResourceId(R.styleable.CustomChartView_layout_error_id, 0);
+        mNoMoreId = array.getResourceId(R.styleable.CustomChartView_layout_nomore_id, 0);
+        array.recycle();
+        initView(context);
     }
 
-    public void setAxis(String[] x, String[] y){
-        rect = new Rect();
-        this.axisX = x;
-        for (int i=0; i<x.length; i++){
-            paint.getTextBounds(x[i], 0, x[i].length(), rect);
-            if (rect.width() > maxX)
-                maxX = rect.width();
-        }
+    private void initView(Context context) {
+        View v = LayoutInflater.from(context).inflate(R.layout.custom_char_view, this);
+//        mPtrLayout = (SwipeRefreshLayout) v.findViewById(com.jude.easyrecyclerview.R.id.ptr_layout);
+//        mPtrLayout.setEnabled(false);
+        chart = (LineChartView) v.findViewById(R.id.chart);
+        chart.setZoomType(ZoomType.HORIZONTAL);
+        chart.setZoomEnabled(true);
+        chart.setScrollEnabled(true);
+        chart.getTouchHandler().disallowParentInterceptTouchEvent();
 
-        this.axisY = y;
-        for (int i=0; i<y.length; i++){
-            paint.getTextBounds(y[i], 0, y[i].length(), rect);
-            if (rect.width() > maxY)
-                maxY = rect.width();
-        }
-        invalidate();
+        mProgressView = (ViewGroup) v.findViewById(R.id.progress);
+        if (mProgressId!=0)LayoutInflater.from(getContext()).inflate(mProgressId,mProgressView);
+        mEmptyView = (ViewGroup) v.findViewById(R.id.empty);
+        if (mEmptyId!=0)LayoutInflater.from(getContext()).inflate(mEmptyId,mEmptyView);
+        mErrorView = (ViewGroup) v.findViewById(R.id.error);
+        if (mErrorId!=0)LayoutInflater.from(getContext()).inflate(mErrorId,mErrorView);
+        mNoMoreView = (ViewGroup) v.findViewById(R.id.no_more);
+        if (mNoMoreId != 0) LayoutInflater.from(context).inflate(mNoMoreId, mNoMoreView);
+        hideAll();
     }
 
-    public void setData(List<Map<String, String>> list) {
-        if (list != null) {
-            this.data = list;
-            for (int i = 0; i < list.size(); i++) {
-                Map<String, String> map = list.get(i);
-                String strPrice = map.get("price");
-                int intPrice = Integer.parseInt(strPrice);
-                if (intPrice > maxPrice)
-                    maxPrice = intPrice;
-            }
-        } else {
-            this.data = new ArrayList<>();
-        }
-        invalidate();
+//    @Override
+//    public boolean dispatchTouchEvent(MotionEvent ev) {
+//        return mPtrLayout.dispatchTouchEvent(ev);
+//    }
+
+    public void setNoMoreView(int noMoreView){
+        mNoMoreView.removeAllViews();
+        LayoutInflater.from(getContext()).inflate(noMoreView, mNoMoreView);
     }
 
-    @Override
-    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-        super.onSizeChanged(w, h, oldw, oldh);
-        if (w == 0)
-            width = getMeasuredWidth();
-        else
-            width = w;
-
-        if (h == 0)
-            height = getMeasuredHeight();
-        else
-            height = h;
+    public void setEmptyView(int emptyView){
+        mEmptyView.removeAllViews();
+        LayoutInflater.from(getContext()).inflate(emptyView, mEmptyView);
+    }
+    public void setProgressView(int progressView){
+        mProgressView.removeAllViews();
+        LayoutInflater.from(getContext()).inflate(progressView, mProgressView);
+    }
+    public void setErrorView(int errorView){
+        mErrorView.removeAllViews();
+        LayoutInflater.from(getContext()).inflate(errorView, mErrorView);
     }
 
-    @Override
-    protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        rect = new Rect(0, 0, width, height);
-        paint.setColor(getResources().getColor(android.R.color.holo_green_dark));
-        canvas.drawRect(rect, paint);
+    public void hideAll(){
+        mEmptyView.setVisibility(View.GONE);
+        mProgressView.setVisibility(View.GONE);
+        mErrorView.setVisibility(GONE);
+        mNoMoreView.setVisibility(GONE);
+    }
 
-        paint.setColor(getResources().getColor(android.R.color.white));
-        paint.setTextSize(20);
-        x = maxY + distance;
-        y = height - maxX - distance;
-
-        float[] xLine = {x, y, width, y,
-                            x, 0, x, y};
-        canvas.drawLines(xLine, paint);
-
-        float gap = (width - maxX * axisX.length - x) / (axisX.length - 1) - 1;   //1是偏差
-        LogUtils.i("gap:" + gap + "----width:" + width + "---rect.width():" + maxX);
-        for (int i=0; i<axisX.length; i++){
-            float left = i * gap + maxX * i + x;
-            canvas.drawText(axisX[i], left, height, paint);
-        }
-
-        gap = (y - maxX * axisY.length) / (axisY.length - 1) - 1;
-        for (int i=0; i<axisY.length; i++){
-            float top = i * gap + maxX * i + x;
-            canvas.drawText(axisY[i], 0, top, paint);
-        }
-
-
-        int timeHeight = 40;
-        int priceHeight = height - timeHeight;
-        for (int i=0; i<data.size(); i++){
-            //横轴
-//            map = data.get(i);
-//            time = map.get("time");
-//            float timeLeft = i * gap + rect.width() * i + x;
-//            canvas.drawText(time, timeLeft, height, paint);
-
-
-
-            //竖轴
-//            String strPrice = map.get("price");
-//            int intPrice = Integer.parseInt(strPrice);
-//            int priceTop = (intPrice * priceHeight)/maxPrice;
-//            priceTop += 20;
-//            canvas.drawText(strPrice, timeLeft, priceTop, paint);
+    public void showNoMore() {
+        if (mNoMoreView.getChildCount()>0){
+            hideAll();
+            mNoMoreView.setVisibility(View.VISIBLE);
         }
     }
+
+    public void showError() {
+        if (mErrorView.getChildCount()>0){
+            hideAll();
+            mErrorView.setVisibility(View.VISIBLE);
+        }
+    }
+
+    public void showEmpty() {
+        if (mEmptyView.getChildCount()>0){
+            hideAll();
+            mEmptyView.setVisibility(View.VISIBLE);
+        }
+    }
+
+    public void showProgress() {
+        if (mProgressView.getChildCount()>0){
+            hideAll();
+            mProgressView.setVisibility(View.VISIBLE);
+        }
+    }
+
+    public Chart getChart() {
+        return chart;
+    }
+
 }

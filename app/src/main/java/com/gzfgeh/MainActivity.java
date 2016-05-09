@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.gzfgeh.CustomBottomTab.BottomTabLayoutActivity;
 import com.gzfgeh.CustomBtn.CustomBtnActivity;
+import com.gzfgeh.CustomChart.ChartViewActivity;
 import com.gzfgeh.CustomChart.CustomChartActivity;
 import com.gzfgeh.CustomFlowLayout.CustomFlowLayoutActivity;
 import com.gzfgeh.CustomRxBus.CustomRxBusActivity;
@@ -55,6 +56,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         customChartView.setOnClickListener(this);
         customBtn.setOnClickListener(this);
         bottomTablayout.setOnClickListener(this);
+        chart.setOnClickListener(this);
     }
 
 
@@ -91,6 +93,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.bottom_tablayout:
                 startActivity(new Intent(this, BottomTabLayoutActivity.class));
+                break;
+
+            case R.id.chart:
+                startActivity(new Intent(this, ChartViewActivity.class));
                 break;
         }
     }

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+    <com.gzfgeh.CustomChart.CustomChartView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/chart_view"
+        app:layout_error_id="@layout/view_error"
+        app:layout_empty_id="@layout/view_empty"
+        app:layout_progress_id="@layout/view_progress"/>
+
+</LinearLayout>
