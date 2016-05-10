@@ -17,7 +17,7 @@ public class Dagger2ActivityModule {
 
     @Provides
     @ActivityScope
-    Dagger2ActivityPresenter provideDagger2ActivityPresenter(){
-        return new Dagger2ActivityPresenter(dagger2Activity);
+    Dagger2ActivityPresenter provideDagger2ActivityPresenter(User user){
+        return new Dagger2ActivityPresenter(dagger2Activity, user);
     }
 }

@@ -8,13 +8,15 @@ import javax.inject.Inject;
  */
 public class Dagger2ActivityPresenter {
     private Dagger2Activity activity;
+    private User user;
 
     @Inject
-    public Dagger2ActivityPresenter(Dagger2Activity activity) {
+    public Dagger2ActivityPresenter(Dagger2Activity activity, User user) {
         this.activity = activity;
+        this.user = user;
     }
 
     public void showText(){
-        activity.setTextView("----");
+        activity.setTextView(user.getName());
     }
 }

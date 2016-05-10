@@ -39,6 +39,7 @@ public class Dagger2Activity extends Activity {
         DaggerUserComponent.builder()
                 .homeModle(new HomeModle(this))
                 .dagger2ActivityModule(new Dagger2ActivityModule(this))
+                .userModule(new UserModule())
                 .build()
                 .inject(this);
 
