@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.TextView;
 
 import com.gzfgeh.R;
 
@@ -23,6 +24,11 @@ public class Dagger2Activity extends Activity {
 
     @Inject
     HomeAdapter adapter;
+    @Bind(R.id.text)
+    TextView text;
+
+    @Inject
+    Dagger2ActivityPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,10 +38,17 @@ public class Dagger2Activity extends Activity {
 
         DaggerUserComponent.builder()
                 .homeModle(new HomeModle(this))
+                .dagger2ActivityModule(new Dagger2ActivityModule(this))
                 .build()
                 .inject(this);
 
+
+        presenter.showText();
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
+    }
+
+    public void setTextView(String username){
+        text.setText(username);
     }
 }

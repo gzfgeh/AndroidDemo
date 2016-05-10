@@ -10,7 +10,8 @@ import dagger.Component;
  * Github: https://github.com/gzfgeh
  */
 @ActivityScope
-@Component(modules = {HomeModle.class})
+@Component(modules = {HomeModle.class, Dagger2ActivityModule.class})
 public interface UserComponent {
     void inject(Dagger2Activity activity);
+
 }
