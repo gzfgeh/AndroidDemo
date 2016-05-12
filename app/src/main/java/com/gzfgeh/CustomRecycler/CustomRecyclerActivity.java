@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.gzfgeh.CustomRecycler.expandRecyclerviewadapter.StickyRecyclerHeadersDecoration;
+import com.gzfgeh.LogUtils;
 import com.gzfgeh.R;
 
 import java.util.ArrayList;
@@ -34,6 +35,7 @@ public class CustomRecyclerActivity extends Activity {
     private PinyinComparator pinyinComparator;
     private List<Model> list = new ArrayList<>();
     private RecyclerViewAdapter mAdapter;
+    private LinearLayoutManager layoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,8 +92,11 @@ public class CustomRecyclerActivity extends Activity {
             @Override
             public void onTouchingLetterChanged(String s) {
                 int position = mAdapter.getPositionForSection(s.charAt(0));
+                LogUtils.i("position:" + position);
                 if (position != -1) {
                     mRecyclerView.scrollToPosition(position);
+                    layoutManager.smoothScrollToPosition(mRecyclerView, null, position);
+                    LogUtils.i("position:" + layoutManager.findFirstCompletelyVisibleItemPosition());
                 }
 
             }
@@ -99,9 +104,9 @@ public class CustomRecyclerActivity extends Activity {
         seperateLists(mAllLists);
 
         if (mAdapter == null) {
+            mRecyclerView.setHasFixedSize(true);
             mAdapter = new RecyclerViewAdapter(list);
-            int orientation = LinearLayoutManager.VERTICAL;
-            final LinearLayoutManager layoutManager = new LinearLayoutManager(this, orientation, false);
+            layoutManager = new LinearLayoutManager(this);
             mRecyclerView.setLayoutManager(layoutManager);
 
             mRecyclerView.setAdapter(mAdapter);

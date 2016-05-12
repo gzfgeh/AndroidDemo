@@ -15,13 +15,12 @@ import java.util.List;
  * Description:
  * Created by guzhenfu on 2016/5/12 17:37.
  */
-public class RecyclerViewAdapter  extends BaseAdapter<RecyclerViewAdapter.ViewHolder>
+public class RecyclerViewAdapter  extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>
                     implements StickyRecyclerHeadersAdapter<RecyclerView.ViewHolder>{
     private List<Model> mLists;
 
     public RecyclerViewAdapter(List<Model> mLists) {
         this.mLists = mLists;
-        addAll(mLists);
     }
 
     @Override
@@ -34,6 +33,15 @@ public class RecyclerViewAdapter  extends BaseAdapter<RecyclerViewAdapter.ViewHo
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.mName.setText(getItem(position).getUsername());
+    }
+
+    public Model getItem(int position){
+        return mLists.get(position);
+    }
+
+    @Override
+    public int getItemCount() {
+        return mLists.size();
     }
 
     @Override
