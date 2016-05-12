@@ -13,6 +13,7 @@ import com.gzfgeh.CustomChart.ChartViewActivity;
 import com.gzfgeh.CustomChart.CustomChartActivity;
 import com.gzfgeh.CustomDagger.Dagger2Activity;
 import com.gzfgeh.CustomFlowLayout.CustomFlowLayoutActivity;
+import com.gzfgeh.CustomRecycler.CustomRecyclerActivity;
 import com.gzfgeh.CustomRxBus.CustomRxBusActivity;
 import com.gzfgeh.CustomRxBus.annotation.Accept;
 import com.gzfgeh.CustomTag.CustomTagLayoutActivity;
@@ -44,6 +45,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button chart;
     @Bind(R.id.dragger2)
     Button dragger2;
+    @Bind(R.id.recycler)
+    Button recycler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +64,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         bottomTablayout.setOnClickListener(this);
         chart.setOnClickListener(this);
         dragger2.setOnClickListener(this);
+        recycler.setOnClickListener(this);
     }
 
 
@@ -105,6 +109,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.dragger2:
                 startActivity(new Intent(this, Dagger2Activity.class));
+                break;
+
+            case R.id.recycler:
+                startActivity(new Intent(this, CustomRecyclerActivity.class));
                 break;
         }
     }

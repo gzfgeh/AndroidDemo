@@ -43,4 +43,5 @@ dependencies {
     compile 'com.google.dagger:dagger:2.0.2'
     // Dagger 2 中会用到 @Generated 注解，而 Android SDK 中没有 javax.anotation.Generated.class，所以在 Android 项目要添加此句
     provided 'org.glassfish:javax.annotation:10.0-b28'
+    compile 'com.google.code.gson:gson:2.2.4'
 }

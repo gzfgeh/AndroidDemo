@@ -69,6 +69,7 @@
         <activity android:name=".CustomChart.ChartViewActivity"
             android:screenOrientation="landscape"/>
         <activity android:name=".CustomDagger.Dagger2Activity"/>
+        <activity android:name=".CustomRecycler.CustomRecyclerActivity"/>
 
     </application>
 

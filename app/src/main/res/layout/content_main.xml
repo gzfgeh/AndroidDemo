@@ -9,71 +9,129 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/activity_main" tools:context=".MainActivity">
 
-    <Button android:text="Custom ViewGroup One"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/custom_viewgroup"/>
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:id="@+id/custom_viewgroup_layout">
 
-    <Button android:text="Custom ViewGroup Two"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/custom_viewgroup_flow"
-        android:layout_below="@+id/custom_viewgroup"/>
+        <Button android:text=" ViewGroup One"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/custom_viewgroup"/>
 
-    <Button android:text="Custom ViewGroup Tags"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/custom_viewgroup_tag"
-        android:layout_below="@+id/custom_viewgroup_flow"/>
+        <Button android:text=" ViewGroup Two"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/custom_viewgroup_flow"/>
+    </LinearLayout>
 
-    <Button android:text="Custom TextView"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/custom_text_view"
-        android:layout_below="@+id/custom_viewgroup_tag"/>
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:id="@+id/layout_two"
+        android:layout_below="@+id/custom_viewgroup_layout">
 
-    <com.andexert.library.RippleView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/more"
-        android:layout_below="@+id/custom_text_view"
-        rv_centered="true">
+        <Button android:text=" ViewGroup Tags"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/custom_viewgroup_tag"
+            android:layout_weight="1"/>
 
-    <Button android:text="Custom RxBus"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/custom_rx_bus"
-        android:layout_below="@+id/custom_text_view"/>
-    </com.andexert.library.RippleView>
+        <Button android:text=" TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/custom_text_view"
+            android:layout_weight="1"/>
 
-    <Button android:text="Custom ChartView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/custom_chart_view"
-        android:layout_below="@+id/more"/>
+    </LinearLayout>
 
-    <Button android:text="波纹效果"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/custom_btn"
-        android:layout_below="@+id/custom_chart_view"/>
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:id="@+id/layout_three"
+        android:layout_below="@+id/layout_two">
 
-    <Button android:text="bottom tab"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/bottom_tablayout"
-        android:layout_below="@+id/custom_btn"/>
+        <com.andexert.library.RippleView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/more"
+            android:layout_weight="1"
+            rv_centered="true">
 
-    <Button android:text="Custom Chart"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/chart"
-        android:layout_below="@+id/bottom_tablayout"/>
+            <Button android:text=" RxBus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/custom_rx_bus"
+                android:layout_below="@+id/custom_text_view"/>
+        </com.andexert.library.RippleView>
 
-    <Button android:text="Dragger2 Study"
+        <Button android:text=" ChartView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/custom_chart_view"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:id="@+id/layout_four"
+        android:layout_below="@+id/layout_three">
+
+        <Button android:text="波纹效果"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/custom_btn"
+            android:layout_weight="1"/>
+
+        <Button android:text="bottom tab"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/bottom_tablayout"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:layout_below="@+id/layout_four"
+        android:id="@+id/layout_five">
+
+        <Button android:text="Custom Chart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/chart"
+            android:layout_weight="1"/>
+
+        <Button android:text="Dragger2 Study"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/dragger2"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/dragger2"
-        android:layout_below="@+id/chart"/>
+        android:id="@+id/six"
+        android:layout_below="@+id/layout_five">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="recycler"
+            android:id="@+id/recycler"/>
+    </LinearLayout>
+
+
 
 </RelativeLayout>
