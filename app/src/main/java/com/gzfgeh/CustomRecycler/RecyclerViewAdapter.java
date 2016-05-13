@@ -44,6 +44,7 @@ public class RecyclerViewAdapter  extends RecyclerView.Adapter<RecyclerViewAdapt
         return mLists.size();
     }
 
+
     @Override
     public long getHeaderId(int position) {
         return getItem(position).getSortLetters().charAt(0);

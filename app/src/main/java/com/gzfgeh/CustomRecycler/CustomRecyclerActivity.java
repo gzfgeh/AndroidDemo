@@ -92,10 +92,13 @@ public class CustomRecyclerActivity extends Activity {
             @Override
             public void onTouchingLetterChanged(String s) {
                 int position = mAdapter.getPositionForSection(s.charAt(0));
-                LogUtils.i("position:" + position);
+                LogUtils.i("position:" + position + "----mAdapter.getItemWidth()*position:" + mRecyclerView.getChildAt(0).getHeight() * position);
                 if (position != -1) {
+                    //int distanceY = (position - layoutManager.findFirstCompletelyVisibleItemPosition()) * mRecyclerView.getChildAt(0).getHeight();
+                    //mRecyclerView.smoothScrollBy(0, distanceY);
+                    //layoutManager.scrollToPositionWithOffset(0, mAdapter.getItemWidth()*position);
                     mRecyclerView.scrollToPosition(position);
-                    layoutManager.smoothScrollToPosition(mRecyclerView, null, position);
+                    //layoutManager.smoothScrollToPosition(mRecyclerView, null, position);
                     LogUtils.i("position:" + layoutManager.findFirstCompletelyVisibleItemPosition());
                 }
 
