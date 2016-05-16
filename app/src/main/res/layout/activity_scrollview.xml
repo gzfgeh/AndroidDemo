@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.gzfgeh.CustomScrollView.FlexibleScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="none"
+    android:fillViewport="true"
+    android:id="@+id/scroll_view">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="-100dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:id="@+id/head"
+            android:orientation="horizontal">
+
+            <com.gzfgeh.CustomScrollView.ColorTrackView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                app:text="化"
+                app:text_change_color="#ffff0000"
+                app:text_origin_color="#ff000000"
+                app:text_size="20sp"
+                android:id="@+id/track_view_one"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/refresh_header_image"
+                android:scaleType="center"
+                android:layout_weight="2"/>
+
+            <com.gzfgeh.CustomScrollView.ColorTrackView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                app:text="交"
+                app:text_change_color="#ffff0000"
+                app:text_origin_color="#ff000000"
+                app:text_size="20sp"
+                android:id="@+id/track_view_two"/>
+
+        </LinearLayout>
+
+        
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@android:color/black"
+            android:layout_below="@+id/head"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@android:string/cancel"/>
+    </RelativeLayout>
+
+</com.gzfgeh.CustomScrollView.FlexibleScrollView>

@@ -16,6 +16,7 @@ import com.gzfgeh.CustomFlowLayout.CustomFlowLayoutActivity;
 import com.gzfgeh.CustomRecycler.CustomRecyclerActivity;
 import com.gzfgeh.CustomRxBus.CustomRxBusActivity;
 import com.gzfgeh.CustomRxBus.annotation.Accept;
+import com.gzfgeh.CustomScrollView.ScrollViewActivity;
 import com.gzfgeh.CustomTag.CustomTagLayoutActivity;
 import com.gzfgeh.CustomTextView.CustomTextviewActivity;
 import com.gzfgeh.CustomViewGroup.CustomViewGroupActivity;
@@ -47,6 +48,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button dragger2;
     @Bind(R.id.recycler)
     Button recycler;
+    @Bind(R.id.scroll_view)
+    Button scrollView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +68,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         chart.setOnClickListener(this);
         dragger2.setOnClickListener(this);
         recycler.setOnClickListener(this);
+        scrollView.setOnClickListener(this);
     }
 
 
@@ -113,6 +117,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.recycler:
                 startActivity(new Intent(this, CustomRecyclerActivity.class));
+                break;
+
+            case R.id.scroll_view:
+                startActivity(new Intent(this, ScrollViewActivity.class));
                 break;
         }
     }
