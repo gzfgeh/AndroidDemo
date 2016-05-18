@@ -140,6 +140,20 @@
             android:layout_weight="1"/>
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/seven"
+        android:layout_below="@+id/six">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Retrofit"
+            android:id="@+id/retrofit"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
 
 
 </RelativeLayout>

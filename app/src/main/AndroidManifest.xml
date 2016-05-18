@@ -71,6 +71,7 @@
         <activity android:name=".CustomDagger.Dagger2Activity"/>
         <activity android:name=".CustomRecycler.CustomRecyclerActivity"/>
         <activity android:name=".CustomScrollView.ScrollViewActivity"/>
+        <activity android:name=".CustomRetrifit.RetrofitActivity"/>
 
     </application>
 

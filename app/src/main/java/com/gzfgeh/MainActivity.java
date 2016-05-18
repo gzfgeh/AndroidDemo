@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.gzfgeh.CustomBottomTab.BottomTabLayoutActivity;
@@ -14,6 +15,7 @@ import com.gzfgeh.CustomChart.CustomChartActivity;
 import com.gzfgeh.CustomDagger.Dagger2Activity;
 import com.gzfgeh.CustomFlowLayout.CustomFlowLayoutActivity;
 import com.gzfgeh.CustomRecycler.CustomRecyclerActivity;
+import com.gzfgeh.CustomRetrifit.RetrofitActivity;
 import com.gzfgeh.CustomRxBus.CustomRxBusActivity;
 import com.gzfgeh.CustomRxBus.annotation.Accept;
 import com.gzfgeh.CustomScrollView.ScrollViewActivity;
@@ -50,6 +52,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button recycler;
     @Bind(R.id.scroll_view)
     Button scrollView;
+    @Bind(R.id.layout_three)
+    LinearLayout layoutThree;
+    @Bind(R.id.retrofit)
+    Button retrofit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +75,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         dragger2.setOnClickListener(this);
         recycler.setOnClickListener(this);
         scrollView.setOnClickListener(this);
+        retrofit.setOnClickListener(this);
     }
 
 
@@ -121,6 +128,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.scroll_view:
                 startActivity(new Intent(this, ScrollViewActivity.class));
+                break;
+
+            case R.id.retrofit:
+                startActivity(new Intent(this, RetrofitActivity.class));
                 break;
         }
     }
