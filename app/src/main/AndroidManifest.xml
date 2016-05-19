@@ -72,6 +72,7 @@
         <activity android:name=".CustomRecycler.CustomRecyclerActivity"/>
         <activity android:name=".CustomScrollView.ScrollViewActivity"/>
         <activity android:name=".CustomRetrifit.RetrofitActivity"/>
+        <activity android:name=".CustomDrawable.CustomDrawableActivity"/>
 
     </application>
 

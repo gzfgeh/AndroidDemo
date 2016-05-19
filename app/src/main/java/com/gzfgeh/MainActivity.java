@@ -13,6 +13,7 @@ import com.gzfgeh.CustomBtn.CustomBtnActivity;
 import com.gzfgeh.CustomChart.ChartViewActivity;
 import com.gzfgeh.CustomChart.CustomChartActivity;
 import com.gzfgeh.CustomDagger.Dagger2Activity;
+import com.gzfgeh.CustomDrawable.CustomDrawableActivity;
 import com.gzfgeh.CustomFlowLayout.CustomFlowLayoutActivity;
 import com.gzfgeh.CustomRecycler.CustomRecyclerActivity;
 import com.gzfgeh.CustomRetrifit.RetrofitActivity;
@@ -56,6 +57,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     LinearLayout layoutThree;
     @Bind(R.id.retrofit)
     Button retrofit;
+    @Bind(R.id.custom_drawable)
+    Button drawable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +79,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         recycler.setOnClickListener(this);
         scrollView.setOnClickListener(this);
         retrofit.setOnClickListener(this);
+        drawable.setOnClickListener(this);
     }
 
 
@@ -132,6 +136,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.retrofit:
                 startActivity(new Intent(this, RetrofitActivity.class));
+                break;
+
+            case R.id.custom_drawable:
+                startActivity(new Intent(this, CustomDrawableActivity.class));
                 break;
         }
     }
