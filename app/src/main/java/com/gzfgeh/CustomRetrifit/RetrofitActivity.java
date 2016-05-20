@@ -2,12 +2,15 @@ package com.gzfgeh.CustomRetrifit;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.gzfgeh.LogUtils;
 import com.gzfgeh.R;
+
+import java.util.concurrent.TimeUnit;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -17,6 +20,7 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 import rx.subjects.BehaviorSubject;
+import rx.subscriptions.CompositeSubscription;
 
 /**
  * Description:
@@ -31,6 +35,10 @@ public class RetrofitActivity extends Activity implements View.OnClickListener {
     Button behavior;
     @Bind(R.id.wave_view)
     WaterWaveView waveView;
+    @Bind(R.id.water_view)
+    WaterView waterView;
+
+    private CompositeSubscription compositeSubscription = new CompositeSubscription();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +48,7 @@ public class RetrofitActivity extends Activity implements View.OnClickListener {
 
         retrofit.setOnClickListener(this);
         behavior.setOnClickListener(this);
+        waveView.setmWaterLevel(0.7f);
         waveView.startWave();
     }
 
@@ -62,13 +71,17 @@ public class RetrofitActivity extends Activity implements View.OnClickListener {
                     @Override
                     public void call(Subscriber<? super Integer> subscriber) {
                         if (!subscriber.isUnsubscribed()) {
-                            for (int i = 0; i < 200; i++) {
+                            for (int i = 0; i < 1000; i++) {
+                                LogUtils.i("onNext:----subscriber" + i % 10);
+                                if (i % 10 == 0) {
+                                    subscriber.onNext(i);
+                                }
+
                                 try {
-                                    Thread.sleep(1000);
+                                    Thread.sleep(100);
                                 } catch (InterruptedException e) {
                                     e.printStackTrace();
                                 }
-                                subscriber.onNext(i);
                             }
                             subscriber.onCompleted();
                         }
@@ -79,20 +92,26 @@ public class RetrofitActivity extends Activity implements View.OnClickListener {
                             @Override
                             public void onCompleted() {
                                 text.setText("done");
-                                waveView.setmWaterLevel(1.0f);
+                                //waterView.setWaterLevel(1.0f);
+                                LogUtils.i("onNext:--onCompleted--");
                             }
 
                             @Override
                             public void onError(Throwable e) {
-                                LogUtils.i("onNext:----" + e.getMessage());
+                                LogUtils.i("onNext:--error--" + e.getMessage());
                             }
 
                             @Override
                             public void onNext(Integer o) {
                                 text.setText(o + "");
                                 LogUtils.i("onNext:----" + o);
-                                float progress = (float)(o/200);
-                                waveView.setmWaterLevel(progress);
+                                //waterView.setWaterLevel(o/1000);
+//                                compositeSubscription.add(Observable.interval(30, TimeUnit.MILLISECONDS).subscribe(new Action1<Long>() {
+//                                    @Override
+//                                    public void call(Long aLong) {
+//                                        waterView.setWaterLevel(o/1000);
+//                                    }
+//                                }));
                             }
                         });
             }
@@ -111,7 +130,6 @@ public class RetrofitActivity extends Activity implements View.OnClickListener {
             }
             break;
         }
-
-
     }
+
 }

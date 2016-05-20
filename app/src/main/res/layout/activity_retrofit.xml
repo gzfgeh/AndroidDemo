@@ -22,9 +22,16 @@
         android:id="@+id/text"/>
 
     <com.gzfgeh.CustomRetrifit.WaterWaveView
-        android:layout_width="300dp"
-        android:layout_height="300dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:layout_gravity="center"
         android:id="@+id/wave_view"/>
+
+    <com.gzfgeh.CustomRetrifit.WaterView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:id="@+id/water_view"
+        android:background="@color/holo_purple2"/>
 
 </LinearLayout>
