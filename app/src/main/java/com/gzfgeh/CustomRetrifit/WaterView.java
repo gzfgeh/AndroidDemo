@@ -38,7 +38,7 @@ public class WaterView extends View{
 
     private long c = 0L;
     private final float f = 0.033F;
-    private float mAmplitude = 10.0F; // 振幅
+    private float mAmplitude = 15.0F; // 振幅
     float mWaterLevel = 0.0f;
     private float textSize = 50.f;
     private int outStrokeWidth = 15;
@@ -58,10 +58,10 @@ public class WaterView extends View{
 
     public WaterView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init(context);
+        init();
     }
 
-    private void init(Context context) {
+    private void init() {
         outCirclePaint = new Paint();
         outCirclePaint.setAntiAlias(true);
         outCirclePaint.setDither(true);

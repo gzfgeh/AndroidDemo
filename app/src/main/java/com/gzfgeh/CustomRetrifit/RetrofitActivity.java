@@ -78,6 +78,7 @@ public class RetrofitActivity extends Activity implements View.OnClickListener {
                                 text.setText("done");
                                 waterView.setWaterLevel(1.0f);
                                 dialog.setProgress(1.0f);
+                                dialog = null;
                                 LogUtils.i("onNext:--onCompleted--");
                             }
 

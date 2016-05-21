@@ -44,24 +44,8 @@
     </style>
 
 
-    <style name="customer_progress_dialog" parent="@android:style/Widget.ProgressBar">
-        <item name="android:indeterminateDuration">2000</item>
-        <item name="android:fullDark">@drawable/rect_gray</item>
-        <item name="android:topDark">@drawable/rect_gray</item>
-        <item name="android:centerDark">@drawable/rect_gray</item>
-        <item name="android:bottomDark">@drawable/rect_gray</item>
-        <item name="android:fullBright">@drawable/rect_gray</item>
-        <item name="android:topBright">@drawable/rect_gray</item>
-        <item name="android:centerBright">@drawable/rect_gray</item>
-        <item name="android:bottomBright">@drawable/rect_gray</item>
-        <item name="android:bottomMedium">@drawable/rect_gray</item>
-        <item name="android:centerMedium">@drawable/rect_gray</item>
-    </style>
-
 
     <style name="theme.customer_progress_dialog" parent="@android:style/Theme.Dialog">
-        <item name="android:alertDialogStyle">@style/customer_progress_dialog</item>
-        <item name="android:progressBarStyleSmall">@style/customer_progress_dialog</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowIsTranslucent">true</item>
