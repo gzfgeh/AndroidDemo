@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -29,16 +30,20 @@ public class WaterView extends View{
     private Paint interCirclePaint;
     private Paint waterPaint;
     private Paint progressText;
+    private Paint paint;
+    private Rect mTextBound = new Rect();
 
     private long c = 0L;
     private final float f = 0.033F;
     private float mAmplitude = 10.0F; // 振幅
     float mWaterLevel = 0.0f;
     private float textSize = 50.f;
-
     private int outStrokeWidth = 15;
     private int alpha = 50;
-    private CompositeSubscription compositeSubscription = new CompositeSubscription();
+    private int color = Color.WHITE;
+    private float progressStartX = 0, progressStartY = 0;
+
+    private String downloading = "下载中...";
 
     public WaterView(Context context) {
         this(context, null);
@@ -58,13 +63,13 @@ public class WaterView extends View{
         outCirclePaint.setAntiAlias(true);
         outCirclePaint.setDither(true);
         outCirclePaint.setStyle(Paint.Style.STROKE);
-        outCirclePaint.setColor(Color.WHITE);
+        outCirclePaint.setColor(color);
         outCirclePaint.setStrokeWidth(outStrokeWidth);
         outCirclePaint.setAlpha(alpha);
 
         interCirclePaint = new Paint();
         interCirclePaint.setStyle(Paint.Style.STROKE);
-        interCirclePaint.setColor(Color.WHITE);
+        interCirclePaint.setColor(color);
         interCirclePaint.setStrokeWidth(2);
         interCirclePaint.setAntiAlias(true);
 
@@ -73,31 +78,30 @@ public class WaterView extends View{
         waterPaint.setDither(true);
         waterPaint.setStrokeWidth(1.0f);
         //下面两个顺序比较重要
-        waterPaint.setColor(Color.WHITE);
+        waterPaint.setColor(color);
         waterPaint.setAlpha(alpha);
 
         progressText = new Paint();
-        progressText.setColor(Color.WHITE);
+        progressText.setColor(color);
         progressText.setTextSize(textSize);
         progressText.setAntiAlias(true);
         progressText.setStyle(Paint.Style.FILL);
 
-        compositeSubscription.add(Observable.interval(300, TimeUnit.MILLISECONDS).subscribe(new Action1<Long>() {
-            @Override
-            public void call(Long aLong) {
-                WaterView.this.postInvalidate();
-                mWaterLevel += 0.005;
-                if (mWaterLevel >= 1.0f)
-                    mWaterLevel = 1.0f;
-            }
-        }));
+        paint = new Paint();
+        paint.setColor(color);
+        paint.setTextSize(textSize);
+        paint.setAntiAlias(true);
+        paint.setStyle(Paint.Style.FILL);
     }
 
     public void setWaterLevel(float level) {
         this.mWaterLevel = level;
-        if (mWaterLevel >= 1.0f)
+        if (mWaterLevel >= 1.0f) {
             mWaterLevel = 1.0f;
-        postInvalidate();
+            downloading = "下载完成";
+        }
+        invalidate();
+        LogUtils.i("mWaterLevel:" + mWaterLevel);
     }
 
     @Override
@@ -143,8 +147,7 @@ public class WaterView extends View{
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        float progress = new BigDecimal(mWaterLevel * 100).setScale(3, BigDecimal.ROUND_HALF_UP).floatValue();
-        String text = String.valueOf(progress+ "%");
+
         //计算当前油量线和水平中线的距离
         float centerOffset = Math.abs(width / 2 * mWaterLevel - width / 4);
         //计算油量线和与水平中线的角度
@@ -159,15 +162,37 @@ public class WaterView extends View{
             sweepAngle = 180F - 2 * horiAngle;
         }
         LogUtils.i("startAngle:" + startAngle + "---sweepAngle:" + sweepAngle);
-
-
         RectF rectF = new RectF(width/4, height/4, width*3/4, height*3/4);
         canvas.drawArc(rectF, startAngle, sweepAngle, false, waterPaint);
 
+        float progress = new BigDecimal(mWaterLevel * 100).setScale(3, BigDecimal.ROUND_HALF_UP).floatValue();
+        String text = String.valueOf(progress+ "%");
         float textWidth = progressText.measureText(text);
-        Paint.FontMetrics fm = progressText.getFontMetrics();// 得到系统默认字体属性
-        float textHeight = (int) (Math.ceil(fm.descent - fm.ascent - textSize/2));// 获得字体高度
+
+        progressText.getTextBounds(text, 0, text.length(), mTextBound);
+        float textHeight = mTextBound.height();
+
+        progressStartX = width/2 - textWidth/2;
+        progressStartY = height/2 - textHeight/2;
+        canvas.save(Canvas.CLIP_SAVE_FLAG);
+        progressText.setColor(color);
+        canvas.clipRect(progressStartX, progressStartY, progressStartX + textWidth, progressStartY + (1 - mWaterLevel) * textHeight);
         canvas.drawText(text, width/2 - textWidth/2, height/2 + textHeight/2, progressText);
+        canvas.restore();
+        canvas.save(Canvas.CLIP_SAVE_FLAG);
+        if (mWaterLevel != 1.0f) {
+            progressText.setAlpha(alpha);
+        }
+        canvas.clipRect(progressStartX, progressStartY + (1 - mWaterLevel) * textHeight, progressStartX + textWidth, progressStartY + textHeight);
+        canvas.drawText(text, width / 2 - textWidth / 2, height / 2 + textHeight / 2, progressText);
+        canvas.restore();
+
+
+
+        textWidth = paint.measureText(downloading);
+        paint.getTextBounds(downloading, 0, downloading.length(), mTextBound);
+        textHeight = mTextBound.height();
+        canvas.drawText(downloading, width/2 - textWidth/2, height *7/8 + textHeight/2, paint);
 
         //关键的一段
         if (this.c >= 8388607L) {
@@ -198,7 +223,6 @@ public class WaterView extends View{
             startX++;
         }
         //关键的一段
-
         canvas.drawCircle(width / 2, width / 2, width / 4 + outStrokeWidth / 2, outCirclePaint);
         canvas.drawCircle(width / 2, width / 2, width / 4, interCirclePaint);
         LogUtils.i("width:" + width + "---height:" + height);
