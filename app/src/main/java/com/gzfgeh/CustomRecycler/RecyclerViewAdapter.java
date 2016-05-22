@@ -82,7 +82,5 @@ public class RecyclerViewAdapter  extends RecyclerView.Adapter<RecyclerViewAdapt
             super(itemView);
             mName = (TextView) itemView.findViewById(R.id.item_contact_title);
         }
-
-
     }
 }
