@@ -21,7 +21,9 @@ import java.util.concurrent.TimeUnit;
 
 import rx.Observable;
 import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
+import rx.schedulers.Schedulers;
 import rx.subscriptions.CompositeSubscription;
 
 /**
@@ -46,6 +48,7 @@ public class WaterView extends View{
     private int alpha = 50;
     private int color = Color.WHITE;
     private float progressStartX = 0, progressStartY = 0;
+    private CompositeSubscription compositeSubscription;
 
     private String downloading = "下载中...";
 
@@ -96,6 +99,11 @@ public class WaterView extends View{
         paint.setTextSize(textSize);
         paint.setAntiAlias(true);
         paint.setStyle(Paint.Style.FILL);
+
+        compositeSubscription.add(Observable.interval(100, TimeUnit.MILLISECONDS)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(aLong -> invalidate()));
     }
 
     public void setWaterLevel(float level) {
@@ -103,9 +111,9 @@ public class WaterView extends View{
         if (mWaterLevel >= 1.0f) {
             mWaterLevel = 1.0f;
             downloading = "下载完成";
+            compositeSubscription.unsubscribe();
+            compositeSubscription = null;
         }
-        invalidate();
-        LogUtils.i("mWaterLevel:" + mWaterLevel);
     }
 
     @Override
