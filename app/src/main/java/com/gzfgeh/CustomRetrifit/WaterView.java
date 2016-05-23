@@ -99,20 +99,24 @@ public class WaterView extends View{
         paint.setTextSize(textSize);
         paint.setAntiAlias(true);
         paint.setStyle(Paint.Style.FILL);
-
-        compositeSubscription.add(Observable.interval(100, TimeUnit.MILLISECONDS)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(aLong -> invalidate()));
     }
 
     public void setWaterLevel(float level) {
         this.mWaterLevel = level;
+        invalidate();
         if (mWaterLevel >= 1.0f) {
             mWaterLevel = 1.0f;
             downloading = "下载完成";
             compositeSubscription.unsubscribe();
             compositeSubscription = null;
+        }
+
+        if (compositeSubscription == null){
+            compositeSubscription = new CompositeSubscription();
+            compositeSubscription.add(Observable.interval(100, TimeUnit.MILLISECONDS)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(aLong -> invalidate()));
         }
     }
 
