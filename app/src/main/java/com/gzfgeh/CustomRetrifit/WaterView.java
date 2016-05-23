@@ -16,6 +16,7 @@ import android.widget.ProgressBar;
 import com.gzfgeh.LogUtils;
 
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.concurrent.TimeUnit;
 
 import rx.Observable;
@@ -168,8 +169,9 @@ public class WaterView extends View{
         RectF rectF = new RectF(width/4, height/4, width*3/4, height*3/4);
         canvas.drawArc(rectF, startAngle, sweepAngle, false, waterPaint);
 
-        float progress = new BigDecimal(mWaterLevel * 100).setScale(3, BigDecimal.ROUND_HALF_UP).floatValue();
-        String text = String.valueOf(progress+ "%");
+        DecimalFormat decimalFormat=new DecimalFormat(".0");
+        String p=decimalFormat.format(mWaterLevel * 100);
+        String text = String.valueOf(p+ "%");
         float textWidth = progressText.measureText(text);
 
         progressText.getTextBounds(text, 0, text.length(), mTextBound);

@@ -18,6 +18,7 @@ import com.gzfgeh.R;
 public class CustomProgressDialog extends ProgressDialog {
     private Context context;
     private WaterView waterView;
+    private boolean isShowing;
 
     public CustomProgressDialog(Context context) {
         this(context, R.style.theme_customer_progress_dialog);
@@ -37,13 +38,19 @@ public class CustomProgressDialog extends ProgressDialog {
         setCanceledOnTouchOutside(false) ;
     }
 
-    public static CustomProgressDialog show(Context context){
-        CustomProgressDialog dialog = new CustomProgressDialog(context) ;
-        dialog.show() ;
-        return dialog ;
+    public void showDialog(){
+        if (!isShowing) {
+            isShowing = true;
+            show();
+        }
     }
 
-    public void setProgress(float progress){
+    public void setWaveProgress(float progress){
         waterView.setWaterLevel(progress);
+    }
+
+    public void hide(){
+        isShowing = false;
+        dismiss();
     }
 }

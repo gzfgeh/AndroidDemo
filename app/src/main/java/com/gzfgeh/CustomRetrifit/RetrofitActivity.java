@@ -77,7 +77,7 @@ public class RetrofitActivity extends Activity implements View.OnClickListener {
                             public void onCompleted() {
                                 text.setText("done");
                                 waterView.setWaterLevel(1.0f);
-                                dialog.setProgress(1.0f);
+                                dialog.setWaveProgress(1.0f);
                                 dialog = null;
                                 LogUtils.i("onNext:--onCompleted--");
                             }
@@ -94,17 +94,18 @@ public class RetrofitActivity extends Activity implements View.OnClickListener {
                                 float percent = o/1000f;
                                 //waterView.setWaterLevel(percent);
 
-                                if (dialog == null)
-                                    dialog = CustomProgressDialog.show(RetrofitActivity.this);
+                                if (dialog == null) {
+                                    dialog = new CustomProgressDialog(RetrofitActivity.this);
+                                    dialog.showDialog();
+                                }
 
-                                dialog.setProgress(percent);
+                                dialog.setWaveProgress(percent);
                             }
                         });
             }
             break;
 
             case R.id.behavior_subject: {
-                CustomProgressDialog.show(this);
             }
             break;
         }
