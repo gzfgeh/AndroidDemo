@@ -74,6 +74,7 @@
         <activity android:name=".CustomRetrifit.RetrofitActivity"/>
         <activity android:name=".CustomDrawable.CustomDrawableActivity"/>
         <activity android:name=".CustomStickRecycler.StickRecyclerActivity"/>
+        <activity android:name=".CustomRxBind.CustomRxBindActivity"/>
 
     </application>
 

@@ -17,6 +17,7 @@ import com.gzfgeh.CustomDrawable.CustomDrawableActivity;
 import com.gzfgeh.CustomFlowLayout.CustomFlowLayoutActivity;
 import com.gzfgeh.CustomRecycler.CustomRecyclerActivity;
 import com.gzfgeh.CustomRetrifit.RetrofitActivity;
+import com.gzfgeh.CustomRxBind.CustomRxBindActivity;
 import com.gzfgeh.CustomRxBus.CustomRxBusActivity;
 import com.gzfgeh.CustomRxBus.annotation.Accept;
 import com.gzfgeh.CustomScrollView.ScrollViewActivity;
@@ -62,6 +63,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button drawable;
     @Bind(R.id.stick_recycler)
     Button stickRecycler;
+    @Bind(R.id.rxbind)
+    Button rxBind;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +87,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         retrofit.setOnClickListener(this);
         drawable.setOnClickListener(this);
         stickRecycler.setOnClickListener(this);
+        rxBind.setOnClickListener(this);
     }
 
 
@@ -148,6 +152,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.stick_recycler:
                 startActivity(new Intent(this, StickRecyclerActivity.class));
+                break;
+
+            case R.id.rxbind:
+                startActivity(new Intent(this, CustomRxBindActivity.class));
                 break;
         }
     }
