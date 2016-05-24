@@ -5,10 +5,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
-
-import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.BaseViewHolder;
-import com.gzfgeh.CustomRecycler.RecyclerViewAdapter;
 import com.gzfgeh.R;
 import com.gzfgeh.Recycler.EasyRecyclerView;
 import com.gzfgeh.Recycler.RecyclerArrayAdapter;
@@ -37,9 +33,6 @@ public class EasyRecyclerActivity extends Activity implements SwipeRefreshLayout
         setContentView(R.layout.activity_easy_recycler);
         ButterKnife.bind(this);
 
-        for (int i=0; i<100; i++){
-            data.add(i+"--789");
-        }
         adapter = new RecyclerArrayAdapter<String>(this, R.layout.item_contacts){
 
             @Override
@@ -53,6 +46,17 @@ public class EasyRecyclerActivity extends Activity implements SwipeRefreshLayout
         recyclerView.setAdapterWithProgress(adapter);
         recyclerView.setRefreshListener(this);
         adapter.setMore(R.layout.view_more, this);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                adapter.clear();
+                for (int i = 0; i < 100; i++) {
+                    data.add(i + "--789");
+                }
+                adapter.addAll(data);
+            }
+        }, 1000);
     }
 
     @Override
@@ -60,6 +64,7 @@ public class EasyRecyclerActivity extends Activity implements SwipeRefreshLayout
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
+                adapter.clear();
                 data.clear();
                 for (int i=0; i<100; i++){
                     data.add(i+"--789");

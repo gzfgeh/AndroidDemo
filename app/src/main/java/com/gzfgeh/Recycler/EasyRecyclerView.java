@@ -1,8 +1,12 @@
 package com.gzfgeh.Recycler;
 
+import android.animation.Animator;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.support.annotation.ColorRes;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.AdapterDataObserver;
 import android.util.AttributeSet;
@@ -11,9 +15,13 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Interpolator;
+import android.view.animation.LinearInterpolator;
 import android.widget.FrameLayout;
 
 import com.gzfgeh.R;
+import com.gzfgeh.animation.AlphaInAnimation;
+import com.gzfgeh.animation.BaseAnimation;
 
 
 public class EasyRecyclerView extends FrameLayout {
@@ -41,7 +49,12 @@ public class EasyRecyclerView extends FrameLayout {
     protected RecyclerView.OnScrollListener mExternalOnScrollListener;
 
     protected SwipeRefreshLayout mPtrLayout;
-    protected android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener mRefreshListener;
+    protected SwipeRefreshLayout.OnRefreshListener mRefreshListener;
+    private int mLastPosition = -1;
+    private Interpolator mInterpolator = new LinearInterpolator();
+    private int mDuration = 300;
+    private BaseAnimation mCustomAnimation;
+    private BaseAnimation mSelectAnimation = new AlphaInAnimation();
 
 
     public SwipeRefreshLayout getSwipeToRefresh() {
@@ -108,7 +121,12 @@ public class EasyRecyclerView extends FrameLayout {
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
-        return mPtrLayout.dispatchTouchEvent(ev);
+        if (mRecycler.getLayoutManager() instanceof LinearLayoutManager){
+           if (((LinearLayoutManager) mRecycler.getLayoutManager()).findFirstCompletelyVisibleItemPosition() == 0){
+               return mPtrLayout.dispatchTouchEvent(ev);
+           }
+        }
+        return mRecycler.dispatchTouchEvent(ev);
     }
 
     public void setRecyclerPadding(int left,int top,int right,int bottom){
@@ -153,7 +171,7 @@ public class EasyRecyclerView extends FrameLayout {
      */
     protected void initRecyclerView(View view) {
         mRecycler = (RecyclerView) view.findViewById(android.R.id.list);
-
+        mRecycler.setItemAnimator(new DefaultItemAnimator());
 
         if (mRecycler != null) {
             mRecycler.setHasFixedSize(true);
@@ -345,6 +363,23 @@ public class EasyRecyclerView extends FrameLayout {
         log("showRecycler");
         hideAll();
         mRecycler.setVisibility(View.VISIBLE);
+    }
+
+    private void addAnimation(RecyclerView.ViewHolder holder) {
+        if (holder.getLayoutPosition() > mLastPosition) {
+            BaseAnimation animation = null;
+            if (mCustomAnimation != null) {
+                animation = mCustomAnimation;
+            } else {
+                animation = mSelectAnimation;
+            }
+            for (Animator anim : animation.getAnimators(holder.itemView)) {
+                anim.setDuration(mDuration).start();
+                anim.setInterpolator(mInterpolator);
+            }
+            mLastPosition = holder.getLayoutPosition();
+        }
+
     }
 
 
