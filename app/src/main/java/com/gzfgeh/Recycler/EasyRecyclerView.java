@@ -50,11 +50,6 @@ public class EasyRecyclerView extends FrameLayout {
 
     protected SwipeRefreshLayout mPtrLayout;
     protected SwipeRefreshLayout.OnRefreshListener mRefreshListener;
-    private int mLastPosition = -1;
-    private Interpolator mInterpolator = new LinearInterpolator();
-    private int mDuration = 300;
-    private BaseAnimation mCustomAnimation;
-    private BaseAnimation mSelectAnimation = new AlphaInAnimation();
 
 
     public SwipeRefreshLayout getSwipeToRefresh() {
@@ -171,7 +166,6 @@ public class EasyRecyclerView extends FrameLayout {
      */
     protected void initRecyclerView(View view) {
         mRecycler = (RecyclerView) view.findViewById(android.R.id.list);
-        mRecycler.setItemAnimator(new DefaultItemAnimator());
 
         if (mRecycler != null) {
             mRecycler.setHasFixedSize(true);
@@ -363,23 +357,6 @@ public class EasyRecyclerView extends FrameLayout {
         log("showRecycler");
         hideAll();
         mRecycler.setVisibility(View.VISIBLE);
-    }
-
-    private void addAnimation(RecyclerView.ViewHolder holder) {
-        if (holder.getLayoutPosition() > mLastPosition) {
-            BaseAnimation animation = null;
-            if (mCustomAnimation != null) {
-                animation = mCustomAnimation;
-            } else {
-                animation = mSelectAnimation;
-            }
-            for (Animator anim : animation.getAnimators(holder.itemView)) {
-                anim.setDuration(mDuration).start();
-                anim.setInterpolator(mInterpolator);
-            }
-            mLastPosition = holder.getLayoutPosition();
-        }
-
     }
 
 

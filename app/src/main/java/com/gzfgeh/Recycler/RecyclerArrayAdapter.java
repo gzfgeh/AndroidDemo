@@ -16,6 +16,7 @@
 
 package com.gzfgeh.Recycler;
 
+import android.animation.Animator;
 import android.content.Context;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -23,7 +24,13 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Interpolator;
+import android.view.animation.LinearInterpolator;
 import android.widget.FrameLayout;
+
+import com.gzfgeh.animation.AlphaInAnimation;
+import com.gzfgeh.animation.BaseAnimation;
+import com.gzfgeh.animation.SlideInLeftAnimation;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -59,6 +66,12 @@ abstract public class RecyclerArrayAdapter<T> extends RecyclerView.Adapter<BaseV
     protected OnItemClickListener mItemClickListener;
     protected OnItemLongClickListener mItemLongClickListener;
     private int resId;
+    private int mLastPosition = -1;
+    private Interpolator mInterpolator = new LinearInterpolator();
+    private int mDuration = 100;
+    private BaseAnimation mCustomAnimation;
+    private BaseAnimation mSelectAnimation = new SlideInLeftAnimation();
+
 
     public interface ItemView {
          View onCreateView(ViewGroup parent);
@@ -89,36 +102,6 @@ abstract public class RecyclerArrayAdapter<T> extends RecyclerView.Adapter<BaseV
     }
 
 
-//    public class DividerItemDecoration extends RecyclerView.ItemDecoration {
-//
-//        private final int mSpace;
-//        private final int mModel;
-//
-//        public DividerItemDecoration(int mSpace) {
-//            this(mSpace, LinearLayoutCompat.VERTICAL);
-//        }
-//
-//        public DividerItemDecoration(int mSpace, int model) {
-//            this.mSpace = mSpace;
-//            this.mModel = model;
-//        }
-//
-//        @Override
-//        public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
-//            if (parent.getChildAdapterPosition(view) != parent.getAdapter().getItemCount() - 1) {
-//                if (mModel == LinearLayoutCompat.VERTICAL)outRect.bottom = mSpace;
-//                else outRect.right = mSpace;
-//            }
-//        }
-//
-//        @Override
-//        public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
-//            super.onDraw(c, parent, state);
-//
-//
-//        }
-//    }
-
 
     public GridSpanSizeLookup obtainGridSpanSizeLookUp(int maxCount){
         return new GridSpanSizeLookup(maxCount);
@@ -146,7 +129,7 @@ abstract public class RecyclerArrayAdapter<T> extends RecyclerView.Adapter<BaseV
      * @param context The current context.
      */
     public RecyclerArrayAdapter(Context context, int resId) {
-        init(context,  new ArrayList<T>(), resId);
+        init(context,  new ArrayList<>(), resId);
     }
 
 
@@ -500,7 +483,6 @@ abstract public class RecyclerArrayAdapter<T> extends RecyclerView.Adapter<BaseV
             return new StateViewHolder(view);
         }
 
-//        final BaseViewHolder viewHolder = OnCreateViewHolder(parent, viewType);
         final BaseViewHolder viewHolder = new BaseViewHolder(getItemView(resId, parent));
 
         //itemView 的点击事件
@@ -524,9 +506,6 @@ abstract public class RecyclerArrayAdapter<T> extends RecyclerView.Adapter<BaseV
         return viewHolder;
     }
 
-    //abstract public BaseViewHolder OnCreateViewHolder(ViewGroup parent, int viewType);
-
-
     @Override
     public final void onBindViewHolder(BaseViewHolder holder, int position) {
         holder.itemView.setId(position);
@@ -545,11 +524,25 @@ abstract public class RecyclerArrayAdapter<T> extends RecyclerView.Adapter<BaseV
 
 
     public void OnBindViewHolder(BaseViewHolder holder, final int position){
-//        holder.setData(getItem(position));
         convert(holder, getItem(position));
+        addAnimation(holder);
     }
 
     protected abstract void convert(BaseViewHolder helper, T item);
+
+    private void addAnimation(RecyclerView.ViewHolder holder) {
+        BaseAnimation animation = null;
+        if (mCustomAnimation != null) {
+            animation = mCustomAnimation;
+        } else {
+            animation = mSelectAnimation;
+        }
+        for (Animator anim : animation.getAnimators(holder.itemView)) {
+            anim.setDuration(mDuration).start();
+            anim.setInterpolator(mInterpolator);
+        }
+
+    }
 
     protected View getItemView(int layoutResId, ViewGroup parent) {
         return LayoutInflater.from(parent.getContext()).inflate(layoutResId, parent, false);
