@@ -75,6 +75,7 @@
         <activity android:name=".CustomDrawable.CustomDrawableActivity"/>
         <activity android:name=".CustomStickRecycler.StickRecyclerActivity"/>
         <activity android:name=".CustomRxBind.CustomRxBindActivity"/>
+        <activity android:name=".EaseRecycler.EasyRecyclerActivity"/>
 
     </application>
 

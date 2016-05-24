@@ -25,6 +25,7 @@ import com.gzfgeh.CustomStickRecycler.StickRecyclerActivity;
 import com.gzfgeh.CustomTag.CustomTagLayoutActivity;
 import com.gzfgeh.CustomTextView.CustomTextviewActivity;
 import com.gzfgeh.CustomViewGroup.CustomViewGroupActivity;
+import com.gzfgeh.EaseRecycler.EasyRecyclerActivity;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -65,6 +66,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button stickRecycler;
     @Bind(R.id.rxbind)
     Button rxBind;
+    @Bind(R.id.custom_recycler)
+    Button recyclerBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +91,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         drawable.setOnClickListener(this);
         stickRecycler.setOnClickListener(this);
         rxBind.setOnClickListener(this);
+        recyclerBtn.setOnClickListener(this);
     }
 
 
@@ -156,6 +160,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.rxbind:
                 startActivity(new Intent(this, CustomRxBindActivity.class));
+                break;
+
+            case R.id.custom_recycler:
+                startActivity(new Intent(this, EasyRecyclerActivity.class));
                 break;
         }
     }

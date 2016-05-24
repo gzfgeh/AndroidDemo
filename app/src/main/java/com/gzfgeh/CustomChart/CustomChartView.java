@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 import com.gzfgeh.R;
-import com.jude.easyrecyclerview.swipe.SwipeRefreshLayout;
 
 import lecho.lib.hellocharts.gesture.ZoomType;
 import lecho.lib.hellocharts.view.Chart;
