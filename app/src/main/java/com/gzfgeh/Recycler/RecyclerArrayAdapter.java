@@ -28,6 +28,7 @@ import android.view.animation.Interpolator;
 import android.view.animation.LinearInterpolator;
 import android.widget.FrameLayout;
 
+import com.gzfgeh.LogUtils;
 import com.gzfgeh.animation.AlphaInAnimation;
 import com.gzfgeh.animation.BaseAnimation;
 import com.gzfgeh.animation.SlideInLeftAnimation;
@@ -66,11 +67,11 @@ abstract public class RecyclerArrayAdapter<T> extends RecyclerView.Adapter<BaseV
     protected OnItemClickListener mItemClickListener;
     protected OnItemLongClickListener mItemLongClickListener;
     private int resId;
-    private int mLastPosition = -1;
     private Interpolator mInterpolator = new LinearInterpolator();
     private int mDuration = 100;
     private BaseAnimation mCustomAnimation;
     private BaseAnimation mSelectAnimation = new SlideInLeftAnimation();
+    private boolean mOpenAnimationEnable = true;
 
 
     public interface ItemView {
@@ -523,7 +524,7 @@ abstract public class RecyclerArrayAdapter<T> extends RecyclerView.Adapter<BaseV
     }
 
 
-    public void OnBindViewHolder(BaseViewHolder holder, final int position){
+    private void OnBindViewHolder(BaseViewHolder holder, final int position){
         convert(holder, getItem(position));
         addAnimation(holder);
     }
@@ -531,17 +532,22 @@ abstract public class RecyclerArrayAdapter<T> extends RecyclerView.Adapter<BaseV
     protected abstract void convert(BaseViewHolder helper, T item);
 
     private void addAnimation(RecyclerView.ViewHolder holder) {
-        BaseAnimation animation = null;
-        if (mCustomAnimation != null) {
-            animation = mCustomAnimation;
-        } else {
-            animation = mSelectAnimation;
+        if (mOpenAnimationEnable) {
+            BaseAnimation animation = null;
+            if (mCustomAnimation != null) {
+                animation = mCustomAnimation;
+            } else {
+                animation = mSelectAnimation;
+            }
+            for (Animator anim : animation.getAnimators(holder.itemView)) {
+                anim.setDuration(mDuration).start();
+                anim.setInterpolator(mInterpolator);
+            }
         }
-        for (Animator anim : animation.getAnimators(holder.itemView)) {
-            anim.setDuration(mDuration).start();
-            anim.setInterpolator(mInterpolator);
-        }
+    }
 
+    public void isLoadAnimation(boolean b) {
+        this.mOpenAnimationEnable = b;
     }
 
     protected View getItemView(int layoutResId, ViewGroup parent) {

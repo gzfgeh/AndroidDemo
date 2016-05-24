@@ -5,6 +5,10 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
 import com.gzfgeh.R;
 import com.gzfgeh.Recycler.EasyRecyclerView;
 import com.gzfgeh.Recycler.RecyclerArrayAdapter;
@@ -47,6 +51,20 @@ public class EasyRecyclerActivity extends Activity implements SwipeRefreshLayout
         recyclerView.setRefreshListener(this);
         adapter.setMore(R.layout.view_more, this);
 
+        adapter.addHeader(new RecyclerArrayAdapter.ItemView() {
+            @Override
+            public View onCreateView(ViewGroup parent) {
+                View view = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.item_contacts, null);
+                return view;
+            }
+
+            @Override
+            public void onBindView(View headerView) {
+
+            }
+        });
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -54,6 +72,7 @@ public class EasyRecyclerActivity extends Activity implements SwipeRefreshLayout
                 for (int i = 0; i < 100; i++) {
                     data.add(i + "--789");
                 }
+                data.clear();
                 adapter.addAll(data);
             }
         }, 1000);

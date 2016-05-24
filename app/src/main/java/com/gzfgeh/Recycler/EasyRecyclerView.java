@@ -19,6 +19,7 @@ import android.view.animation.Interpolator;
 import android.view.animation.LinearInterpolator;
 import android.widget.FrameLayout;
 
+import com.gzfgeh.LogUtils;
 import com.gzfgeh.R;
 import com.gzfgeh.animation.AlphaInAnimation;
 import com.gzfgeh.animation.BaseAnimation;
@@ -183,6 +184,17 @@ public class EasyRecyclerView extends FrameLayout {
                 @Override
                 public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                     super.onScrollStateChanged(recyclerView, newState);
+                    //滚到的时候有动画，不滚动没动画
+                    if (newState == RecyclerView.SCROLL_STATE_SETTLING){
+                        if (getAdapter() instanceof RecyclerArrayAdapter){
+                            ((RecyclerArrayAdapter) getAdapter()).isLoadAnimation(true);
+                        }
+                    }else{
+                        if (getAdapter() instanceof RecyclerArrayAdapter){
+                            ((RecyclerArrayAdapter) getAdapter()).isLoadAnimation(false);
+                        }
+                    }
+
                     if (mExternalOnScrollListener != null)
                         mExternalOnScrollListener.onScrollStateChanged(recyclerView, newState);
 
