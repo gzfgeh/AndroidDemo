@@ -1,15 +1,13 @@
 package com.gzfgeh.CustomDagger;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.widget.TextView;
 
 import com.gzfgeh.BaseActivity;
 import com.gzfgeh.R;
-import com.gzfgeh.Recycler.RecyclerArrayAdapter;
+import com.gzfgeh.Recycler.CustomRecyclerAdapter;
 import com.gzfgeh.SwipeRefresh.CustomSwipeRefreshLayout;
 
 import java.util.ArrayList;
@@ -37,7 +35,7 @@ public class Dagger2Activity extends BaseActivity implements CustomSwipeRefreshL
     @Inject
     Dagger2ActivityPresenter presenter;
 
-    RecyclerArrayAdapter<String> adapter;
+    CustomRecyclerAdapter<String> adapter;
     List<String> data = new ArrayList<>();
 
     @Override
@@ -48,7 +46,7 @@ public class Dagger2Activity extends BaseActivity implements CustomSwipeRefreshL
 
 
         swipeRefreshLayout.setOnRefreshListener(this);
-        adapter = new RecyclerArrayAdapter<String>(this, R.layout.item_contacts){
+        adapter = new CustomRecyclerAdapter<String>(this, R.layout.item_contacts){
 
             @Override
             protected void convert(com.gzfgeh.Recycler.BaseViewHolder helper, String item) {

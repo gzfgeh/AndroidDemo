@@ -6,6 +6,6 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center|right"
+        android:gravity="center"
         android:text="网络错误" />
 </LinearLayout>

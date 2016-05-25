@@ -54,7 +54,7 @@ import java.util.List;
  * <p>To use something other than TextViews for the array display, for instance, ImageViews,
  * or to have some of data besides toString() results fill the views,
  */
-abstract public class RecyclerArrayAdapter<T> extends RecyclerView.Adapter<BaseViewHolder>   {
+abstract public class CustomRecyclerAdapter<T> extends RecyclerView.Adapter<BaseViewHolder>   {
     /**
      * Contains the list of objects that represent the data of this ArrayAdapter.
      * The content of this list is referred to as "the array" in the documentation.
@@ -129,7 +129,7 @@ abstract public class RecyclerArrayAdapter<T> extends RecyclerView.Adapter<BaseV
      *
      * @param context The current context.
      */
-    public RecyclerArrayAdapter(Context context, int resId) {
+    public CustomRecyclerAdapter(Context context, int resId) {
         init(context,  new ArrayList<>(), resId);
     }
 
@@ -140,7 +140,7 @@ abstract public class RecyclerArrayAdapter<T> extends RecyclerView.Adapter<BaseV
      * @param context The current context.
      * @param objects The objects to represent in the ListView.
      */
-    public RecyclerArrayAdapter(Context context, T[] objects, int resId) {
+    public CustomRecyclerAdapter(Context context, T[] objects, int resId) {
         init(context, Arrays.asList(objects), resId);
     }
 
@@ -150,7 +150,7 @@ abstract public class RecyclerArrayAdapter<T> extends RecyclerView.Adapter<BaseV
      * @param context The current context.
      * @param objects The objects to represent in the ListView.
      */
-    public RecyclerArrayAdapter(Context context, List<T> objects, int resId) {
+    public CustomRecyclerAdapter(Context context, List<T> objects, int resId) {
         init(context, objects, resId);
     }
 
@@ -181,13 +181,13 @@ abstract public class RecyclerArrayAdapter<T> extends RecyclerView.Adapter<BaseV
      * @param collection The Collection to add at the end of the array.
      */
     public void addAll(Collection<? extends T> collection) {
-        if (mEventDelegate!=null)mEventDelegate.addData(collection == null ? 0 : collection.size());
-        if (collection!=null&&collection.size()!=0){
+        if (mEventDelegate!=null)
+            mEventDelegate.addData(collection == null ? 0 : collection.size());
+        if (collection!=null && collection.size()!=0){
             synchronized (mLock) {
                 mObjects.addAll(collection);
             }
         }
-
         if (mNotifyOnChange) notifyDataSetChanged();
     }
 

@@ -3,14 +3,11 @@ package com.gzfgeh.EaseRecycler;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.gzfgeh.BaseActivity;
 import com.gzfgeh.R;
+import com.gzfgeh.Recycler.CustomRecyclerAdapter;
 import com.gzfgeh.Recycler.CustomRecyclerView;
-import com.gzfgeh.Recycler.RecyclerArrayAdapter;
 import com.gzfgeh.SwipeRefresh.CustomSwipeRefreshLayout;
 
 import java.util.ArrayList;
@@ -23,12 +20,12 @@ import butterknife.ButterKnife;
  * Description:
  * Created by guzhenfu on 2016/5/24 09:57.
  */
-public class EasyRecyclerActivity extends BaseActivity implements CustomSwipeRefreshLayout.OnRefreshListener, RecyclerArrayAdapter.OnLoadMoreListener {
+public class EasyRecyclerActivity extends BaseActivity implements CustomSwipeRefreshLayout.OnRefreshListener, CustomRecyclerAdapter.OnLoadMoreListener {
 
     @Bind(R.id.recyclerView)
     CustomRecyclerView recyclerView;
 
-    RecyclerArrayAdapter<String> adapter;
+    CustomRecyclerAdapter<String> adapter;
     List<String> data = new ArrayList<>();
 
     @Override
@@ -37,7 +34,7 @@ public class EasyRecyclerActivity extends BaseActivity implements CustomSwipeRef
         setContentView(R.layout.activity_easy_recycler);
         ButterKnife.bind(this);
 
-        adapter = new RecyclerArrayAdapter<String>(this, R.layout.item_contacts){
+        adapter = new CustomRecyclerAdapter<String>(this, R.layout.item_contacts){
 
             @Override
             protected void convert(com.gzfgeh.Recycler.BaseViewHolder helper, String item) {
@@ -59,7 +56,6 @@ public class EasyRecyclerActivity extends BaseActivity implements CustomSwipeRef
                 for (int i = 0; i < 100; i++) {
                     data.add(i + "--789");
                 }
-                data.clear();
                 adapter.addAll(data);
             }
         }, 1000);
@@ -70,12 +66,12 @@ public class EasyRecyclerActivity extends BaseActivity implements CustomSwipeRef
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                adapter.clear();
-                data.clear();
-                for (int i=0; i<100; i++){
-                    data.add(i+"--789");
-                }
-                adapter.addAll(data);
+                recyclerView.showError();
+//                adapter.clear();
+//                for (int i=0; i<100; i++){
+//                    data.add(i+"--789");
+//                }
+//                adapter.addAll(data);
             }
         }, 1000);
     }
@@ -94,20 +90,20 @@ public class EasyRecyclerActivity extends BaseActivity implements CustomSwipeRef
     }
 
     private void initAdapter(){
-        adapter.addHeader(new RecyclerArrayAdapter.ItemView() {
-            @Override
-            public View onCreateView(ViewGroup parent) {
-                View view = LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.item_contacts, null);
-                return view;
-            }
-
-            @Override
-            public void onBindView(View headerView) {
-            }
-        });
+//        adapter.addHeader(new CustomRecyclerAdapter.ItemView() {
+//            @Override
+//            public View onCreateView(ViewGroup parent) {
+//                View view = LayoutInflater.from(parent.getContext())
+//                        .inflate(R.layout.item_contacts, null);
+//                return view;
+//            }
 //
-//        adapter.addFooter(new RecyclerArrayAdapter.ItemView() {
+//            @Override
+//            public void onBindView(View headerView) {
+//            }
+//        });
+//
+//        adapter.addFooter(new CustomRecyclerAdapter.ItemView() {
 //            @Override
 //            public View onCreateView(ViewGroup parent) {
 //                View view = LayoutInflater.from(parent.getContext())

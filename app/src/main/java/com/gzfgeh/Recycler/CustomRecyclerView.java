@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 import com.gzfgeh.LogUtils;
+import com.gzfgeh.NetWorkUtils;
 import com.gzfgeh.R;
 import com.gzfgeh.SwipeRefresh.CustomSwipeRefreshLayout;
 
@@ -173,12 +174,12 @@ public class CustomRecyclerView extends FrameLayout {
                     //滚到的时候有动画，不滚动没动画
                     LogUtils.i("newState:" + newState);
                     if (newState == RecyclerView.SCROLL_STATE_SETTLING){
-                        if (getAdapter() instanceof RecyclerArrayAdapter){
-                            ((RecyclerArrayAdapter) getAdapter()).isLoadAnimation(true);
+                        if (getAdapter() instanceof CustomRecyclerAdapter){
+                            ((CustomRecyclerAdapter) getAdapter()).isLoadAnimation(true);
                         }
                     }else{
-                        if (getAdapter() instanceof RecyclerArrayAdapter){
-                            ((RecyclerArrayAdapter) getAdapter()).isLoadAnimation(false);
+                        if (getAdapter() instanceof CustomRecyclerAdapter){
+                            ((CustomRecyclerAdapter) getAdapter()).isLoadAnimation(false);
                         }
                     }
 
@@ -255,11 +256,13 @@ public class CustomRecyclerView extends FrameLayout {
         //自动更改Container的样式
         private void update() {
             log("update");
-            if (recyclerView.getAdapter() instanceof RecyclerArrayAdapter) {
-                if (((RecyclerArrayAdapter) recyclerView.getAdapter()).getCount() == 0){
+            if (recyclerView.getAdapter() instanceof CustomRecyclerAdapter) {
+                if (((CustomRecyclerAdapter) recyclerView.getAdapter()).getCount() == 0){
                     log("no data:"+((hasProgress&&!isInitialized)?"show progress":"show empty"));
-                    if (hasProgress&&!isInitialized)recyclerView.showProgress();
-                    else recyclerView.showEmpty();
+                    if (hasProgress&&!isInitialized)
+                        recyclerView.showProgress();
+                    else
+                        recyclerView.showEmpty();
                 } else{
                     log("has data");
                     recyclerView.showRecycler();
@@ -324,8 +327,8 @@ public class CustomRecyclerView extends FrameLayout {
         if (mErrorView.getChildCount()>0){
             hideAll();
             mErrorView.setVisibility(View.VISIBLE);
-            if (getAdapter() instanceof RecyclerArrayAdapter){
-                if (((RecyclerArrayAdapter) getAdapter()).getItemCount() > 0){
+            if (getAdapter() instanceof CustomRecyclerAdapter){
+                if (((CustomRecyclerAdapter) getAdapter()).getItemCount() > 1){
                     mErrorView.setVisibility(View.GONE);
                 }
             }
@@ -340,8 +343,8 @@ public class CustomRecyclerView extends FrameLayout {
         if (mEmptyView.getChildCount()>0){
             hideAll();
             mEmptyView.setVisibility(View.VISIBLE);
-            if (getAdapter() instanceof RecyclerArrayAdapter){
-                if (((RecyclerArrayAdapter) getAdapter()).getItemCount() > 1){
+            if (getAdapter() instanceof CustomRecyclerAdapter){
+                if (((CustomRecyclerAdapter) getAdapter()).getItemCount() > 1){
                     mEmptyView.setVisibility(View.GONE);
                 }
             }
@@ -355,8 +358,8 @@ public class CustomRecyclerView extends FrameLayout {
         log("showProgress");
         if (mProgressView.getChildCount()>0){
             hideAll();
-            if (getAdapter() instanceof RecyclerArrayAdapter){
-                if (((RecyclerArrayAdapter) getAdapter()).getCount() == 0){
+            if (getAdapter() instanceof CustomRecyclerAdapter){
+                if (((CustomRecyclerAdapter) getAdapter()).getCount() == 0){
                     mRecycler.setVisibility(INVISIBLE);
                 }
             }

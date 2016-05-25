@@ -9,10 +9,10 @@ import android.widget.FrameLayout;
  * Created by Mr.Jude on 2015/8/18.
  */
 public class DefaultEventDelegate implements EventDelegate {
-    private RecyclerArrayAdapter adapter;
+    private CustomRecyclerAdapter adapter;
     private EventFooter footer ;
 
-    private RecyclerArrayAdapter.OnLoadMoreListener onLoadMoreListener;
+    private CustomRecyclerAdapter.OnLoadMoreListener onLoadMoreListener;
 
     private boolean hasData = false;
     private boolean isLoadingMore = false;
@@ -27,7 +27,7 @@ public class DefaultEventDelegate implements EventDelegate {
     private static final int STATUS_NOMORE = 408;
     private static final int STATUS_ERROR = 732;
 
-    public DefaultEventDelegate(RecyclerArrayAdapter adapter) {
+    public DefaultEventDelegate(CustomRecyclerAdapter adapter) {
         this.adapter = adapter;
         footer = new EventFooter();
         adapter.addFooter(footer);
@@ -106,7 +106,7 @@ public class DefaultEventDelegate implements EventDelegate {
     //-------------------3种View设置-------------------
 
     @Override
-    public void setMore(View view, RecyclerArrayAdapter.OnLoadMoreListener listener) {
+    public void setMore(View view, CustomRecyclerAdapter.OnLoadMoreListener listener) {
         this.footer.setMoreView(view);
         this.onLoadMoreListener = listener;
         hasMore = true;
@@ -128,7 +128,7 @@ public class DefaultEventDelegate implements EventDelegate {
     }
 
 
-    private class EventFooter implements RecyclerArrayAdapter.ItemView {
+    private class EventFooter implements CustomRecyclerAdapter.ItemView {
         private FrameLayout container;
         private View moreView;
         private View noMoreView;
