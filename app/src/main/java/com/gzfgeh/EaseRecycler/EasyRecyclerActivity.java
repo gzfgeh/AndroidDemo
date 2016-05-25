@@ -6,8 +6,12 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.gzfgeh.BaseActivity;
+import com.gzfgeh.CustomRecycler.expandRecyclerviewadapter.StickyRecyclerHeadersDecoration;
+import com.gzfgeh.CustomRecycler.expandRecyclerviewadapter.StickyRecyclerHeadersTouchListener;
 import com.gzfgeh.R;
 import com.gzfgeh.Recycler.CustomRecyclerAdapter;
 import com.gzfgeh.Recycler.CustomRecyclerView;
@@ -45,6 +49,7 @@ public class EasyRecyclerActivity extends BaseActivity implements CustomSwipeRef
         adapter.setMore(R.layout.view_more, this);
         initAdapter();
 
+        StickyRecyclerHeadersDecoration decoration = new StickyRecyclerHeadersDecoration(adapter);
 
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -54,8 +59,29 @@ public class EasyRecyclerActivity extends BaseActivity implements CustomSwipeRef
                     data.add(i + "--789");
                 }
                 adapter.addAll(data);
+                recyclerView.addItemDecoration(decoration);
             }
         }, 1000);
+
+        StickyRecyclerHeadersTouchListener touchListener = new StickyRecyclerHeadersTouchListener
+                (recyclerView.getRecyclerView(), decoration);
+
+        touchListener.setOnHeaderClickListener(new StickyRecyclerHeadersTouchListener.OnHeaderClickListener() {
+            @Override
+            public void onHeaderClick(View header, int position, long headerId) {
+                Toast.makeText(EasyRecyclerActivity.this, "Header position: " + position + ", id: " + headerId,
+                        Toast.LENGTH_SHORT).show();
+                Button button = (Button) header.findViewById(R.id.btn);
+                button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(v.getContext(), "ddddd", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        });
+        recyclerView.addOnItemTouchListener(touchListener);
+
     }
 
     @Override
