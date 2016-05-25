@@ -11,6 +11,19 @@
         android:layout_height="match_parent"
         app:layout_empty="@layout/view_empty"
         app:layout_error="@layout/view_error"
-        app:layout_progress="@layout/view_progress"/>
+        app:layout_progress="@layout/view_progress"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+    <TextView
+        android:id="@+id/sticky_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:background="#e89112"
+        android:gravity="center"
+        android:text="sticky header"
+        android:textColor="@android:color/white"
+
+        />
 
 </LinearLayout>

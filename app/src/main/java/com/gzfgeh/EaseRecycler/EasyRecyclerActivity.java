@@ -3,6 +3,9 @@ package com.gzfgeh.EaseRecycler;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.gzfgeh.BaseActivity;
 import com.gzfgeh.R;
@@ -25,7 +28,7 @@ public class EasyRecyclerActivity extends BaseActivity implements CustomSwipeRef
     @Bind(R.id.recyclerView)
     CustomRecyclerView recyclerView;
 
-    CustomRecyclerAdapter<String> adapter;
+    CustomAdapter adapter;
     List<String> data = new ArrayList<>();
 
     @Override
@@ -34,13 +37,7 @@ public class EasyRecyclerActivity extends BaseActivity implements CustomSwipeRef
         setContentView(R.layout.activity_easy_recycler);
         ButterKnife.bind(this);
 
-        adapter = new CustomRecyclerAdapter<String>(this, R.layout.item_contacts){
-
-            @Override
-            protected void convert(com.gzfgeh.Recycler.BaseViewHolder helper, String item) {
-                helper.setText(R.id.item_contact_title, item);
-            }
-        };
+        adapter = new CustomAdapter(this, R.layout.item_contacts);
 
         LinearLayoutManager manager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(manager);
@@ -90,19 +87,19 @@ public class EasyRecyclerActivity extends BaseActivity implements CustomSwipeRef
     }
 
     private void initAdapter(){
-//        adapter.addHeader(new CustomRecyclerAdapter.ItemView() {
-//            @Override
-//            public View onCreateView(ViewGroup parent) {
-//                View view = LayoutInflater.from(parent.getContext())
-//                        .inflate(R.layout.item_contacts, null);
-//                return view;
-//            }
-//
-//            @Override
-//            public void onBindView(View headerView) {
-//            }
-//        });
-//
+        adapter.addHeader(new CustomRecyclerAdapter.ItemView() {
+            @Override
+            public View onCreateView(ViewGroup parent) {
+                View view = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.recylcer_header, null);
+                return view;
+            }
+
+            @Override
+            public void onBindView(View headerView) {
+            }
+        });
+
 //        adapter.addFooter(new CustomRecyclerAdapter.ItemView() {
 //            @Override
 //            public View onCreateView(ViewGroup parent) {
