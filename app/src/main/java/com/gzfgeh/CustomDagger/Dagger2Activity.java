@@ -2,11 +2,18 @@ package com.gzfgeh.CustomDagger;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
 
+import com.gzfgeh.BaseActivity;
 import com.gzfgeh.R;
+import com.gzfgeh.Recycler.RecyclerArrayAdapter;
+import com.gzfgeh.SwipeRefresh.CustomSwipeRefreshLayout;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -17,18 +24,21 @@ import butterknife.ButterKnife;
  * Description:
  * Created by guzhenfu on 2016/5/9 17:49.
  */
-public class Dagger2Activity extends Activity {
+public class Dagger2Activity extends BaseActivity implements CustomSwipeRefreshLayout.OnRefreshListener {
 
     @Bind(R.id.id_recyclerview)
     RecyclerView recyclerView;
+    @Bind(R.id.swipe_refresh)
+    CustomSwipeRefreshLayout swipeRefreshLayout;
 
-    @Inject
-    HomeAdapter adapter;
-    @Bind(R.id.text)
-    TextView text;
+//    @Inject
+//    HomeAdapter adapter;
 
     @Inject
     Dagger2ActivityPresenter presenter;
+
+    RecyclerArrayAdapter<String> adapter;
+    List<String> data = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,20 +46,54 @@ public class Dagger2Activity extends Activity {
         setContentView(R.layout.activity_dagger);
         ButterKnife.bind(this);
 
-        DaggerUserComponent.builder()
-                .homeModle(new HomeModle(this))
-                .dagger2ActivityModule(new Dagger2ActivityModule(this))
-                .userModule(new UserModule())
-                .build()
-                .inject(this);
 
+        swipeRefreshLayout.setOnRefreshListener(this);
+        adapter = new RecyclerArrayAdapter<String>(this, R.layout.item_contacts){
 
-        presenter.showText();
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+            @Override
+            protected void convert(com.gzfgeh.Recycler.BaseViewHolder helper, String item) {
+                helper.setText(R.id.item_contact_title, item);
+            }
+        };
+
+        for (int i = 0; i < 100; i++) {
+            data.add(i + "--789");
+        }
+        adapter.addAll(data);
+
+        LinearLayoutManager manager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(adapter);
+
+//        DaggerUserComponent.builder()
+//                .homeModle(new HomeModle(this))
+//                .dagger2ActivityModule(new Dagger2ActivityModule(this))
+//                .userModule(new UserModule())
+//                .build()
+//                .inject(this);
+//
+//
+//        presenter.showText();
+//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+//        recyclerView.setAdapter(adapter);
     }
 
     public void setTextView(String username){
-        text.setText(username);
+        //text.setText(username);
+    }
+
+    @Override
+    public void onRefresh() {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                adapter.clear();
+                for (int i = 0; i < 100; i++) {
+                    data.add(i + "--789");
+                }
+                adapter.addAll(data);
+                swipeRefreshLayout.refreshComplete();
+            }
+        }, 1000);
     }
 }

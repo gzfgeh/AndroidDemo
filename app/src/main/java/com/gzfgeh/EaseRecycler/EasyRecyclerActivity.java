@@ -1,18 +1,17 @@
 package com.gzfgeh.EaseRecycler;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.gzfgeh.BaseActivity;
 import com.gzfgeh.R;
-import com.gzfgeh.Recycler.BaseViewHolder;
-import com.gzfgeh.Recycler.EasyRecyclerView;
+import com.gzfgeh.Recycler.CustomRecyclerView;
 import com.gzfgeh.Recycler.RecyclerArrayAdapter;
+import com.gzfgeh.SwipeRefresh.CustomSwipeRefreshLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,10 +23,10 @@ import butterknife.ButterKnife;
  * Description:
  * Created by guzhenfu on 2016/5/24 09:57.
  */
-public class EasyRecyclerActivity extends Activity implements SwipeRefreshLayout.OnRefreshListener, RecyclerArrayAdapter.OnLoadMoreListener {
+public class EasyRecyclerActivity extends BaseActivity implements CustomSwipeRefreshLayout.OnRefreshListener, RecyclerArrayAdapter.OnLoadMoreListener {
 
     @Bind(R.id.recyclerView)
-    EasyRecyclerView recyclerView;
+    CustomRecyclerView recyclerView;
 
     RecyclerArrayAdapter<String> adapter;
     List<String> data = new ArrayList<>();

@@ -11,12 +11,13 @@ import android.view.animation.AccelerateInterpolator;
 
 import com.gzfgeh.CustomRxBus.RxAnnotationManager;
 import com.gzfgeh.CustomRxBus.annotation.Accept;
+import com.zhy.autolayout.AutoLayoutActivity;
 
 /**
  * Description:
  * Created by guzhenfu on 2016/4/27 17:27.
  */
-public class BaseActivity extends AppCompatActivity {
+public class BaseActivity extends AutoLayoutActivity {
     private Bundle bundle;
 
     @Override

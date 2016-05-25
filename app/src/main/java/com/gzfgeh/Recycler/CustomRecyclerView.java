@@ -1,12 +1,7 @@
 package com.gzfgeh.Recycler;
 
-import android.animation.Animator;
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.support.annotation.ColorRes;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.AdapterDataObserver;
 import android.util.AttributeSet;
@@ -15,17 +10,14 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Interpolator;
-import android.view.animation.LinearInterpolator;
 import android.widget.FrameLayout;
 
 import com.gzfgeh.LogUtils;
 import com.gzfgeh.R;
-import com.gzfgeh.animation.AlphaInAnimation;
-import com.gzfgeh.animation.BaseAnimation;
+import com.gzfgeh.SwipeRefresh.CustomSwipeRefreshLayout;
 
 
-public class EasyRecyclerView extends FrameLayout {
+public class CustomRecyclerView extends FrameLayout {
     public static final String TAG = "EasyRecyclerView";
     public static boolean DEBUG = false;
     protected RecyclerView mRecycler;
@@ -49,30 +41,28 @@ public class EasyRecyclerView extends FrameLayout {
     protected RecyclerView.OnScrollListener mInternalOnScrollListener;
     protected RecyclerView.OnScrollListener mExternalOnScrollListener;
 
-    protected SwipeRefreshLayout mPtrLayout;
-    protected SwipeRefreshLayout.OnRefreshListener mRefreshListener;
+//    protected SwipeRefreshLayout mPtrLayout;
+//    protected SwipeRefreshLayout.OnRefreshListener mRefreshListener;
 
-
-    public SwipeRefreshLayout getSwipeToRefresh() {
-        return mPtrLayout;
-    }
+    protected CustomSwipeRefreshLayout mPtrLayout;
+    protected CustomSwipeRefreshLayout.OnRefreshListener mRefreshListener;
 
     public RecyclerView getRecyclerView() {
         return mRecycler;
     }
 
-    public EasyRecyclerView(Context context) {
+    public CustomRecyclerView(Context context) {
         super(context);
         initView();
     }
 
-    public EasyRecyclerView(Context context, AttributeSet attrs) {
+    public CustomRecyclerView(Context context, AttributeSet attrs) {
         super(context, attrs);
         initAttrs(attrs);
         initView();
     }
 
-    public EasyRecyclerView(Context context, AttributeSet attrs, int defStyle) {
+    public CustomRecyclerView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         initAttrs(attrs);
         initView();
@@ -103,7 +93,7 @@ public class EasyRecyclerView extends FrameLayout {
         }
         //生成主View
         View v = LayoutInflater.from(getContext()).inflate(R.layout.layout_progress_recyclerview, this);
-        mPtrLayout = (SwipeRefreshLayout) v.findViewById(R.id.ptr_layout);
+        mPtrLayout = (CustomSwipeRefreshLayout) v.findViewById(R.id.ptr_layout);
         mPtrLayout.setEnabled(false);
 
         mProgressView = (ViewGroup) v.findViewById(R.id.progress);
@@ -117,12 +107,7 @@ public class EasyRecyclerView extends FrameLayout {
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
-        if (mRecycler.getLayoutManager() instanceof LinearLayoutManager){
-           if (((LinearLayoutManager) mRecycler.getLayoutManager()).findFirstCompletelyVisibleItemPosition() == 0){
-               return mPtrLayout.dispatchTouchEvent(ev);
-           }
-        }
-        return mRecycler.dispatchTouchEvent(ev);
+        return mPtrLayout.dispatchTouchEvent(ev);
     }
 
     public void setRecyclerPadding(int left,int top,int right,int bottom){
@@ -176,6 +161,7 @@ public class EasyRecyclerView extends FrameLayout {
                 @Override
                 public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                     super.onScrolled(recyclerView, dx, dy);
+                    LogUtils.i("newState:" + recyclerView.getScrollState());
                     if (mExternalOnScrollListener != null)
                         mExternalOnScrollListener.onScrolled(recyclerView, dx, dy);
 
@@ -185,6 +171,7 @@ public class EasyRecyclerView extends FrameLayout {
                 public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                     super.onScrollStateChanged(recyclerView, newState);
                     //滚到的时候有动画，不滚动没动画
+                    LogUtils.i("newState:" + newState);
                     if (newState == RecyclerView.SCROLL_STATE_SETTLING){
                         if (getAdapter() instanceof RecyclerArrayAdapter){
                             ((RecyclerArrayAdapter) getAdapter()).isLoadAnimation(true);
@@ -226,11 +213,11 @@ public class EasyRecyclerView extends FrameLayout {
 
 
     private static class EasyDataObserver extends AdapterDataObserver {
-        private EasyRecyclerView recyclerView;
+        private CustomRecyclerView recyclerView;
         private boolean isInitialized = false;
         private boolean hasProgress = false;
 
-        public EasyDataObserver(EasyRecyclerView recyclerView,boolean hasProgress) {
+        public EasyDataObserver(CustomRecyclerView recyclerView,boolean hasProgress) {
             this.recyclerView = recyclerView;
             this.hasProgress = hasProgress;
         }
@@ -392,7 +379,7 @@ public class EasyRecyclerView extends FrameLayout {
      *
      * @param listener
      */
-    public void setRefreshListener(android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener listener) {
+    public void setRefreshListener(CustomSwipeRefreshLayout.OnRefreshListener listener) {
         mPtrLayout.setEnabled(true);
         mPtrLayout.setOnRefreshListener(listener);
         this.mRefreshListener = listener;
@@ -427,9 +414,9 @@ public class EasyRecyclerView extends FrameLayout {
      * @param colRes3
      * @param colRes4
      */
-    public void setRefreshingColorResources(@ColorRes int colRes1, @ColorRes int colRes2, @ColorRes int colRes3, @ColorRes int colRes4) {
-        mPtrLayout.setColorSchemeResources(colRes1, colRes2, colRes3, colRes4);
-    }
+//    public void setRefreshingColorResources(@ColorRes int colRes1, @ColorRes int colRes2, @ColorRes int colRes3, @ColorRes int colRes4) {
+//        mPtrLayout.setColorSchemeResources(colRes1, colRes2, colRes3, colRes4);
+//    }
 
     /**
      * Set the colors for the SwipeRefreshLayout states
@@ -439,9 +426,9 @@ public class EasyRecyclerView extends FrameLayout {
      * @param col3
      * @param col4
      */
-    public void setRefreshingColor(int col1, int col2, int col3, int col4) {
-        mPtrLayout.setColorSchemeColors(col1, col2, col3, col4);
-    }
+//    public void setRefreshingColor(int col1, int col2, int col3, int col4) {
+//        mPtrLayout.setColorSchemeColors(col1, col2, col3, col4);
+//    }
 
     /**
      * Set the scroll listener for the recycler

@@ -62,7 +62,7 @@ public class MyTextView extends TextView {
                     size = array.getDimensionPixelSize(attr, (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX, 20, getResources().getDisplayMetrics()));
                     break;
 
-                case R.styleable.CustomTextView_text_:
+                case R.styleable.CustomTextView_text:
                     s = array.getString(attr);
                     break;
             }

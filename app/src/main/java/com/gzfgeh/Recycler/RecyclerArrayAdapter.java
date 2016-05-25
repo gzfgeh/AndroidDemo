@@ -71,7 +71,7 @@ abstract public class RecyclerArrayAdapter<T> extends RecyclerView.Adapter<BaseV
     private int mDuration = 100;
     private BaseAnimation mCustomAnimation;
     private BaseAnimation mSelectAnimation = new SlideInLeftAnimation();
-    private boolean mOpenAnimationEnable = true;
+    private boolean mOpenAnimationEnable = false;
 
 
     public interface ItemView {

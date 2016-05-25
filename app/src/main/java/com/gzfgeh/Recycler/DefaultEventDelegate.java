@@ -227,8 +227,8 @@ public class DefaultEventDelegate implements EventDelegate {
     }
 
     private static void log(String content){
-        if (EasyRecyclerView.DEBUG){
-            Log.i(EasyRecyclerView.TAG,content);
+        if (CustomRecyclerView.DEBUG){
+            Log.i(CustomRecyclerView.TAG,content);
         }
     }
 }

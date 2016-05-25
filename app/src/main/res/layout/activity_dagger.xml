@@ -1,14 +1,12 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<com.gzfgeh.SwipeRefresh.CustomSwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="111"
-        android:id="@+id/text"/>
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/swipe_refresh"
+    app:enable_top_progress_bar="false"
+    app:keep_refresh_head="false"
+    app:refresh_mode="pull_mode">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/id_recyclerview"
@@ -17,4 +15,4 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-</LinearLayout>
+</com.gzfgeh.SwipeRefresh.CustomSwipeRefreshLayout>

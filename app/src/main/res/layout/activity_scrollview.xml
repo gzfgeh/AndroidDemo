@@ -23,10 +23,10 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                app:text="化"
-                app:text_change_color="#ffff0000"
+                app:track_text="化"
+                app:text_change_color="@color/colorPrimary"
                 app:text_origin_color="#ff000000"
-                app:text_size="20sp"
+                app:track_text_size="30sp"
                 android:id="@+id/track_view_one"/>
 
             <ImageView
@@ -42,10 +42,10 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                app:text="交"
-                app:text_change_color="#ffff0000"
+                app:track_text="化"
+                app:text_change_color="@color/colorPrimary"
                 app:text_origin_color="#ff000000"
-                app:text_size="20sp"
+                app:track_text_size="30sp"
                 android:id="@+id/track_view_two"/>
 
         </LinearLayout>

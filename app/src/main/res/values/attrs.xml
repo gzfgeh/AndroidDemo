@@ -12,7 +12,7 @@
     <declare-styleable name="CustomTextView">
         <attr name="textColor" format="color" />
         <attr name="textSize" format="dimension" />
-        <attr name="text_" format="string" />
+        <attr name="text" format="string" />
     </declare-styleable>
 
     <declare-styleable name="CustomChartView">
@@ -23,12 +23,12 @@
     </declare-styleable>
 
     <declare-styleable name="ColorTrackView">
-        <attr name="text" format="string" />
-        <attr name="text_size" format="dimension" />
+        <attr name="track_text" format="string" />
+        <attr name="track_text_size" format="dimension" />
         <attr name="text_origin_color" format="color|reference" />
         <attr name="text_change_color" format="color|reference" />
-        <attr name="progress" format="float" />
-        <attr name="direction">
+        <attr name="track_progress" format="float" />
+        <attr name="track_direction">
             <enum name="left" value="0" />
             <enum name="right" value="1" />
             <enum name="top" value="2" />
@@ -52,5 +52,23 @@
             <enum name="outsideOverlay" value="0x02000000" />
             <enum name="outsideInset" value="0x03000000" />
         </attr>
+    </declare-styleable>
+
+    <declare-styleable name="CustomSwipeRefreshLayout">
+        <attr name="enable_top_progress_bar" format="boolean" />
+        <attr name="refresh_mode" format="enum" >
+            <enum name="swipe_mode" value="1" />
+            <enum name="pull_mode" value="2" />
+        </attr>
+        <attr name="time_out_return_to_top" format="integer" />
+        <attr name="time_out_refresh_complete" format="integer" />
+        <attr name="return_to_top_duration" format="integer" />
+        <attr name="return_to_header_duration" format="integer" />
+        <attr name="keep_refresh_head" format="boolean" />
+        <attr name="top_progress_bar_color_1" format="color|reference" />
+        <attr name="top_progress_bar_color_2" format="color|reference" />
+        <attr name="top_progress_bar_color_3" format="color|reference" />
+        <attr name="top_progress_bar_color_4" format="color|reference" />
+
     </declare-styleable>
 </resources>

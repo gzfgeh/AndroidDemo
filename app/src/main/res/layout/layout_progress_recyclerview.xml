@@ -1,8 +1,11 @@
-<android.support.v4.widget.SwipeRefreshLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<com.gzfgeh.SwipeRefresh.CustomSwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/ptr_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    app:enable_top_progress_bar="false"
+    app:keep_refresh_head="false"
+    app:refresh_mode="pull_mode">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -40,4 +43,4 @@
 
 
 
-</android.support.v4.widget.SwipeRefreshLayout>
+</com.gzfgeh.SwipeRefresh.CustomSwipeRefreshLayout>
