@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.gzfgeh.R;
+import com.gzfgeh.Recycler.BaseViewHolder;
 import com.gzfgeh.Recycler.EasyRecyclerView;
 import com.gzfgeh.Recycler.RecyclerArrayAdapter;
 
@@ -47,23 +48,10 @@ public class EasyRecyclerActivity extends Activity implements SwipeRefreshLayout
 
         LinearLayoutManager manager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(manager);
-        recyclerView.setAdapterWithProgress(adapter);
         recyclerView.setRefreshListener(this);
         adapter.setMore(R.layout.view_more, this);
+        initAdapter();
 
-        adapter.addHeader(new RecyclerArrayAdapter.ItemView() {
-            @Override
-            public View onCreateView(ViewGroup parent) {
-                View view = LayoutInflater.from(parent.getContext())
-                        .inflate(R.layout.item_contacts, null);
-                return view;
-            }
-
-            @Override
-            public void onBindView(View headerView) {
-
-            }
-        });
 
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -104,5 +92,36 @@ public class EasyRecyclerActivity extends Activity implements SwipeRefreshLayout
                 adapter.addAll(data);
             }
         }, 1000);
+    }
+
+    private void initAdapter(){
+        adapter.addHeader(new RecyclerArrayAdapter.ItemView() {
+            @Override
+            public View onCreateView(ViewGroup parent) {
+                View view = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.item_contacts, null);
+                return view;
+            }
+
+            @Override
+            public void onBindView(View headerView) {
+            }
+        });
+//
+//        adapter.addFooter(new RecyclerArrayAdapter.ItemView() {
+//            @Override
+//            public View onCreateView(ViewGroup parent) {
+//                View view = LayoutInflater.from(parent.getContext())
+//                        .inflate(R.layout.item_contacts, null);
+//                return view;
+//            }
+//
+//            @Override
+//            public void onBindView(View headerView) {
+//
+//            }
+//        });
+
+        recyclerView.setAdapterWithProgress(adapter);
     }
 }

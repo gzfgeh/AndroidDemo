@@ -328,7 +328,7 @@ public class EasyRecyclerView extends FrameLayout {
         mProgressView.setVisibility(View.GONE);
         mErrorView.setVisibility(GONE);
         mPtrLayout.setRefreshing(false);
-        mRecycler.setVisibility(View.INVISIBLE);
+        mRecycler.setVisibility(VISIBLE);
     }
 
 
@@ -337,6 +337,11 @@ public class EasyRecyclerView extends FrameLayout {
         if (mErrorView.getChildCount()>0){
             hideAll();
             mErrorView.setVisibility(View.VISIBLE);
+            if (getAdapter() instanceof RecyclerArrayAdapter){
+                if (((RecyclerArrayAdapter) getAdapter()).getItemCount() > 0){
+                    mErrorView.setVisibility(View.GONE);
+                }
+            }
         }else {
             showRecycler();
         }
@@ -348,6 +353,11 @@ public class EasyRecyclerView extends FrameLayout {
         if (mEmptyView.getChildCount()>0){
             hideAll();
             mEmptyView.setVisibility(View.VISIBLE);
+            if (getAdapter() instanceof RecyclerArrayAdapter){
+                if (((RecyclerArrayAdapter) getAdapter()).getItemCount() > 1){
+                    mEmptyView.setVisibility(View.GONE);
+                }
+            }
         }else {
             showRecycler();
         }
@@ -358,6 +368,11 @@ public class EasyRecyclerView extends FrameLayout {
         log("showProgress");
         if (mProgressView.getChildCount()>0){
             hideAll();
+            if (getAdapter() instanceof RecyclerArrayAdapter){
+                if (((RecyclerArrayAdapter) getAdapter()).getCount() == 0){
+                    mRecycler.setVisibility(INVISIBLE);
+                }
+            }
             mProgressView.setVisibility(View.VISIBLE);
         }else {
             showRecycler();

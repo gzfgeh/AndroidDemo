@@ -187,6 +187,7 @@ abstract public class RecyclerArrayAdapter<T> extends RecyclerView.Adapter<BaseV
                 mObjects.addAll(collection);
             }
         }
+
         if (mNotifyOnChange) notifyDataSetChanged();
     }
 

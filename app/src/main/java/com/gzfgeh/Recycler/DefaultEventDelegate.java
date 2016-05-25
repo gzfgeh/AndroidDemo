@@ -182,10 +182,14 @@ public class DefaultEventDelegate implements EventDelegate {
                     hide();
                     return;
                 }
-                if (view.getParent()==null)container.addView(view);
+                if (view.getParent()==null)
+                    container.addView(view);
+
                 for (int i = 0; i < container.getChildCount(); i++) {
-                    if (container.getChildAt(i) == view)view.setVisibility(View.VISIBLE);
-                    else container.getChildAt(i).setVisibility(View.GONE);
+                    if (container.getChildAt(i) == view)
+                        view.setVisibility(View.VISIBLE);
+                    else
+                        container.getChildAt(i).setVisibility(View.GONE);
                 }
             }
         }
