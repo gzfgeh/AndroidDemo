@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.gzfgeh.BaseActivity;
@@ -31,6 +32,8 @@ public class EasyRecyclerActivity extends BaseActivity implements CustomSwipeRef
 
     @Bind(R.id.recyclerView)
     CustomRecyclerView recyclerView;
+    @Bind(R.id.sticky_header)
+    TextView sickyHeader;
 
     CustomAdapter adapter;
     List<String> data = new ArrayList<>();
@@ -58,6 +61,7 @@ public class EasyRecyclerActivity extends BaseActivity implements CustomSwipeRef
                 for (int i = 0; i < 100; i++) {
                     data.add(i + "--789");
                 }
+                data.clear();
                 adapter.addAll(data);
                 recyclerView.addItemDecoration(decoration);
             }
@@ -71,13 +75,7 @@ public class EasyRecyclerActivity extends BaseActivity implements CustomSwipeRef
             public void onHeaderClick(View header, int position, long headerId) {
                 Toast.makeText(EasyRecyclerActivity.this, "Header position: " + position + ", id: " + headerId,
                         Toast.LENGTH_SHORT).show();
-                Button button = (Button) header.findViewById(R.id.btn);
-                button.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Toast.makeText(v.getContext(), "ddddd", Toast.LENGTH_SHORT).show();
-                    }
-                });
+                adapter.notifyDataSetChanged();
             }
         });
         recyclerView.addOnItemTouchListener(touchListener);

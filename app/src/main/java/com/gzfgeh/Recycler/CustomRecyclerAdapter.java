@@ -32,6 +32,7 @@ import com.gzfgeh.LogUtils;
 import com.gzfgeh.animation.AlphaInAnimation;
 import com.gzfgeh.animation.BaseAnimation;
 import com.gzfgeh.animation.SlideInLeftAnimation;
+import com.zhy.autolayout.utils.AutoUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -486,6 +487,7 @@ abstract public class CustomRecyclerAdapter<T> extends RecyclerView.Adapter<Base
         }
 
         final BaseViewHolder viewHolder = new BaseViewHolder(getItemView(resId, parent));
+        AutoUtils.autoSize(viewHolder.getConvertView());
 
         //itemView 的点击事件
         if (mItemClickListener!=null) {

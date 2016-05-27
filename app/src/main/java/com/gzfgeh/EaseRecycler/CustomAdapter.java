@@ -41,7 +41,7 @@ public class CustomAdapter extends CustomRecyclerAdapter<String>
 //            return -1;
 
         if (position >= getHeaderCount() && position < getCount())
-            return 1;
+            return -1;
         else
             return -1;
     }
@@ -50,11 +50,19 @@ public class CustomAdapter extends CustomRecyclerAdapter<String>
     public RecyclerView.ViewHolder onCreateHeaderViewHolder(ViewGroup parent) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.stick_header, parent, false);
-        return new RecyclerView.ViewHolder(view) {};
+        return new RecyclerView.ViewHolder(view){};
     }
 
     @Override
     public void onBindHeaderViewHolder(RecyclerView.ViewHolder holder, int position) {
+        Button btn = (Button) holder.itemView.findViewById(R.id.stick_button);
+        btn.setText(holder.itemView.getContext().getString(R.string.app_name));
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(v.getContext(), "ddddd-----", Toast.LENGTH_SHORT).show();
+            }
+        });
 //        String showValue;
 //
 //        if (position >= getHeaderCount() && position < getCount())
