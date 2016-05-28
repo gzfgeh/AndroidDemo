@@ -13,7 +13,7 @@ public interface EventDelegate {
     void pauseLoadMore();
     void resumeLoadMore();
 
-    void setMore(View view, CustomRecyclerAdapter.OnLoadMoreListener listener);
+    void setMore(View view, int pageSize, CustomRecyclerAdapter.OnLoadMoreListener listener);
     void setNoMore(View view);
     void setErrorMore(View view);
 }

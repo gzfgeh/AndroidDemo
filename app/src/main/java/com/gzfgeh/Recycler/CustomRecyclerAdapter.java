@@ -268,16 +268,16 @@ abstract public class CustomRecyclerAdapter<T> extends RecyclerView.Adapter<Base
         return mEventDelegate;
     }
 
-    public View setMore(final int res, final OnLoadMoreListener listener){
+    public View setMore(final int res, int pageSize, final OnLoadMoreListener listener){
         FrameLayout container = new FrameLayout(getContext());
         container.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         LayoutInflater.from(getContext()).inflate(res, container);
-        getEventDelegate().setMore(container, listener);
+        getEventDelegate().setMore(container, pageSize, listener);
         return container;
     }
 
-    public View setMore(final View view,OnLoadMoreListener listener){
-        getEventDelegate().setMore(view, listener);
+    public View setMore(final View view,int pageSize, OnLoadMoreListener listener){
+        getEventDelegate().setMore(view, pageSize, listener);
         return view;
     }
 
@@ -299,6 +299,12 @@ abstract public class CustomRecyclerAdapter<T> extends RecyclerView.Adapter<Base
         container.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         LayoutInflater.from(getContext()).inflate(res, container);
         getEventDelegate().setErrorMore(container);
+        container.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                resumeMore();
+            }
+        });
         return container;
     }
 

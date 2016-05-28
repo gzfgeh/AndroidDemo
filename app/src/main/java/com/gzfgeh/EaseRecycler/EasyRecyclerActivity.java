@@ -49,7 +49,7 @@ public class EasyRecyclerActivity extends BaseActivity implements CustomSwipeRef
         LinearLayoutManager manager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(manager);
         recyclerView.setRefreshListener(this);
-        adapter.setMore(R.layout.view_more, this);
+        adapter.setMore(R.layout.view_more, 10, this);
         initAdapter();
 
         StickyRecyclerHeadersDecoration decoration = new StickyRecyclerHeadersDecoration(adapter);
