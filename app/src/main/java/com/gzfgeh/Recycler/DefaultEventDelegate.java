@@ -26,6 +26,7 @@ public class DefaultEventDelegate implements EventDelegate {
     private static final int STATUS_MORE = 260;
     private static final int STATUS_NOMORE = 408;
     private static final int STATUS_ERROR = 732;
+    private int pageSize = 0;
 
     public DefaultEventDelegate(CustomRecyclerAdapter adapter) {
         this.adapter = adapter;
@@ -50,7 +51,7 @@ public class DefaultEventDelegate implements EventDelegate {
     public void addData(int length) {
         log("addData" + length);
         if (hasMore){
-            if (length == 0){
+            if (length == 0 || length < pageSize){
                 //当添加0个时，认为已结束加载到底
                 if (status==STATUS_INITIAL || status == STATUS_MORE){
                     footer.showNoMore();
@@ -106,10 +107,11 @@ public class DefaultEventDelegate implements EventDelegate {
     //-------------------3种View设置-------------------
 
     @Override
-    public void setMore(View view, CustomRecyclerAdapter.OnLoadMoreListener listener) {
+    public void setMore(View view, int pageSize, CustomRecyclerAdapter.OnLoadMoreListener listener) {
         this.footer.setMoreView(view);
         this.onLoadMoreListener = listener;
         hasMore = true;
+        this.pageSize = pageSize;
         log("setMore");
     }
 

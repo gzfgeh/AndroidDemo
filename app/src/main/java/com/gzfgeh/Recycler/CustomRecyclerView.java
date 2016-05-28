@@ -327,11 +327,6 @@ public class CustomRecyclerView extends FrameLayout {
         if (mErrorView.getChildCount()>0){
             hideAll();
             mErrorView.setVisibility(View.VISIBLE);
-            if (getAdapter() instanceof CustomRecyclerAdapter){
-                if (((CustomRecyclerAdapter) getAdapter()).getItemCount() > 1){
-                    mErrorView.setVisibility(View.GONE);
-                }
-            }
         }else {
             showRecycler();
         }
@@ -343,11 +338,27 @@ public class CustomRecyclerView extends FrameLayout {
         if (mEmptyView.getChildCount()>0){
             hideAll();
             mEmptyView.setVisibility(View.VISIBLE);
-            if (getAdapter() instanceof CustomRecyclerAdapter){
-                if (((CustomRecyclerAdapter) getAdapter()).getItemCount() > 1){
-                    mEmptyView.setVisibility(View.GONE);
-                }
-            }
+//            if (getAdapter() instanceof CustomRecyclerAdapter){
+//                CustomRecyclerAdapter adapter = (CustomRecyclerAdapter) getAdapter();
+//                if (adapter.getItemCount() > 1){
+//                    //mEmptyView.setVisibility(View.GONE);
+//                    adapter.addHeader(new CustomRecyclerAdapter.ItemView() {
+//                        @Override
+//                        public View onCreateView(ViewGroup parent) {
+//                            return LayoutInflater.from(parent.getContext())
+//                                    .inflate(mEmptyId, parent, false);
+//                        }
+//
+//                        @Override
+//                        public void onBindView(View headerView) {
+//
+//                        }
+//                    });
+//                    mEmptyView.removeAllViews();
+//                }else{
+//                    mEmptyView.setVisibility(View.VISIBLE);
+//                }
+//            }
         }else {
             showRecycler();
         }
@@ -360,7 +371,7 @@ public class CustomRecyclerView extends FrameLayout {
             hideAll();
             if (getAdapter() instanceof CustomRecyclerAdapter){
                 if (((CustomRecyclerAdapter) getAdapter()).getCount() == 0){
-                    mRecycler.setVisibility(INVISIBLE);
+                    mRecycler.setVisibility(GONE);
                 }
             }
             mProgressView.setVisibility(View.VISIBLE);

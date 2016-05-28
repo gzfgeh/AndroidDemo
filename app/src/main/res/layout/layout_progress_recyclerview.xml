@@ -7,15 +7,16 @@
     app:keep_refresh_head="false"
     app:refresh_mode="pull_mode">
 
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
 
         <android.support.v7.widget.RecyclerView
             android:id="@android:id/list"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:scrollbars="vertical"
             android:clickable="true"/>
         <FrameLayout
@@ -39,7 +40,7 @@
             android:clickable="true"
             />
 
-    </FrameLayout>
+    </LinearLayout>
 
 
 

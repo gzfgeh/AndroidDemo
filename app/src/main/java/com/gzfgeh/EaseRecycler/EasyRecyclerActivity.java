@@ -58,10 +58,10 @@ public class EasyRecyclerActivity extends BaseActivity implements CustomSwipeRef
             @Override
             public void run() {
                 adapter.clear();
-                for (int i = 0; i < 100; i++) {
+                for (int i = 0; i < 3; i++) {
                     data.add(i + "--789");
                 }
-                data.clear();
+                //data.clear();
                 adapter.addAll(data);
                 recyclerView.addItemDecoration(decoration);
             }
