@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -12,15 +12,7 @@
         app:layout_error="@layout/view_error"
         app:layout_progress="@layout/view_progress"/>
 
-    <!--<TextView-->
-        <!--android:id="@+id/sticky_header"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:padding="20dp"-->
-        <!--android:background="#e89112"-->
-        <!--android:gravity="center"-->
-        <!--android:text="sticky header"-->
-        <!--android:textColor="@android:color/white"-->
-        <!--android:layout_below="@+id/recyclerView"/>-->
+    <include layout="@layout/stick_header"
+        android:id="@+id/sticky_header" />
 
-</RelativeLayout>
+</FrameLayout>

@@ -3,6 +3,7 @@ package com.gzfgeh.EaseRecycler;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 import com.gzfgeh.BaseActivity;
 import com.gzfgeh.CustomRecycler.expandRecyclerviewadapter.StickyRecyclerHeadersDecoration;
 import com.gzfgeh.CustomRecycler.expandRecyclerviewadapter.StickyRecyclerHeadersTouchListener;
+import com.gzfgeh.LogUtils;
 import com.gzfgeh.R;
 import com.gzfgeh.Recycler.CustomRecyclerAdapter;
 import com.gzfgeh.Recycler.CustomRecyclerView;
@@ -32,7 +34,11 @@ public class EasyRecyclerActivity extends BaseActivity implements CustomSwipeRef
 
     @Bind(R.id.recyclerView)
     CustomRecyclerView recyclerView;
+    @Bind(R.id.sticky_header)
+    View stickyHeaderLayout;
 
+    private View falseHeaderView;
+    private LinearLayoutManager manager;
     CustomAdapter adapter;
     List<String> data = new ArrayList<>();
 
@@ -42,15 +48,29 @@ public class EasyRecyclerActivity extends BaseActivity implements CustomSwipeRef
         setContentView(R.layout.activity_easy_recycler);
         ButterKnife.bind(this);
 
+        stickyHeaderLayout.setVisibility(View.INVISIBLE);
         adapter = new CustomAdapter(this, R.layout.item_contacts);
 
-        LinearLayoutManager manager = new LinearLayoutManager(this);
+        manager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(manager);
         recyclerView.setRefreshListener(this);
         adapter.setMore(R.layout.view_more, 10, this);
         initAdapter();
 
-        StickyRecyclerHeadersDecoration decoration = new StickyRecyclerHeadersDecoration(adapter);
+        recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recycler, int dx, int dy) {
+                LogUtils.i("---dy:" + dy);
+                if (dy >= 0 && falseHeaderView.getTop() <= 0){
+                    stickyHeaderLayout.setVisibility(View.VISIBLE);
+                }
+                if (dy < 0 && falseHeaderView.getTop() > 0){
+                    stickyHeaderLayout.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
+
+        //StickyRecyclerHeadersDecoration decoration = new StickyRecyclerHeadersDecoration(adapter);
 
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -61,21 +81,21 @@ public class EasyRecyclerActivity extends BaseActivity implements CustomSwipeRef
                 }
                 //data.clear();
                 adapter.addAll(data);
-                recyclerView.addItemDecoration(decoration);
+                //recyclerView.addItemDecoration(decoration);
             }
         }, 1000);
 
-        StickyRecyclerHeadersTouchListener touchListener = new StickyRecyclerHeadersTouchListener
-                (recyclerView.getRecyclerView(), decoration);
-
-        touchListener.setOnHeaderClickListener(new StickyRecyclerHeadersTouchListener.OnHeaderClickListener() {
-            @Override
-            public void onHeaderClick(View header, int position, long headerId) {
-                Toast.makeText(EasyRecyclerActivity.this, "Header position: " + position + ", id: " + headerId,
-                        Toast.LENGTH_SHORT).show();
-            }
-        });
-        recyclerView.addOnItemTouchListener(touchListener);
+//        StickyRecyclerHeadersTouchListener touchListener = new StickyRecyclerHeadersTouchListener
+//                (recyclerView.getRecyclerView(), decoration);
+//
+//        touchListener.setOnHeaderClickListener(new StickyRecyclerHeadersTouchListener.OnHeaderClickListener() {
+//            @Override
+//            public void onHeaderClick(View header, int position, long headerId) {
+//                Toast.makeText(EasyRecyclerActivity.this, "Header position: " + position + ", id: " + headerId,
+//                        Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//        recyclerView.addOnItemTouchListener(touchListener);
 
     }
 
@@ -121,19 +141,19 @@ public class EasyRecyclerActivity extends BaseActivity implements CustomSwipeRef
             }
         });
 
-//        adapter.addFooter(new CustomRecyclerAdapter.ItemView() {
-//            @Override
-//            public View onCreateView(ViewGroup parent) {
-//                View view = LayoutInflater.from(parent.getContext())
-//                        .inflate(R.layout.item_contacts, null);
-//                return view;
-//            }
-//
-//            @Override
-//            public void onBindView(View headerView) {
-//
-//            }
-//        });
+        adapter.addHeader(new CustomRecyclerAdapter.ItemView() {
+            @Override
+            public View onCreateView(ViewGroup parent) {
+                falseHeaderView = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.stick_header, null);
+                return falseHeaderView;
+            }
+
+            @Override
+            public void onBindView(View headerView) {
+
+            }
+        });
 
         recyclerView.setAdapterWithProgress(adapter);
     }
