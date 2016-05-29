@@ -12,6 +12,7 @@
         android:layout_gravity="center"
         android:id="@+id/stick_button"
         android:clickable="true"
-        android:focusable="true"/>
+        android:focusable="true"
+        android:text="@string/action_settings"/>
 
 </LinearLayout>

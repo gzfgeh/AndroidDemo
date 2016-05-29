@@ -41,9 +41,9 @@ public class CustomAdapter extends CustomRecyclerAdapter<String>
 //            return -1;
 
         if (position >= getHeaderCount() && position < getCount())
-            return -1;
+            return 2;
         else
-            return -1;
+            return 2;
     }
 
     @Override

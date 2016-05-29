@@ -32,8 +32,6 @@ public class EasyRecyclerActivity extends BaseActivity implements CustomSwipeRef
 
     @Bind(R.id.recyclerView)
     CustomRecyclerView recyclerView;
-    @Bind(R.id.sticky_header)
-    TextView sickyHeader;
 
     CustomAdapter adapter;
     List<String> data = new ArrayList<>();
@@ -58,7 +56,7 @@ public class EasyRecyclerActivity extends BaseActivity implements CustomSwipeRef
             @Override
             public void run() {
                 adapter.clear();
-                for (int i = 0; i < 3; i++) {
+                for (int i = 0; i < 30; i++) {
                     data.add(i + "--789");
                 }
                 //data.clear();
@@ -75,7 +73,6 @@ public class EasyRecyclerActivity extends BaseActivity implements CustomSwipeRef
             public void onHeaderClick(View header, int position, long headerId) {
                 Toast.makeText(EasyRecyclerActivity.this, "Header position: " + position + ", id: " + headerId,
                         Toast.LENGTH_SHORT).show();
-                adapter.notifyDataSetChanged();
             }
         });
         recyclerView.addOnItemTouchListener(touchListener);

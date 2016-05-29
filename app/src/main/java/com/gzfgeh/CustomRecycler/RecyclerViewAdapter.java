@@ -59,7 +59,7 @@ public class RecyclerViewAdapter  extends RecyclerView.Adapter<RecyclerViewAdapt
 
     @Override
     public void onBindHeaderViewHolder(RecyclerView.ViewHolder holder, int position) {
-        TextView textView = (TextView) holder.itemView;
+        TextView textView = (TextView) holder.itemView.findViewById(R.id.head_text);
         String showValue = String.valueOf(getItem(position).getSortLetters().charAt(0));
         textView.setText(showValue);
     }

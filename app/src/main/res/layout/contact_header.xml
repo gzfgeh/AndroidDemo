@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="40dp"
-    android:background="@color/edit_bg"
-    android:gravity="center_vertical"
-    android:orientation="horizontal"
-    android:paddingLeft="14dp"
-    android:textColor="@color/darker_gray"
-    android:textSize="12sp"
-    tools:text="Animals starting with A" />
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary">
+
+    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:background="@color/edit_bg"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingLeft="14dp"
+        android:textColor="@color/darker_gray"
+        android:textSize="12sp"
+        tools:text="Animals starting with A"
+        android:id="@+id/head_text"/>
+
+</LinearLayout>
+

@@ -4,11 +4,14 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.gzfgeh.CustomRecycler.expandRecyclerviewadapter.StickyRecyclerHeadersDecoration;
+import com.gzfgeh.CustomRecycler.expandRecyclerviewadapter.StickyRecyclerHeadersTouchListener;
 import com.gzfgeh.LogUtils;
 import com.gzfgeh.R;
 
@@ -123,6 +126,29 @@ public class CustomRecyclerActivity extends Activity {
                     headersDecor.invalidateHeaders();
                 }
             });
+
+
+            StickyRecyclerHeadersTouchListener touchListener = new StickyRecyclerHeadersTouchListener
+                    (mRecyclerView, headersDecor);
+
+            touchListener.setOnHeaderClickListener(new StickyRecyclerHeadersTouchListener.OnHeaderClickListener() {
+                @Override
+                public void onHeaderClick(View header, int position, long headerId) {
+                    Toast.makeText(CustomRecyclerActivity.this, "Header position: " + position + ", id: " + headerId,
+                            Toast.LENGTH_SHORT).show();
+                    TextView textView = (TextView) header.findViewById(R.id.head_text);
+                    textView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Toast.makeText(CustomRecyclerActivity.this, "head_text: " + position,
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+            });
+            mRecyclerView.addOnItemTouchListener(touchListener);
+
+
         } else {
             mAdapter.notifyDataSetChanged();
         }
