@@ -1,10 +1,13 @@
 package com.gzfgeh.CustomChart;
 
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
+import com.gzfgeh.APP;
 import com.gzfgeh.LogUtils;
+import com.gzfgeh.R;
 
 import lecho.lib.hellocharts.computator.ChartComputator;
 import lecho.lib.hellocharts.model.LineChartData;
@@ -20,9 +23,7 @@ public class TouchLine{
     private float[] lines;
     private float x, y, valueX, valueY;
 
-    public TouchLine(ChartComputator chartComputator, LineChartData data) {
-        this.chartComputator = chartComputator;
-        this.data = data;
+    public TouchLine() {
         paint = new Paint();
         paint.setColor(Color.RED);
         lines = new float[8];
@@ -47,8 +48,10 @@ public class TouchLine{
         paint.setTextSize(20f);
         paint.setAntiAlias(true);
         paint.setStyle(Paint.Style.FILL);
-        canvas.drawText(String.valueOf(valueX), x - getStringWidth(String.valueOf(valueX))/2, chartComputator.getChartHeight(), paint);
+        canvas.drawText(String.valueOf(valueX), x - getStringWidth(String.valueOf(valueX)) / 2, chartComputator.getChartHeight(), paint);
         canvas.drawText(String.valueOf(valueY), 0, y + getStringHeight(String.valueOf(valueY))/3, paint);
+        canvas.drawText(String.valueOf(valueY), x - getStringWidth(String.valueOf(valueX)) / 2, y - getStringHeight(String.valueOf(valueY)), paint);
+        canvas.drawText(String.valueOf(valueX), x - getStringWidth(String.valueOf(valueX)) / 2, y - getStringHeight(String.valueOf(valueY)) * 2, paint);
     }
 
     private int getStringWidth(String str) {
@@ -69,5 +72,13 @@ public class TouchLine{
 
     public LineChartData getData() {
         return data;
+    }
+
+    public void setData(LineChartData data) {
+        this.data = data;
+    }
+
+    public void setChartComputator(ChartComputator chartComputator) {
+        this.chartComputator = chartComputator;
     }
 }

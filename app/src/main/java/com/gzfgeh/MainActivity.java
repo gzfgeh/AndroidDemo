@@ -15,6 +15,7 @@ import com.gzfgeh.CustomChart.CustomChartActivity;
 import com.gzfgeh.CustomDagger.Dagger2Activity;
 import com.gzfgeh.CustomDrawable.CustomDrawableActivity;
 import com.gzfgeh.CustomFlowLayout.CustomFlowLayoutActivity;
+import com.gzfgeh.CustomPopupWindow.PopupWindowActivity;
 import com.gzfgeh.CustomRecycler.CustomRecyclerActivity;
 import com.gzfgeh.CustomRetrifit.RetrofitActivity;
 import com.gzfgeh.CustomRxBind.CustomRxBindActivity;
@@ -68,6 +69,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button rxBind;
     @Bind(R.id.custom_recycler)
     Button recyclerBtn;
+    @Bind(R.id.popup_window)
+    Button popupWindow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,6 +95,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         stickRecycler.setOnClickListener(this);
         rxBind.setOnClickListener(this);
         recyclerBtn.setOnClickListener(this);
+        popupWindow.setOnClickListener(this);
     }
 
 
@@ -164,6 +168,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.custom_recycler:
                 startActivity(new Intent(this, EasyRecyclerActivity.class));
+                break;
+
+            case R.id.popup_window:
+                startActivity(new Intent(this, PopupWindowActivity.class));
                 break;
         }
     }

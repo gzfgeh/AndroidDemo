@@ -25,7 +25,7 @@ public class LineChartView extends AbstractChartView implements LineChartDataPro
     private static final String TAG = "LineChartView";
     protected LineChartData data;
     protected LineChartOnValueSelectListener onValueTouchListener = new DummyLineChartOnValueSelectListener();
-
+    private TouchLine touchLine = new TouchLine();
 
     public LineChartView(Context context) {
         this(context, null, 0);
@@ -43,7 +43,7 @@ public class LineChartView extends AbstractChartView implements LineChartDataPro
 
     @Override
     public TouchLine getTouchLine() {
-        return new TouchLine(chartComputator, data);
+        return touchLine;
     }
 
     @Override
@@ -58,7 +58,8 @@ public class LineChartView extends AbstractChartView implements LineChartDataPro
         } else {
             this.data = data;
         }
-        getTouchLine();
+        touchLine.setChartComputator(chartComputator);
+        touchLine.setData(this.data);
         super.onChartDataChange();
     }
 
