@@ -68,6 +68,7 @@ public class TouchLine{
         this.valueY = valueY;
         this.x = chartComputator.computeRawX(valueX);
         this.y = chartComputator.computeRawY(valueY);
+        LogUtils.i("--x:" + x + "----y:" + y);
     }
 
     public LineChartData getData() {

@@ -4,11 +4,14 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 
+import com.gzfgeh.LogUtils;
 import com.gzfgeh.R;
 
 import butterknife.Bind;
@@ -25,8 +28,18 @@ public class PopupWindowActivity extends Activity {
     Button centerPos;
     @Bind(R.id.any_pos)
     Button anyPos;
+    @Bind(R.id.editX)
+    EditText editX;
+    @Bind(R.id.editY)
+    EditText editY;
 
     private PopupWindow popupWindow;
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        LogUtils.i("--eventX:" + event.getX() + "-----eventY:" + event.getY());
+        return super.onTouchEvent(event);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,9 +71,13 @@ public class PopupWindowActivity extends Activity {
                     View contentView = LayoutInflater.from(v.getContext()).inflate(R.layout.pop_up_content, null);
                     popupWindow = new PopupWindow(contentView, LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                     View rootView = LayoutInflater.from(v.getContext()).inflate(R.layout.activity_pop_up, null);
-                    popupWindow.showAtLocation(rootView, Gravity.CENTER, 200, 400);
+                    popupWindow.showAsDropDown(upPos,
+                            Integer.valueOf(editX.getText().toString()),
+                            Integer.valueOf(editY.getText().toString()) - upPos.getHeight());
                 }
             }
         });
+
+
     }
 }

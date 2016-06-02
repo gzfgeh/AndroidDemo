@@ -23,4 +23,15 @@
         android:text="任何地方"
         android:layout_centerInParent="true"/>
 
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editX"
+        android:layout_below="@+id/any_pos"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editY"
+        android:layout_below="@+id/editX"/>
+
 </RelativeLayout>
