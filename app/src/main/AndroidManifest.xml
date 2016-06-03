@@ -84,6 +84,7 @@
         <activity android:name=".CustomRxBind.CustomRxBindActivity"/>
         <activity android:name=".EaseRecycler.EasyRecyclerActivity"/>
         <activity android:name=".CustomPopupWindow.PopupWindowActivity"/>
+        <activity android:name=".CurveView.CurveViewActivity"/>
 
     </application>
 

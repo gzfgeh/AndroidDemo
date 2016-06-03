@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.gzfgeh.CurveView.CurveViewActivity;
 import com.gzfgeh.CustomBottomTab.BottomTabLayoutActivity;
 import com.gzfgeh.CustomBtn.CustomBtnActivity;
 import com.gzfgeh.CustomChart.ChartViewActivity;
@@ -71,6 +72,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button recyclerBtn;
     @Bind(R.id.popup_window)
     Button popupWindow;
+    @Bind(R.id.curve_view)
+    Button curveView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,6 +99,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         rxBind.setOnClickListener(this);
         recyclerBtn.setOnClickListener(this);
         popupWindow.setOnClickListener(this);
+        curveView.setOnClickListener(this);
     }
 
 
@@ -172,6 +176,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.popup_window:
                 startActivity(new Intent(this, PopupWindowActivity.class));
+                break;
+
+            case R.id.curve_view:
+                startActivity(new Intent(this, CurveViewActivity.class));
                 break;
         }
     }

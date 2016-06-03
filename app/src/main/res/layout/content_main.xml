@@ -26,6 +26,12 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:id="@+id/custom_viewgroup_flow"/>
+
+        <Button android:text=" ViewGroup Tags"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/custom_viewgroup_tag"
+            android:layout_weight="1"/>
     </LinearLayout>
 
     <LinearLayout
@@ -35,26 +41,11 @@
         android:id="@+id/layout_two"
         android:layout_below="@+id/custom_viewgroup_layout">
 
-        <Button android:text=" ViewGroup Tags"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/custom_viewgroup_tag"
-            android:layout_weight="1"/>
-
         <Button android:text=" TextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/custom_text_view"
             android:layout_weight="1"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal"
-        android:id="@+id/layout_three"
-        android:layout_below="@+id/layout_two">
 
         <com.andexert.library.RippleView
             android:layout_width="match_parent"
@@ -82,8 +73,8 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="horizontal"
-        android:id="@+id/layout_four"
-        android:layout_below="@+id/layout_three">
+        android:id="@+id/layout_three"
+        android:layout_below="@+id/layout_two">
 
         <Button android:text="波纹效果"
             android:layout_width="match_parent"
@@ -96,15 +87,6 @@
             android:layout_height="wrap_content"
             android:id="@+id/bottom_tablayout"
             android:layout_weight="1"/>
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal"
-        android:layout_below="@+id/layout_four"
-        android:id="@+id/layout_five">
 
         <Button android:text="Custom Chart"
             android:layout_width="match_parent"
@@ -112,18 +94,20 @@
             android:id="@+id/chart"
             android:layout_weight="1"/>
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:id="@+id/layout_four"
+        android:layout_below="@+id/layout_three">
+
         <Button android:text="Dragger2 Study"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/dragger2"
             android:layout_weight="1"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/six"
-        android:layout_below="@+id/layout_five">
 
         <Button
             android:layout_width="match_parent"
@@ -138,13 +122,16 @@
             android:text="ScrollView"
             android:id="@+id/scroll_view"
             android:layout_weight="1"/>
+
     </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/seven"
-        android:layout_below="@+id/six">
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:layout_below="@+id/layout_four"
+        android:id="@+id/layout_five">
 
         <Button
             android:layout_width="match_parent"
@@ -159,13 +146,7 @@
             android:text="Drawable"
             android:id="@+id/custom_drawable"
             android:layout_weight="1"/>
-    </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/eight"
-        android:layout_below="@+id/seven">
 
         <Button
             android:layout_width="match_parent"
@@ -174,19 +155,20 @@
             android:id="@+id/stick_recycler"
             android:layout_weight="1"/>
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/six"
+        android:layout_below="@+id/layout_five">
+
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="RxBind"
             android:id="@+id/rxbind"
             android:layout_weight="1"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/nine"
-        android:layout_below="@+id/eight">
 
         <Button
             android:layout_width="match_parent"
@@ -202,6 +184,21 @@
             android:id="@+id/popup_window"
             android:layout_weight="1"/>
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/seven"
+        android:layout_below="@+id/six">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Curve View"
+            android:id="@+id/curve_view"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
 
 
 
