@@ -1,8 +1,10 @@
 package com.gzfgeh.CustomChart;
 
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 
 import com.gzfgeh.APP;
@@ -40,9 +42,9 @@ public class TouchLine{
         lines[6] = x;
         lines[7] = chartComputator.computeRawY(0);
         LogUtils.i("lines[0] :" + lines[0] + "-----lines[1] :" + lines[1]
-                        + "-----lines[2] :" + lines[2] + "-----lines[3] :" + lines[3]
-                        + "-----lines[4] :" + lines[4] + "-----lines[5] :" + lines[5]
-                        + "-----lines[6] :" + lines[6] + "-----lines[7] :" + lines[7]);
+                + "-----lines[2] :" + lines[2] + "-----lines[3] :" + lines[3]
+                + "-----lines[4] :" + lines[4] + "-----lines[5] :" + lines[5]
+                + "-----lines[6] :" + lines[6] + "-----lines[7] :" + lines[7]);
         canvas.drawLines(lines, paint);
 
         paint.setTextSize(20f);
@@ -52,6 +54,8 @@ public class TouchLine{
         canvas.drawText(String.valueOf(valueY), 0, y + getStringHeight(String.valueOf(valueY))/3, paint);
         canvas.drawText(String.valueOf(valueY), x - getStringWidth(String.valueOf(valueX)) / 2, y - getStringHeight(String.valueOf(valueY)), paint);
         canvas.drawText(String.valueOf(valueX), x - getStringWidth(String.valueOf(valueX)) / 2, y - getStringHeight(String.valueOf(valueY)) * 2, paint);
+        Bitmap bitmap = BitmapFactory.decodeResource(APP.getContext().getResources(), R.drawable.click);
+        canvas.drawBitmap(bitmap, x-bitmap.getWidth()/2, y - getStringHeight(String.valueOf(valueY)) * 2, paint);
     }
 
     private int getStringWidth(String str) {
