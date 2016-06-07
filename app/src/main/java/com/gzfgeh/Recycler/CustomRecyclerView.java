@@ -12,8 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
-import com.gzfgeh.LogUtils;
-import com.gzfgeh.NetWorkUtils;
 import com.gzfgeh.R;
 import com.gzfgeh.SwipeRefresh.CustomSwipeRefreshLayout;
 
@@ -23,11 +21,13 @@ public class CustomRecyclerView extends FrameLayout {
     public static boolean DEBUG = false;
     protected RecyclerView mRecycler;
     protected ViewGroup mProgressView;
-    protected ViewGroup mEmptyView;
-    protected ViewGroup mErrorView;
+    protected ViewGroup mLoginView;
+    private View mEmptyView;
+    private View mErrorView;
     private int mProgressId;
     private int mEmptyId;
     private int mErrorId;
+    private int mLoginId;
 
     protected boolean mClipToPadding;
     protected int mPadding;
@@ -36,7 +36,7 @@ public class CustomRecyclerView extends FrameLayout {
     protected int mPaddingLeft;
     protected int mPaddingRight;
     protected int mScrollbarStyle;
-
+    private CustomRecyclerAdapter.ItemView emptyItemView, errorItemView;
 
 
     protected RecyclerView.OnScrollListener mInternalOnScrollListener;
@@ -83,6 +83,7 @@ public class CustomRecyclerView extends FrameLayout {
             mEmptyId = a.getResourceId(R.styleable.superrecyclerview_layout_empty, 0);
             mProgressId = a.getResourceId(R.styleable.superrecyclerview_layout_progress, 0);
             mErrorId = a.getResourceId(R.styleable.superrecyclerview_layout_error, 0);
+            mLoginId = a.getResourceId(R.styleable.superrecyclerview_layout_login, 0);
         } finally {
             a.recycle();
         }
@@ -98,12 +99,42 @@ public class CustomRecyclerView extends FrameLayout {
         mPtrLayout.setEnabled(false);
 
         mProgressView = (ViewGroup) v.findViewById(R.id.progress);
-        if (mProgressId!=0)LayoutInflater.from(getContext()).inflate(mProgressId,mProgressView);
-        mEmptyView = (ViewGroup) v.findViewById(R.id.empty);
-        if (mEmptyId!=0)LayoutInflater.from(getContext()).inflate(mEmptyId,mEmptyView);
-        mErrorView = (ViewGroup) v.findViewById(R.id.error);
-        if (mErrorId!=0)LayoutInflater.from(getContext()).inflate(mErrorId,mErrorView);
+        if (mProgressId!=0)
+            LayoutInflater.from(getContext()).inflate(mProgressId,mProgressView);
+        if (mEmptyId != 0)
+            mEmptyView = LayoutInflater.from(getContext()).inflate(mEmptyId, mRecycler, false);
+        if (mErrorId != 0)
+            mErrorView = LayoutInflater.from(getContext()).inflate(mErrorId, mRecycler, false);
+        mLoginView = (ViewGroup) v.findViewById(R.id.login);
+        if (mLoginId != 0)
+            LayoutInflater.from(getContext()).inflate(mLoginId, mLoginView);
         initRecyclerView(v);
+
+        if (mEmptyId != 0) {
+            emptyItemView = new CustomRecyclerAdapter.ItemView() {
+                @Override
+                public View onCreateView(ViewGroup parent) {
+                    return mEmptyView;
+                }
+
+                @Override
+                public void onBindView(View headerView) {}
+            };
+        }
+
+        if (mErrorId != 0) {
+            errorItemView = new CustomRecyclerAdapter.ItemView() {
+                @Override
+                public View onCreateView(ViewGroup parent) {
+                    return mErrorView;
+                }
+
+                @Override
+                public void onBindView(View headerView) {
+
+                }
+            };
+        }
     }
 
     @Override
@@ -120,28 +151,75 @@ public class CustomRecyclerView extends FrameLayout {
     }
 
     public void setEmptyView(View emptyView){
-        mEmptyView.removeAllViews();
-        mEmptyView.addView(emptyView);
+        mEmptyView = emptyView;
+        emptyItemView = new CustomRecyclerAdapter.ItemView() {
+            @Override
+            public View onCreateView(ViewGroup parent) {
+                return mEmptyView;
+            }
+
+            @Override
+            public void onBindView(View headerView) {}
+        };
     }
     public void setProgressView(View progressView){
         mProgressView.removeAllViews();
         mProgressView.addView(progressView);
     }
+
+    public void setLoginView(View loginView){
+        mLoginView.removeAllViews();
+        mLoginView.addView(loginView);
+    }
     public void setErrorView(View errorView){
-        mErrorView.removeAllViews();
-        mErrorView.addView(errorView);
+        mErrorView = errorView;
+        errorItemView = new CustomRecyclerAdapter.ItemView() {
+            @Override
+            public View onCreateView(ViewGroup parent) {
+                return mErrorView;
+            }
+
+            @Override
+            public void onBindView(View headerView) {
+
+            }
+        };
     }
     public void setEmptyView(int emptyView){
-        mEmptyView.removeAllViews();
-        LayoutInflater.from(getContext()).inflate(emptyView, mEmptyView);
+        mEmptyView = LayoutInflater.from(getContext()).inflate(emptyView, mRecycler, false);
+        emptyItemView = new CustomRecyclerAdapter.ItemView() {
+            @Override
+            public View onCreateView(ViewGroup parent) {
+                return mEmptyView;
+            }
+
+            @Override
+            public void onBindView(View headerView) {}
+        };
     }
     public void setProgressView(int progressView){
         mProgressView.removeAllViews();
         LayoutInflater.from(getContext()).inflate(progressView, mProgressView);
     }
+
+    public void setLoginView(int loginView){
+        mLoginView.removeAllViews();
+        LayoutInflater.from(getContext()).inflate(loginView, mLoginView);
+    }
+
     public void setErrorView(int errorView){
-        mErrorView.removeAllViews();
-        LayoutInflater.from(getContext()).inflate(errorView, mErrorView);
+        mErrorView = LayoutInflater.from(getContext()).inflate(errorView, mRecycler, false);
+        errorItemView = new CustomRecyclerAdapter.ItemView() {
+            @Override
+            public View onCreateView(ViewGroup parent) {
+                return mErrorView;
+            }
+
+            @Override
+            public void onBindView(View headerView) {
+
+            }
+        };
     }
 
     public void scrollToPosition(int position){
@@ -162,7 +240,6 @@ public class CustomRecyclerView extends FrameLayout {
                 @Override
                 public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                     super.onScrolled(recyclerView, dx, dy);
-                    LogUtils.i("newState:" + recyclerView.getScrollState());
                     if (mExternalOnScrollListener != null)
                         mExternalOnScrollListener.onScrolled(recyclerView, dx, dy);
 
@@ -172,7 +249,6 @@ public class CustomRecyclerView extends FrameLayout {
                 public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                     super.onScrollStateChanged(recyclerView, newState);
                     //滚到的时候有动画，不滚动没动画
-                    LogUtils.i("newState:" + newState);
                     if (newState == RecyclerView.SCROLL_STATE_SETTLING){
                         if (getAdapter() instanceof CustomRecyclerAdapter){
                             ((CustomRecyclerAdapter) getAdapter()).isLoadAnimation(true);
@@ -217,6 +293,7 @@ public class CustomRecyclerView extends FrameLayout {
         private CustomRecyclerView recyclerView;
         private boolean isInitialized = false;
         private boolean hasProgress = false;
+        private boolean isLoadEmpty = false;
 
         public EasyDataObserver(CustomRecyclerView recyclerView,boolean hasProgress) {
             this.recyclerView = recyclerView;
@@ -261,8 +338,11 @@ public class CustomRecyclerView extends FrameLayout {
                     log("no data:"+((hasProgress&&!isInitialized)?"show progress":"show empty"));
                     if (hasProgress&&!isInitialized)
                         recyclerView.showProgress();
-                    else
-                        recyclerView.showEmpty();
+                    else {
+                        if (isLoadEmpty)
+                            recyclerView.showEmpty();
+                        isLoadEmpty = true;
+                    }
                 } else{
                     log("has data");
                     recyclerView.showRecycler();
@@ -314,69 +394,66 @@ public class CustomRecyclerView extends FrameLayout {
 
 
     private void hideAll(){
-        mEmptyView.setVisibility(View.GONE);
+        mLoginView.setVisibility(GONE);
         mProgressView.setVisibility(View.GONE);
-        mErrorView.setVisibility(GONE);
         mPtrLayout.setRefreshing(false);
         mRecycler.setVisibility(VISIBLE);
+        if (getAdapter() instanceof CustomRecyclerAdapter) {
+            CustomRecyclerAdapter adapter = (CustomRecyclerAdapter) getAdapter();
+            if (emptyItemView != null)
+                adapter.removeHeader(emptyItemView);
+            if (errorItemView != null)
+                adapter.removeHeader(errorItemView);
+        }
     }
 
 
     public void showError() {
         log("showError");
-        if (mErrorView.getChildCount()>0){
-            hideAll();
-            mErrorView.setVisibility(View.VISIBLE);
-        }else {
-            showRecycler();
+        hideAll();
+        if (getAdapter() instanceof CustomRecyclerAdapter){
+            CustomRecyclerAdapter adapter = (CustomRecyclerAdapter) getAdapter();
+            if (adapter.getCount() == 0){
+                adapter.addHeader(errorItemView);
+            }
         }
-
     }
 
     public void showEmpty() {
         log("showEmpty");
-        if (mEmptyView.getChildCount()>0){
-            hideAll();
-            mEmptyView.setVisibility(View.VISIBLE);
-//            if (getAdapter() instanceof CustomRecyclerAdapter){
-//                CustomRecyclerAdapter adapter = (CustomRecyclerAdapter) getAdapter();
-//                if (adapter.getItemCount() > 1){
-//                    //mEmptyView.setVisibility(View.GONE);
-//                    adapter.addHeader(new CustomRecyclerAdapter.ItemView() {
-//                        @Override
-//                        public View onCreateView(ViewGroup parent) {
-//                            return LayoutInflater.from(parent.getContext())
-//                                    .inflate(mEmptyId, parent, false);
-//                        }
-//
-//                        @Override
-//                        public void onBindView(View headerView) {
-//
-//                        }
-//                    });
-//                    mEmptyView.removeAllViews();
-//                }else{
-//                    mEmptyView.setVisibility(View.VISIBLE);
-//                }
-//            }
-        }else {
-            showRecycler();
+        hideAll();
+        if (getAdapter() instanceof CustomRecyclerAdapter){
+            CustomRecyclerAdapter adapter = (CustomRecyclerAdapter) getAdapter();
+            if (adapter.getCount() == 0){
+                adapter.addHeader(emptyItemView);
+            }
         }
+
     }
 
 
     public void showProgress() {
         log("showProgress");
+        hideAll();
         if (mProgressView.getChildCount()>0){
-            hideAll();
             if (getAdapter() instanceof CustomRecyclerAdapter){
                 if (((CustomRecyclerAdapter) getAdapter()).getCount() == 0){
                     mRecycler.setVisibility(GONE);
                 }
             }
             mProgressView.setVisibility(View.VISIBLE);
-        }else {
-            showRecycler();
+        }
+    }
+
+    public void showLogin() {
+        hideAll();
+        if (mLoginView.getChildCount()>0){
+            if (getAdapter() instanceof CustomRecyclerAdapter){
+                if (((CustomRecyclerAdapter) getAdapter()).getCount() == 0){
+                    mRecycler.setVisibility(GONE);
+                }
+            }
+            mLoginView.setVisibility(View.VISIBLE);
         }
     }
 
@@ -384,7 +461,13 @@ public class CustomRecyclerView extends FrameLayout {
     public void showRecycler() {
         log("showRecycler");
         hideAll();
-        mRecycler.setVisibility(View.VISIBLE);
+        if (getAdapter() instanceof CustomRecyclerAdapter) {
+            CustomRecyclerAdapter adapter = (CustomRecyclerAdapter) getAdapter();
+            if (emptyItemView != null)
+                adapter.removeHeader(emptyItemView);
+            if (errorItemView != null)
+                adapter.removeHeader(errorItemView);
+        }
     }
 
 
@@ -419,30 +502,6 @@ public class CustomRecyclerView extends FrameLayout {
             }
         });
     }
-
-    /**
-     * Set the colors for the SwipeRefreshLayout states
-     *
-     * @param colRes1
-     * @param colRes2
-     * @param colRes3
-     * @param colRes4
-     */
-//    public void setRefreshingColorResources(@ColorRes int colRes1, @ColorRes int colRes2, @ColorRes int colRes3, @ColorRes int colRes4) {
-//        mPtrLayout.setColorSchemeResources(colRes1, colRes2, colRes3, colRes4);
-//    }
-
-    /**
-     * Set the colors for the SwipeRefreshLayout states
-     *
-     * @param col1
-     * @param col2
-     * @param col3
-     * @param col4
-     */
-//    public void setRefreshingColor(int col1, int col2, int col3, int col4) {
-//        mPtrLayout.setColorSchemeColors(col1, col2, col3, col4);
-//    }
 
     /**
      * Set the scroll listener for the recycler
@@ -504,15 +563,21 @@ public class CustomRecyclerView extends FrameLayout {
      * @return inflated error view or null
      */
     public View getErrorView() {
-        if (mErrorView.getChildCount()>0)return mErrorView.getChildAt(0);
-        return null;
+        return mErrorView;
     }
 
     /**
      * @return inflated progress view or null
      */
     public View getProgressView() {
-        if (mProgressView.getChildCount()>0)return mProgressView.getChildAt(0);
+        if (mProgressView.getChildCount()>0)
+            return mProgressView.getChildAt(0);
+        return null;
+    }
+
+    public View getLoginView() {
+        if (mLoginView.getChildCount()>0)
+            return mLoginView.getChildAt(0);
         return null;
     }
 
@@ -521,8 +586,7 @@ public class CustomRecyclerView extends FrameLayout {
      * @return inflated empty view or null
      */
     public View getEmptyView() {
-        if (mEmptyView.getChildCount()>0)return mEmptyView.getChildAt(0);
-        return null;
+        return mEmptyView;
     }
 
     private static void log(String content){

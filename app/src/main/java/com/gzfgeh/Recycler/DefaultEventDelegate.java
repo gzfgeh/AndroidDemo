@@ -53,7 +53,9 @@ public class DefaultEventDelegate implements EventDelegate {
         if (hasMore){
             if (length == 0 || length < pageSize){
                 //当添加0个时，认为已结束加载到底
-                if (status==STATUS_INITIAL || status == STATUS_MORE){
+                if (adapter.getCount() == 0 && length == 0)
+                    footer.hide();
+                else if (status==STATUS_INITIAL || status == STATUS_MORE){
                     footer.showNoMore();
                 }
             }else {
