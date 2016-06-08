@@ -85,6 +85,7 @@
         <activity android:name=".EaseRecycler.EasyRecyclerActivity"/>
         <activity android:name=".CustomPopupWindow.PopupWindowActivity"/>
         <activity android:name=".CurveView.CurveViewActivity"/>
+        <activity android:name=".FilterView.FilterViewActivity"/>
 
     </application>
 

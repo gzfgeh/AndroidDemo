@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="167px"
+    android:id="@+id/tool_bar_layout">
+
+    <RelativeLayout
+        android:layout_width="144px"
+        android:layout_height="165px"
+        android:onClick="back"
+        android:id="@+id/top_right_layout">
+        <ImageView
+           android:layout_width="40px"
+           android:layout_height="60px"
+           android:scaleType="fitCenter"
+           android:background="@null"
+           android:src="@drawable/back"
+           android:layout_centerInParent="true"
+           android:id="@+id/title_back_button"
+           />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:textSize="50px"
+        android:textStyle="bold"
+        android:id="@+id/titleName"
+        android:text="城市选择"
+        android:layout_toRightOf="@+id/top_right_layout"/>
+
+</RelativeLayout>

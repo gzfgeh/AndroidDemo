@@ -8,4 +8,5 @@
     <color name="edit_bg">#EFEFF4</color>
     <color name="darker_gray">#9b9b9b</color>
     <color name="holo_purple2">#FF6347</color>
+    <color name="home_line">#c8c7cc</color>
 </resources>

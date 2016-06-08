@@ -197,6 +197,13 @@
             android:text="Curve View"
             android:id="@+id/curve_view"
             android:layout_weight="1"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Filter View"
+            android:id="@+id/filter_view"
+            android:layout_weight="1"/>
     </LinearLayout>
 
 

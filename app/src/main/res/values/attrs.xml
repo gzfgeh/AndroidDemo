@@ -72,4 +72,13 @@
         <attr name="top_progress_bar_color_4" format="color|reference" />
 
     </declare-styleable>
+
+    <declare-styleable name="SideBarView">
+        <attr name="sidebar_nor_background" format="color"/>
+        <attr name="sidebar_press_background" format="color"/>
+        <attr name="sidebar_text_size" format="dimension"/>
+        <attr name="sidebar_text_color_nor" format="color"/>
+        <attr name="sidebar_text_color_press" format="color"/>
+
+    </declare-styleable>
 </resources>

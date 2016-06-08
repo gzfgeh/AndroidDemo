@@ -2,16 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/item_contact_swipe_root"
     android:layout_width="match_parent"
-    android:layout_height="80dp"
-    android:background="@color/colorAccent"
+    android:layout_height="wrap_content"
     android:layout_margin="5dp">
 
     <TextView
         android:id="@+id/item_contact_title"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="15dp"
-        android:gravity="center"
+        android:gravity="center_vertical"
         android:text="标题"
         android:textColor="@android:color/black"
         android:textSize="18sp" />

@@ -37,7 +37,7 @@ public class CustomRecyclerActivity extends Activity {
     private CharacterParser characterParser;
     private PinyinComparator pinyinComparator;
     private List<Model> list = new ArrayList<>();
-    private RecyclerViewAdapter mAdapter;
+    private NewRecyclerAdapter mAdapter;
     private LinearLayoutManager layoutManager;
 
     @Override
@@ -95,14 +95,8 @@ public class CustomRecyclerActivity extends Activity {
             @Override
             public void onTouchingLetterChanged(String s) {
                 int position = mAdapter.getPositionForSection(s.charAt(0));
-                LogUtils.i("position:" + position + "----mAdapter.getItemWidth()*position:" + mRecyclerView.getChildAt(0).getHeight() * position);
                 if (position != -1) {
-                    //int distanceY = (position - layoutManager.findFirstCompletelyVisibleItemPosition()) * mRecyclerView.getChildAt(0).getHeight();
-                    //mRecyclerView.smoothScrollBy(0, distanceY);
-                    //layoutManager.scrollToPositionWithOffset(0, mAdapter.getItemWidth()*position);
-                    mRecyclerView.scrollToPosition(position);
-                    //layoutManager.smoothScrollToPosition(mRecyclerView, null, position);
-                    LogUtils.i("position:" + layoutManager.findFirstCompletelyVisibleItemPosition());
+                    layoutManager.scrollToPositionWithOffset(position, 0);
                 }
 
             }
@@ -111,44 +105,14 @@ public class CustomRecyclerActivity extends Activity {
 
         if (mAdapter == null) {
             mRecyclerView.setHasFixedSize(true);
-            mAdapter = new RecyclerViewAdapter(list);
+            mAdapter = new NewRecyclerAdapter();
+            mAdapter.addDatas(list);
             layoutManager = new LinearLayoutManager(this);
             mRecyclerView.setLayoutManager(layoutManager);
 
             mRecyclerView.setAdapter(mAdapter);
             final StickyRecyclerHeadersDecoration headersDecor = new StickyRecyclerHeadersDecoration(mAdapter);
             mRecyclerView.addItemDecoration(headersDecor);
-
-            //   setTouchHelper();
-            mAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
-                @Override
-                public void onChanged() {
-                    headersDecor.invalidateHeaders();
-                }
-            });
-
-
-            StickyRecyclerHeadersTouchListener touchListener = new StickyRecyclerHeadersTouchListener
-                    (mRecyclerView, headersDecor);
-
-            touchListener.setOnHeaderClickListener(new StickyRecyclerHeadersTouchListener.OnHeaderClickListener() {
-                @Override
-                public void onHeaderClick(View header, int position, long headerId) {
-                    Toast.makeText(CustomRecyclerActivity.this, "Header position: " + position + ", id: " + headerId,
-                            Toast.LENGTH_SHORT).show();
-                    TextView textView = (TextView) header.findViewById(R.id.head_text);
-                    textView.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Toast.makeText(CustomRecyclerActivity.this, "head_text: " + position,
-                                    Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                }
-            });
-            mRecyclerView.addOnItemTouchListener(touchListener);
-
-
         } else {
             mAdapter.notifyDataSetChanged();
         }

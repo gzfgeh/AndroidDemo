@@ -73,7 +73,6 @@ public class RecyclerViewAdapter  extends RecyclerView.Adapter<RecyclerViewAdapt
             }
         }
         return -1;
-
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {

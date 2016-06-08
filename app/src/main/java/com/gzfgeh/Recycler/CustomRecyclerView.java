@@ -394,8 +394,10 @@ public class CustomRecyclerView extends FrameLayout {
 
 
     private void hideAll(){
-        mLoginView.setVisibility(GONE);
-        mProgressView.setVisibility(View.GONE);
+        if (mLoginView != null)
+            mLoginView.setVisibility(GONE);
+        if (mProgressView != null)
+            mProgressView.setVisibility(View.GONE);
         mPtrLayout.setRefreshing(false);
         mRecycler.setVisibility(VISIBLE);
         if (getAdapter() instanceof CustomRecyclerAdapter) {

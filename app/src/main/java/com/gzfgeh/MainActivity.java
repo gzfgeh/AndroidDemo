@@ -28,6 +28,7 @@ import com.gzfgeh.CustomTag.CustomTagLayoutActivity;
 import com.gzfgeh.CustomTextView.CustomTextviewActivity;
 import com.gzfgeh.CustomViewGroup.CustomViewGroupActivity;
 import com.gzfgeh.EaseRecycler.EasyRecyclerActivity;
+import com.gzfgeh.FilterView.FilterViewActivity;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -74,6 +75,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button popupWindow;
     @Bind(R.id.curve_view)
     Button curveView;
+    @Bind(R.id.filter_view)
+    Button filterView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,6 +103,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         recyclerBtn.setOnClickListener(this);
         popupWindow.setOnClickListener(this);
         curveView.setOnClickListener(this);
+        filterView.setOnClickListener(this);
     }
 
 
@@ -180,6 +184,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.curve_view:
                 startActivity(new Intent(this, CurveViewActivity.class));
+                break;
+
+            case R.id.filter_view:
+                startActivity(new Intent(this, FilterViewActivity.class));
                 break;
         }
     }
