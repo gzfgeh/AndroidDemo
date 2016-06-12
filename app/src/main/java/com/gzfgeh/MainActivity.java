@@ -16,6 +16,7 @@ import com.gzfgeh.CustomChart.CustomChartActivity;
 import com.gzfgeh.CustomDagger.Dagger2Activity;
 import com.gzfgeh.CustomDrawable.CustomDrawableActivity;
 import com.gzfgeh.CustomFlowLayout.CustomFlowLayoutActivity;
+import com.gzfgeh.CustomHotFix.HotFixActivity;
 import com.gzfgeh.CustomPopupWindow.PopupWindowActivity;
 import com.gzfgeh.CustomRecycler.CustomRecyclerActivity;
 import com.gzfgeh.CustomRetrifit.RetrofitActivity;
@@ -77,6 +78,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button curveView;
     @Bind(R.id.filter_view)
     Button filterView;
+    @Bind(R.id.hot_fix)
+    Button hotFix;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,6 +107,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         popupWindow.setOnClickListener(this);
         curveView.setOnClickListener(this);
         filterView.setOnClickListener(this);
+        hotFix.setOnClickListener(this);
     }
 
 
@@ -188,6 +192,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.filter_view:
                 startActivity(new Intent(this, FilterViewActivity.class));
+                break;
+
+            case R.id.hot_fix:
+                startActivity(new Intent(this, HotFixActivity.class));
                 break;
         }
     }
