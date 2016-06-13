@@ -32,24 +32,26 @@ public class HotFixActivity extends BaseActivity {
         setContentView(R.layout.activity_hot_fix);
         ButterKnife.bind(this);
 
-        hotFixText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                BugClass bugClass = new BugClass();
-                Toast.makeText(HotFixActivity.this, bugClass.bug(), Toast.LENGTH_SHORT).show();
-            }
-        });
+        hotFixText.setText(new BugClass().bug());
 
-        loadFix.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String patchFileString = Environment.getExternalStorageDirectory().getAbsolutePath() + APATCH_PATH;
-                try {
-                    APP.getPatchManagerInstance().addPatch(patchFileString);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
+//        hotFixText.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                BugClass bugClass = new BugClass();
+//                Toast.makeText(HotFixActivity.this, bugClass.bug(), Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//
+//        loadFix.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                String patchFileString = Environment.getExternalStorageDirectory().getAbsolutePath() + APATCH_PATH;
+//                try {
+//                    APP.getPatchManagerInstance().addPatch(patchFileString);
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        });
     }
 }

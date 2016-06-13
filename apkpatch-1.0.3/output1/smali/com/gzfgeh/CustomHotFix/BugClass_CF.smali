@@ -25,7 +25,7 @@
 
     .prologue
     .line 9
-    const-string v0, "bug class"
+    const-string v0, "fixed class"
 
     return-object v0
 .end method

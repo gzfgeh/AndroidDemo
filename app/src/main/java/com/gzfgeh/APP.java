@@ -3,6 +3,7 @@ package com.gzfgeh;
 import android.app.Application;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.os.Environment;
 
 import com.alipay.euler.andfix.patch.PatchManager;
@@ -15,6 +16,7 @@ import java.io.IOException;
  * Created by guzhenfu on 2016/2/25 15:03.
  */
 public class APP extends Application {
+    private static final String APATCH_PATH = "/out.apatch";
     private static Context context;
     private volatile static PatchManager patchManager;
 
@@ -36,18 +38,25 @@ public class APP extends Application {
     public void onCreate() {
         super.onCreate();
         context = getApplicationContext();
-        getPatchManagerInstance();
-        patchManager.init("1.0");
-        patchManager.loadPatch();
+
+        try {
+            String version= context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionName;
+            getPatchManagerInstance();
+            patchManager.init(version);
+            patchManager.loadPatch();
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+
 
         //正常情况下应该是 从服务器下载，然后addPatch，因为这里测试方便就放到SDCard上面了
         //storage/emulated/0/out.apatch
-//        String patchFileString = Environment.getExternalStorageDirectory().getAbsolutePath() + APATCH_PATH;
-//        try {
-//            patchManager.addPatch(patchFileString);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+        String patchFileString = Environment.getExternalStorageDirectory().getAbsolutePath() + APATCH_PATH;
+        try {
+            patchManager.addPatch(patchFileString);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private static boolean debugMode(){
