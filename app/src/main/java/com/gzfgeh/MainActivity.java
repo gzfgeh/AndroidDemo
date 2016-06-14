@@ -19,6 +19,7 @@ import com.gzfgeh.CustomFlowLayout.CustomFlowLayoutActivity;
 import com.gzfgeh.CustomHotFix.HotFixActivity;
 import com.gzfgeh.CustomPopupWindow.PopupWindowActivity;
 import com.gzfgeh.CustomRecycler.CustomRecyclerActivity;
+import com.gzfgeh.CustomRedView.RedViewActivity;
 import com.gzfgeh.CustomRetrifit.RetrofitActivity;
 import com.gzfgeh.CustomRxBind.CustomRxBindActivity;
 import com.gzfgeh.CustomRxBus.CustomRxBusActivity;
@@ -80,6 +81,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button filterView;
     @Bind(R.id.hot_fix)
     Button hotFix;
+    @Bind(R.id.red_hot_view)
+    Button redView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,6 +111,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         curveView.setOnClickListener(this);
         filterView.setOnClickListener(this);
         hotFix.setOnClickListener(this);
+        redView.setOnClickListener(this);
     }
 
 
@@ -196,6 +200,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.hot_fix:
                 startActivity(new Intent(this, HotFixActivity.class));
+                break;
+
+            case R.id.red_hot_view:
+                startActivity(new Intent(this, RedViewActivity.class));
                 break;
         }
     }

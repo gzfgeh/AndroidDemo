@@ -87,6 +87,7 @@
         <activity android:name=".CurveView.CurveViewActivity"/>
         <activity android:name=".FilterView.FilterViewActivity"/>
         <activity android:name=".CustomHotFix.HotFixActivity"/>
+        <activity android:name=".CustomRedView.RedViewActivity"/>
 
     </application>
 

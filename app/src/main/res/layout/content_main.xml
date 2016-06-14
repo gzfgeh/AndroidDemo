@@ -213,6 +213,20 @@
             android:layout_weight="1"/>
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/eight"
+        android:layout_below="@+id/seven">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Red View"
+            android:id="@+id/red_hot_view"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
 
 
 
