@@ -14,13 +14,13 @@ import butterknife.ButterKnife;
  */
 public class RedViewActivity extends BaseActivity {
     @Bind(R.id.hot_one)
-    RedHot hotOne;
+    RedHotView hotOne;
     @Bind(R.id.hot_two)
-    RedHot hotTwo;
+    RedHotView hotTwo;
     @Bind(R.id.hot_three)
-    RedHot hotThree;
+    RedHotView hotThree;
     @Bind(R.id.hot_four)
-    RedHot hotFour;
+    RedHotView hotFour;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
