@@ -10,7 +10,6 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Point;
-import android.graphics.RectF;
 import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
@@ -18,16 +17,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.animation.BounceInterpolator;
-import android.widget.RelativeLayout;
 
-import com.gzfgeh.ExplosionField.ExplosionField;
 import com.gzfgeh.Utils;
 
 /**
  * Description:
  * Created by guzhenfu on 2016/6/14 10:58.
  */
-public class RedHot extends View {
+public class RedHotView extends View {
     private Context context;
     private int originRadius;   //初始半径
     private int originWidth;
@@ -55,20 +52,21 @@ public class RedHot extends View {
     private Path path = new Path();
     private OnHotDismissListener onHotDismissListener;
     private int level = 0;
+    private int num;
 
     public void setOnHotDismissListener(OnHotDismissListener onHotDismissListener) {
         this.onHotDismissListener = onHotDismissListener;
     }
 
-    public RedHot(Context context) {
+    public RedHotView(Context context) {
         this(context, null);
     }
 
-    public RedHot(Context context, AttributeSet attrs) {
+    public RedHotView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public RedHot(Context context, AttributeSet attrs, int defStyleAttr) {
+    public RedHotView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context);
     }
@@ -83,7 +81,7 @@ public class RedHot extends View {
         textPaint = new TextPaint();
         textPaint.setAntiAlias(true);
         textPaint.setColor(Color.WHITE);
-        textPaint.setTextSize(Utils.dipToPx(context, 16));
+        textPaint.setTextSize(Utils.dipToPx(context, 12));
         textPaint.setTextAlign(Paint.Align.CENTER);
         textFontMetrics = textPaint.getFontMetrics();
     }
@@ -142,22 +140,29 @@ public class RedHot extends View {
             if (curRadius > 0){
                 startCircleX = curRadius;
                 startCircleY = originHeight - curRadius;
-
+                try {
+                    num = Integer.valueOf(text);
+                } catch (NumberFormatException e) {
+                    e.printStackTrace();
+                    text = "";
+                }
                 if (text == null || "".equals(text)){
                     level = 0;
                     canvas.drawCircle(startCircleX, startCircleY, curRadius/2, paint);
-                }else if (Integer.valueOf(text) < 10){
-                    level = 1;
-                    canvas.drawCircle(startCircleX, startCircleY, curRadius, paint);
-                }else if (Integer.valueOf(text) < 100 && Integer.valueOf(text)  >= 10){
-                    level = 2;
-                    canvas.drawCircle(startCircleX, startCircleY, curRadius, paint);
                 }else{
-                    level = 3;
-                    canvas.drawCircle(startCircleX, startCircleY, curRadius, paint);
+                    if (num < 10){
+                        level = 1;
+                        canvas.drawCircle(startCircleX, startCircleY, curRadius, paint);
+                    }else if (num < 100 && num  >= 10){
+                        level = 2;
+                        canvas.drawCircle(startCircleX, startCircleY, curRadius, paint);
+                    }else{
+                        level = 3;
+//                        RectF rectF = new RectF(0, 0, originWidth, originHeight);
+//                        canvas.drawOval(rectF, paint);
+                        canvas.drawCircle(startCircleX, startCircleY, curRadius, paint);
+                    }
                 }
-
-
                 if (curRadius == originRadius){
                     float textH = -textFontMetrics.ascent - textFontMetrics.descent;
                     if (level == 3)
@@ -262,7 +267,7 @@ public class RedHot extends View {
             @Override
             public void onAnimationEnd(Animator animation) {
                 super.onAnimationEnd(animation);
-                RedHot.this.clearAnimation();
+                RedHotView.this.clearAnimation();
             }
         });
         rollBackAnim.setDuration(duration);

@@ -6,23 +6,23 @@
     android:orientation="vertical">
 
     <com.gzfgeh.CustomRedView.RedHot
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:id="@+id/hot_one"/>
 
     <com.gzfgeh.CustomRedView.RedHot
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:id="@+id/hot_two"/>
 
     <com.gzfgeh.CustomRedView.RedHot
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:id="@+id/hot_three"/>
 
     <com.gzfgeh.CustomRedView.RedHot
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:id="@+id/hot_four"/>
 
 </LinearLayout>
