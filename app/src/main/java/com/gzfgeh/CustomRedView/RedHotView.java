@@ -201,16 +201,18 @@ public class RedHotView extends View {
 
             case MotionEvent.ACTION_UP:
                 isTouched = false;
-                if (isArrivedMaxMoved){
-                    changeViewHeight(this, originWidth, originHeight);
-                    postInvalidate();
-                    if (onHotDismissListener != null)
-                        onHotDismissListener.onDismiss();
-                    resetAfterDismiss();
-                }else {
-                    changeViewHeight(this, originWidth, originHeight);
-                    startRollBackAnimation(500);
-                }
+//                if (isArrivedMaxMoved){
+//                    changeViewHeight(this, originWidth, originHeight);
+//                    postInvalidate();
+//                    if (onHotDismissListener != null)
+//                        onHotDismissListener.onDismiss();
+//                    resetAfterDismiss();
+//                }else {
+//                    changeViewHeight(this, originWidth, originHeight);
+//                    startRollBackAnimation(500);
+//                }
+                changeViewHeight(this, originWidth, originHeight);
+                startRollBackAnimation(500);
                 downX = Float.MAX_VALUE;
                 downY = Float.MAX_VALUE;
                 break;
