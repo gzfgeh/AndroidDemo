@@ -2,19 +2,67 @@
 <com.gzfgeh.CurveView.CurveView xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="340px"
     android:padding="50px"
     android:layout_margin="50px"
-    android:background="@android:color/white">
+    android:background="#cfcfcf">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30px"
+        android:layout_marginBottom="10px"
+        android:layout_centerVertical="true">
+        <TextView
+            style="@style/wrap.我的订单深灰"
+            android:id="@+id/product_name"
+            android:text="DG-800-天津大沽"/>
+        <TextView
+            style="@style/wrap.我的订单红字小"
+            android:text="¥5,720/T"
+            android:id="@+id/product_price"
+            android:layout_alignLeft="@+id/product_name"
+            android:layout_below="@+id/product_name"
+            android:layout_marginTop="20px"/>
+        <ImageView
+            android:layout_width="75px"
+            android:layout_height="75px"
+            android:layout_marginRight="44px"
+            android:scaleType="fitCenter"
+            android:src="@drawable/xiao_a"
+            android:id="@+id/myorder_image"
+            android:layout_alignParentRight="true"
+            />
+        <TextView
+            style="@style/wrap.我的订单红字小"
+            android:id="@+id/product_weight"
+            android:layout_marginRight="44px"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/product_price"
+            android:text="10/T"/>
+
+    </RelativeLayout>
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/action_settings"/>
-
-    <TextView
+        android:layout_height="1px"
+        android:id="@+id/diliver"
+        android:background="@color/home_line"/>
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/action_settings"/>
+        android:layout_height="80px">
+        <TextView
+            style="@style/wrap.我的订单浅灰字"
+            android:layout_marginLeft="44px"
+            android:id="@+id/number"
+            android:text="DS16014236345A"
+            />
+        <TextView
+            style="@style/wrap.我的订单浅灰字"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="44px"
+            android:id="@+id/date"
+            android:text="1032-04-01"/>
+    </RelativeLayout>
 
 </com.gzfgeh.CurveView.CurveView>

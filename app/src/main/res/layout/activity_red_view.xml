@@ -10,19 +10,19 @@
         android:layout_height="20dp"
         android:id="@+id/hot_one"/>
 
-    <com.gzfgeh.CustomRedView.RedHotView
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:id="@+id/hot_two"/>
+    <!--<com.gzfgeh.CustomRedView.RedHotView-->
+        <!--android:layout_width="20dp"-->
+        <!--android:layout_height="20dp"-->
+        <!--android:id="@+id/hot_two"/>-->
 
-    <com.gzfgeh.CustomRedView.RedHotView
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:id="@+id/hot_three"/>
+    <!--<com.gzfgeh.CustomRedView.RedHotView-->
+        <!--android:layout_width="20dp"-->
+        <!--android:layout_height="20dp"-->
+        <!--android:id="@+id/hot_three"/>-->
 
-    <com.gzfgeh.CustomRedView.RedHotView
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:id="@+id/hot_four"/>
+    <!--<com.gzfgeh.CustomRedView.RedHotView-->
+        <!--android:layout_width="20dp"-->
+        <!--android:layout_height="20dp"-->
+        <!--android:id="@+id/hot_four"/>-->
 
 </LinearLayout>

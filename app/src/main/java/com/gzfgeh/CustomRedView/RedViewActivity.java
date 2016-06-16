@@ -15,12 +15,12 @@ import butterknife.ButterKnife;
 public class RedViewActivity extends BaseActivity {
     @Bind(R.id.hot_one)
     RedHotView hotOne;
-    @Bind(R.id.hot_two)
-    RedHotView hotTwo;
-    @Bind(R.id.hot_three)
-    RedHotView hotThree;
-    @Bind(R.id.hot_four)
-    RedHotView hotFour;
+//    @Bind(R.id.hot_two)
+//    RedHotView hotTwo;
+//    @Bind(R.id.hot_three)
+//    RedHotView hotThree;
+//    @Bind(R.id.hot_four)
+//    RedHotView hotFour;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +29,8 @@ public class RedViewActivity extends BaseActivity {
         ButterKnife.bind(this);
 
         hotOne.setText("");
-        hotTwo.setText("8");
-        hotThree.setText("89");
-        hotFour.setText("888");
+//        hotTwo.setText("8");
+//        hotThree.setText("89");
+//        hotFour.setText("888");
     }
 }

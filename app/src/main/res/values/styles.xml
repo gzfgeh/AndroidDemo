@@ -54,4 +54,28 @@
         <item name="android:textColor">@android:color/white</item>  //message字体的颜色
     </style>
 
+    <style name="wrap">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="wrap.我的订单深灰">
+        <item name="android:textColor">#333333</item>
+        <item name="android:textSize">55px</item>
+        <item name="android:layout_marginLeft">44px</item>
+
+    </style>
+
+    <style name="wrap.我的订单红字小">
+        <item name="android:textColor">#f15353</item>
+        <item name="android:textSize">46px</item>
+
+    </style>
+
+    <style name="wrap.我的订单浅灰字">
+        <item name="android:textSize">40px</item>
+        <item name="android:textColor">#8091a8</item>
+        <item name="android:layout_centerVertical">true</item>
+    </style>
+
 </resources>
