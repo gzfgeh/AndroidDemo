@@ -12,7 +12,6 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.gzfgeh.CustomScrollView.ColorTrackView;
 import com.gzfgeh.R;
 
 import java.text.SimpleDateFormat;
@@ -36,8 +35,8 @@ public class DefaultCustomHeadView extends LinearLayout implements CustomSwipeRe
     private TextView mSubTextView;
     private ImageView mImageView;
     private ProgressBar mProgressBar;
-    private ColorTrackView trackViewOne;
-    private ColorTrackView trackViewTwo;
+//    private ColorTrackView trackViewOne;
+//    private ColorTrackView trackViewTwo;
 
     private Animation mRotateUpAnim;
     private Animation mRotateDownAnim;
@@ -60,15 +59,15 @@ public class DefaultCustomHeadView extends LinearLayout implements CustomSwipeRe
         mMainTextView = (TextView) findViewById(R.id.default_header_textview);
         mSubTextView = (TextView) findViewById(R.id.default_header_time);
         mProgressBar = (ProgressBar) findViewById(R.id.default_header_progressbar);
-        trackViewOne = (ColorTrackView) findViewById(R.id.track_view_one);
-        trackViewTwo = (ColorTrackView) findViewById(R.id.track_view_two);
+//        trackViewOne = (ColorTrackView) findViewById(R.id.track_view_one);
+//        trackViewTwo = (ColorTrackView) findViewById(R.id.track_view_two);
         updateData();
         setupAnimation();
     }
 
     public void setTrackViewProgress(float progress){
-        trackViewOne.setProgress(progress);
-        trackViewTwo.setProgress(progress);
+//        trackViewOne.setProgress(progress);
+//        trackViewTwo.setProgress(progress);
     }
 
     public void setupAnimation() {

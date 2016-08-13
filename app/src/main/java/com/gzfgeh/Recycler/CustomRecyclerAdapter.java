@@ -28,10 +28,8 @@ import android.view.animation.Interpolator;
 import android.view.animation.LinearInterpolator;
 import android.widget.FrameLayout;
 
-import com.gzfgeh.LogUtils;
-import com.gzfgeh.animation.AlphaInAnimation;
 import com.gzfgeh.animation.BaseAnimation;
-import com.gzfgeh.animation.SlideInLeftAnimation;
+import com.gzfgeh.animation.ScaleInAnimation;
 import com.zhy.autolayout.utils.AutoUtils;
 
 import java.util.ArrayList;
@@ -61,7 +59,7 @@ abstract public class CustomRecyclerAdapter<T> extends RecyclerView.Adapter<Base
      * The content of this list is referred to as "the array" in the documentation.
      */
     protected List<T> mObjects;
-    protected EventDelegate mEventDelegate;
+    protected  EventDelegate mEventDelegate;
     protected ArrayList<ItemView> headers = new ArrayList<>();
     protected ArrayList<ItemView> footers = new ArrayList<>();
 
@@ -71,7 +69,7 @@ abstract public class CustomRecyclerAdapter<T> extends RecyclerView.Adapter<Base
     private Interpolator mInterpolator = new LinearInterpolator();
     private int mDuration = 100;
     private BaseAnimation mCustomAnimation;
-    private BaseAnimation mSelectAnimation = new SlideInLeftAnimation();
+    private BaseAnimation mSelectAnimation = new ScaleInAnimation();
     private boolean mOpenAnimationEnable = false;
 
 
@@ -131,7 +129,7 @@ abstract public class CustomRecyclerAdapter<T> extends RecyclerView.Adapter<Base
      * @param context The current context.
      */
     public CustomRecyclerAdapter(Context context, int resId) {
-        init(context,  new ArrayList<>(), resId);
+        init(context,  new ArrayList<T>(), resId);
     }
 
 
@@ -310,11 +308,17 @@ abstract public class CustomRecyclerAdapter<T> extends RecyclerView.Adapter<Base
 
     public View setError(final View view) {
         getEventDelegate().setErrorMore(view);
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                resumeMore();
+            }
+        });
         return view;
     }
 
     /**
-     * 插入，不会触发任何事情
+     *
      *
      * @param object The object to insert into the array.
      * @param index The index at which the object must be inserted.
@@ -327,7 +331,7 @@ abstract public class CustomRecyclerAdapter<T> extends RecyclerView.Adapter<Base
     }
 
     /**
-     * 插入数组，不会触发任何事情
+     *
      *
      * @param object The object to insert into the array.
      * @param index The index at which the object must be inserted.
@@ -340,7 +344,7 @@ abstract public class CustomRecyclerAdapter<T> extends RecyclerView.Adapter<Base
     }
 
     /**
-     * 插入数组，不会触发任何事情
+     *
      *
      * @param object The object to insert into the array.
      * @param index The index at which the object must be inserted.
@@ -353,7 +357,7 @@ abstract public class CustomRecyclerAdapter<T> extends RecyclerView.Adapter<Base
     }
 
     /**
-     * 删除，不会触发任何事情
+     *
      *
      * @param object The object to remove.
      */
@@ -365,7 +369,7 @@ abstract public class CustomRecyclerAdapter<T> extends RecyclerView.Adapter<Base
     }
 
     /**
-     * 删除，不会触发任何事情
+     *
      *
      * @param position The position of the object to remove.
      */
@@ -378,7 +382,7 @@ abstract public class CustomRecyclerAdapter<T> extends RecyclerView.Adapter<Base
 
 
     /**
-     * 触发清空
+     *
      */
     public void clear() {
         if (mEventDelegate!=null)mEventDelegate.clear();
@@ -438,7 +442,7 @@ abstract public class CustomRecyclerAdapter<T> extends RecyclerView.Adapter<Base
     }
 
     /**
-     * 这个函数包含了头部和尾部view的个数，不是真正的item个数。
+     *
      * @return
      */
     @Deprecated
@@ -448,7 +452,7 @@ abstract public class CustomRecyclerAdapter<T> extends RecyclerView.Adapter<Base
     }
 
     /**
-     * 应该使用这个获取item个数
+     *
      * @return
      */
     public int getCount(){
@@ -491,11 +495,9 @@ abstract public class CustomRecyclerAdapter<T> extends RecyclerView.Adapter<Base
         if (view!=null){
             return new StateViewHolder(view);
         }
-
         final BaseViewHolder viewHolder = new BaseViewHolder(getItemView(resId, parent));
         AutoUtils.autoSize(viewHolder.getConvertView());
 
-        //itemView 的点击事件
         if (mItemClickListener!=null) {
             viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -623,7 +625,7 @@ abstract public class CustomRecyclerAdapter<T> extends RecyclerView.Adapter<Base
         return position;
     }
 
-    private class StateViewHolder extends BaseViewHolder{
+    private class StateViewHolder extends BaseViewHolder {
 
         public StateViewHolder(View itemView) {
             super(itemView);

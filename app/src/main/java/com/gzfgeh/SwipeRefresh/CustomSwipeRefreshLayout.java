@@ -1,7 +1,6 @@
 package com.gzfgeh.SwipeRefresh;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Rect;
@@ -36,7 +35,7 @@ import com.gzfgeh.R;
  */
 public class CustomSwipeRefreshLayout extends ViewGroup {
 
-    public static final boolean DEBUG = true;
+    public static final boolean DEBUG = false;
     public static final String TAG = "csrl";
 
     public static final int REFRESH_MODE_SWIPE = 1;
@@ -103,7 +102,6 @@ public class CustomSwipeRefreshLayout extends ViewGroup {
     private int mReturnToTopDuration = RETURN_TO_TOP_DURATION;
     private int mReturnToHeaderDuration = RETURN_TO_HEADER_DURATION;
     private int mConvertedProgressBarHeight;
-    //private CustomSwipeProgressBar mTopProgressBar;
     private View mHeadview;
     private boolean hasHeadview;
     //the content that gets pulled down
@@ -182,14 +180,6 @@ public class CustomSwipeRefreshLayout extends ViewGroup {
 
     };
 
-//    private Animation mShrinkTrigger = new Animation() {
-//        @Override
-//        public void applyTransformation(float interpolatedTime, Transformation t) {
-//            float percent = mFromPercentage + ((0 - mFromPercentage) * interpolatedTime);
-//            mTopProgressBar.setTriggerPercentage(percent);
-//        }
-//    };
-
 
     // Cancel the refresh gesture and animate everything back to its original state.
     private final Runnable mCancel = new Runnable() {
@@ -198,14 +188,6 @@ public class CustomSwipeRefreshLayout extends ViewGroup {
             mInReturningAnimation = true;
             // Timeout fired since the user last moved their finger; animate the
             // trigger to 0 and put the target back at its original position
-//            if (mTopProgressBar != null && enableTopProgressBar) {
-//                mFromPercentage = mCurrPercentage;
-//                mShrinkTrigger.setDuration(mReturnToTopDuration);
-//                mShrinkTrigger.setAnimationListener(mShrinkAnimationListener);
-//                mShrinkTrigger.reset();
-//                mShrinkTrigger.setInterpolator(mDecelerateInterpolator);
-//                startAnimation(mShrinkTrigger);
-//            }
             animateOffsetToStartPosition(mTarget.getTop(),
                     mReturningAnimationListener);
         }
@@ -269,7 +251,6 @@ public class CustomSwipeRefreshLayout extends ViewGroup {
         super(context, attrs, defStyle);
         mTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
         setWillNotDraw(false);
-        //mTopProgressBar = new CustomSwipeProgressBar(this);
         setProgressBarHeight(PROGRESS_BAR_HEIGHT);
 
         mDecelerateInterpolator = new DecelerateInterpolator(DECELERATE_INTERPOLATION_FACTOR);
@@ -289,11 +270,6 @@ public class CustomSwipeRefreshLayout extends ViewGroup {
             mReturnToHeaderDuration = a.getInteger(R.styleable.CustomSwipeRefreshLayout_return_to_header_duration,
                     RETURN_TO_HEADER_DURATION);
             keepTopRefreshingHead = a.getBoolean(R.styleable.CustomSwipeRefreshLayout_keep_refresh_head, false);
-            int color1 = a.getColor(R.styleable.CustomSwipeRefreshLayout_top_progress_bar_color_1, 0);
-            int color2 = a.getColor(R.styleable.CustomSwipeRefreshLayout_top_progress_bar_color_2, 0);
-            int color3 = a.getColor(R.styleable.CustomSwipeRefreshLayout_top_progress_bar_color_3, 0);
-            int color4 = a.getColor(R.styleable.CustomSwipeRefreshLayout_top_progress_bar_color_4, 0);
-            setProgressBarColor(color1, color2, color3, color4);
             enableTopProgressBar(progressBarEnabled);
             a.recycle();
         }
@@ -482,9 +458,6 @@ public class CustomSwipeRefreshLayout extends ViewGroup {
             return;
         }
         mCurrPercentage = percent;
-        if (enableTopProgressBar) {
-            //mTopProgressBar.setTriggerPercentage(percent);
-        }
     }
 
     // for headview
@@ -511,29 +484,6 @@ public class CustomSwipeRefreshLayout extends ViewGroup {
     }
 
     /**
-     * Set the four colors used in the progress animation. The first color will
-     * also be the color of the bar that grows in response to a user swipe
-     * gesture.
-     *
-     * @param colorRes1 Color resource.
-     * @param colorRes2 Color resource.
-     * @param colorRes3 Color resource.
-     * @param colorRes4 Color resource.
-     */
-    public void setProgressBarColorRes(int colorRes1, int colorRes2, int colorRes3, int colorRes4) {
-        final Resources res = getResources();
-        final int color1 = res.getColor(colorRes1);
-        final int color2 = res.getColor(colorRes2);
-        final int color3 = res.getColor(colorRes3);
-        final int color4 = res.getColor(colorRes4);
-        //mTopProgressBar.setColorScheme(color1, color2, color3, color4);
-    }
-
-    public void setProgressBarColor(int color1, int color2, int color3, int color4) {
-        //mTopProgressBar.setColorScheme(color1, color2, color3, color4);
-    }
-
-    /**
      * @return Whether the SwipeRefreshWidget is actively showing refresh
      * progress.
      */
@@ -553,9 +503,6 @@ public class CustomSwipeRefreshLayout extends ViewGroup {
             mCurrPercentage = 0;
             mRefreshing = refreshing;
             if (mRefreshing) {
-                if (enableTopProgressBar) {
-                    //mTopProgressBar.start();
-                }
                 if (refresshMode == REFRESH_MODE_PULL) {
                     mReturnToTrigerPosition.run();
                 } else if (refresshMode == REFRESH_MODE_SWIPE) {
@@ -564,9 +511,6 @@ public class CustomSwipeRefreshLayout extends ViewGroup {
 
             } else {
                 // keep refreshing state for refresh complete
-                if (enableTopProgressBar) {
-                    //mTopProgressBar.stop();
-                }
                 if (refresshMode == REFRESH_MODE_PULL) {
                     mRefreshing = true;
                     removeCallbacks(mReturnToStartPosition);
@@ -618,25 +562,12 @@ public class CustomSwipeRefreshLayout extends ViewGroup {
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
-        if (enableTopProgressBar) {
-            //mTopProgressBar.draw(canvas);
-        }
     }
 
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         final int width = getMeasuredWidth();
         final int height = getMeasuredHeight();
-
-//        if (enableTopProgressBar) {
-//            if (DEBUG)
-//                Log.d(TAG, String.format("mTopProgressBar[%d,%d,%d,%d]", getPaddingLeft(), getPaddingLeft(),
-//                        getPaddingLeft() + width, getPaddingTop() + mConvertedProgressBarHeight));
-//            mTopProgressBar.setBounds(getPaddingLeft(), getPaddingTop(),
-//                    getPaddingLeft() + width, getPaddingTop() + mConvertedProgressBarHeight);
-//        } else {
-//            mTopProgressBar.setBounds(0, 0, 0, 0);
-//        }
 
         if (getChildCount() == 0) {
             return;
@@ -865,8 +796,6 @@ public class CustomSwipeRefreshLayout extends ViewGroup {
                     final float eventY = event.getY();
                     float yDiff = eventY - mDownEvent.getY();
 
-                    if (DEBUG)
-                        Log.d(TAG, "eventY start:" + eventY);
 
                     boolean isScrollUp = eventY - mPrevY > 0;
 
@@ -938,8 +867,6 @@ public class CustomSwipeRefreshLayout extends ViewGroup {
                             removeCallbacks(mCancel);
                             mPrevY = event.getY();
                             handled = false;
-                            // clear the progressBar
-                            //mTopProgressBar.setTriggerPercentage(0f);
                             break;
                         } else {
                             updatePositionTimeout(true);
