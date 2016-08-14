@@ -19,7 +19,7 @@
         <attr name="layout_empty_id" format="reference" />
         <attr name="layout_progress_id" format="reference" />
         <attr name="layout_error_id" format="reference" />
-        <attr name="layout_nomore_id" format="reference"/>
+        <attr name="layout_nomore_id" format="reference" />
     </declare-styleable>
 
     <declare-styleable name="ColorTrackView">
@@ -40,7 +40,7 @@
         <attr name="layout_empty" format="reference" />
         <attr name="layout_progress" format="reference" />
         <attr name="layout_error" format="reference" />
-        <attr name="layout_login" format="reference"/>
+        <attr name="layout_login" format="reference" />
         <attr name="recyclerClipToPadding" format="boolean" />
         <attr name="recyclerPadding" format="dimension" />
         <attr name="recyclerPaddingTop" format="dimension" />
@@ -57,7 +57,7 @@
 
     <declare-styleable name="CustomSwipeRefreshLayout">
         <attr name="enable_top_progress_bar" format="boolean" />
-        <attr name="refresh_mode" format="enum" >
+        <attr name="refresh_mode" format="enum">
             <enum name="swipe_mode" value="1" />
             <enum name="pull_mode" value="2" />
         </attr>
@@ -74,11 +74,20 @@
     </declare-styleable>
 
     <declare-styleable name="SideBarView">
-        <attr name="sidebar_nor_background" format="color"/>
-        <attr name="sidebar_press_background" format="color"/>
-        <attr name="sidebar_text_size" format="dimension"/>
-        <attr name="sidebar_text_color_nor" format="color"/>
-        <attr name="sidebar_text_color_press" format="color"/>
+        <attr name="sidebar_nor_background" format="color" />
+        <attr name="sidebar_press_background" format="color" />
+        <attr name="sidebar_text_size" format="dimension" />
+        <attr name="sidebar_text_color_nor" format="color" />
+        <attr name="sidebar_text_color_press" format="color" />
 
+    </declare-styleable>
+
+    <!-- Declare custom theme attributes that allow changing which styles are
+         used for button bars depending on the API level.
+         ?android:attr/buttonBarStyle is new as of API 11 so this is
+         necessary to support previous API levels. -->
+    <declare-styleable name="ButtonBarContainerTheme">
+        <attr name="metaButtonBarStyle" format="reference" />
+        <attr name="metaButtonBarButtonStyle" format="reference" />
     </declare-styleable>
 </resources>

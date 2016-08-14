@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.gzfgeh" >
+    package="com.gzfgeh">
 
     <permission
         android:name="com.shcem.frey.permission.JPUSH_MESSAGE"
@@ -32,22 +32,21 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
-
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".APP"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:name="com.gzfgeh.APP">
+        android:theme="@style/AppTheme">
         <activity
             android:name=".SplashActivity"
             android:label="@string/app_name"
-            android:theme="@style/SplashActivity" >
+            android:theme="@style/SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -62,33 +61,35 @@
             android:name="design_height"
             android:value="1920" />
 
-        <activity android:name=".MainActivity"/>
-        <activity android:name=".CustomViewGroup.CustomViewGroupActivity"/>
-        <activity android:name=".CustomFlowLayout.CustomFlowLayoutActivity"/>
-        <activity android:name=".CustomTag.CustomTagLayoutActivity"/>
-        <activity android:name=".CustomTextView.CustomTextviewActivity"/>
-        <activity android:name=".CustomRxBus.CustomRxBusActivity"
-            android:theme="@style/MyAppTheme"/>
-        <activity android:name=".CustomChart.CustomChartActivity"
-            android:screenOrientation="landscape"/>
-        <activity android:name=".CustomBtn.CustomBtnActivity"/>
-        <activity android:name=".CustomBottomTab.BottomTabLayoutActivity"/>
-        <activity android:name=".CustomChart.ChartViewActivity"
-            android:screenOrientation="landscape"/>
-        <activity android:name=".CustomDagger.Dagger2Activity"/>
-        <activity android:name=".CustomRecycler.CustomRecyclerActivity"/>
-        <activity android:name=".CustomScrollView.ScrollViewActivity"/>
-        <activity android:name=".CustomRetrifit.RetrofitActivity"/>
-        <activity android:name=".CustomDrawable.CustomDrawableActivity"/>
-        <activity android:name=".CustomStickRecycler.StickRecyclerActivity"/>
-        <activity android:name=".CustomRxBind.CustomRxBindActivity"/>
-        <activity android:name=".EaseRecycler.EasyRecyclerActivity"/>
-        <activity android:name=".CustomPopupWindow.PopupWindowActivity"/>
-        <activity android:name=".CurveView.CurveViewActivity"/>
-        <activity android:name=".FilterView.FilterViewActivity"/>
-        <activity android:name=".CustomHotFix.HotFixActivity"/>
-        <activity android:name=".CustomRedView.RedViewActivity"/>
-
+        <activity android:name=".MainActivity" />
+        <activity android:name=".CustomViewGroup.CustomViewGroupActivity" />
+        <activity android:name=".CustomFlowLayout.CustomFlowLayoutActivity" />
+        <activity android:name=".CustomTag.CustomTagLayoutActivity" />
+        <activity android:name=".CustomTextView.CustomTextviewActivity" />
+        <activity
+            android:name=".CustomRxBus.CustomRxBusActivity"
+            android:theme="@style/MyAppTheme" />
+        <activity
+            android:name=".CustomChart.CustomChartActivity"
+            android:screenOrientation="landscape" />
+        <activity android:name=".CustomBtn.CustomBtnActivity" />
+        <activity android:name=".CustomBottomTab.BottomTabLayoutActivity" />
+        <activity
+            android:name=".CustomChart.ChartViewActivity"
+            android:screenOrientation="landscape" />
+        <activity android:name=".CustomDagger.Dagger2Activity" />
+        <activity android:name=".CustomRecycler.CustomRecyclerActivity" />
+        <activity android:name=".CustomScrollView.ScrollViewActivity" />
+        <activity android:name=".CustomRetrifit.RetrofitActivity" />
+        <activity android:name=".CustomDrawable.CustomDrawableActivity" />
+        <activity android:name=".CustomStickRecycler.StickRecyclerActivity" />
+        <activity android:name=".CustomRxBind.CustomRxBindActivity" />
+        <activity android:name=".EaseRecycler.EasyRecyclerActivity" />
+        <activity android:name=".CustomPopupWindow.PopupWindowActivity" />
+        <activity android:name=".CurveView.CurveViewActivity" />
+        <activity android:name=".FilterView.FilterViewActivity" />
+        <activity android:name=".CustomHotFix.HotFixActivity" />
+        <activity android:name=".CustomRedView.RedViewActivity" />
     </application>
 
 </manifest>
