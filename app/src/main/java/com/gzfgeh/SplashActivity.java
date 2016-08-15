@@ -39,69 +39,37 @@ public class SplashActivity extends Activity {
         setContentView(R.layout.activity_splash);
         ButterKnife.bind(this);
 
-//        Glide.with(SplashActivity.this)
-//                .load("http://inthecheesefactory.com/uploads/source/glidepicasso/cover.jpg")
-//                .into(startPage);
-//
+        Glide.with(SplashActivity.this)
+                .load("http://inthecheesefactory.com/uploads/source/glidepicasso/cover.jpg")
+                .placeholder(R.drawable.startpage)
+                .into(tempPage);
 
-
-
-        Observable.mergeDelayError(
-                getBitmap(),
-                Observable.timer(2, TimeUnit.SECONDS).map(c->null))
+        Observable.timer(2, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<Object>() {
                     @Override
                     public void onCompleted() {
-
-//                        tempPage.buildDrawingCache();
-//                        tempPage.setDrawingCacheEnabled(true);
-//                        if (tempPage.getDrawingCache() == null)
-//                            tempPage.setVisibility(View.GONE);
-//                        else
-//                            startPage.setVisibility(View.GONE);
-//                        tempPage.setDrawingCacheEnabled(false);
-
-                        startPage.setVisibility(View.GONE);
-                        System.out.println("----Sequence complete.");
-                        Observable.timer(2, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
-                        .map(l -> {
-                            startActivity(new Intent(SplashActivity.this, MainActivity.class));
-                            finish();
-                            return null;
-                        }).subscribe();
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        System.err.println("----Error: " + e.getMessage());
+                        startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                        finish();
                     }
 
                     @Override
-                    public void onNext(Object aLong) {
+                    public void onNext(Object o) {
+                        startPage.setVisibility(View.GONE);
+                        tempPage.setVisibility(View.VISIBLE);
 
-                        System.out.println("----Next:" + aLong);
+                        Observable.timer(2, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
+                                .map(aLong -> {
+                                    startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                                    finish();
+                                    return null;
+                                }).subscribe();
+
                     }
                 });
-
-
-
-    }
-
-
-    private Observable<Object> getBitmap(){
-        return Observable.create(new Observable.OnSubscribe<Object>() {
-            @Override
-            public void call(Subscriber<? super Object> subscriber) {
-                Glide.with(SplashActivity.this)
-                        .load("http://inthecheesefactory.com/uploads/source/glidepicasso/cover.jpg")
-                        .into(tempPage);
-                System.out.println("----getBitmap:");
-
-                subscriber.onNext(null);
-                subscriber.onCompleted();
-            }
-        }).subscribeOn(AndroidSchedulers.mainThread());
-
     }
 
 }
