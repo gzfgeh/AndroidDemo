@@ -65,6 +65,13 @@ public class SplashActivity extends Activity {
                 });
     }
 
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        System.exit(0);
+    }
+
 }
 
 
