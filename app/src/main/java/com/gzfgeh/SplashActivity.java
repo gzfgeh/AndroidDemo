@@ -1,13 +1,8 @@
 package com.gzfgeh;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -20,8 +15,6 @@ import butterknife.ButterKnife;
 import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Func1;
-import rx.schedulers.Schedulers;
 
 /**
  * Description:
@@ -40,7 +33,7 @@ public class SplashActivity extends Activity {
         ButterKnife.bind(this);
 
         Glide.with(SplashActivity.this)
-                .load("http://inthecheesefactory.com/uploads/source/glidepicasso/cover.jpg")
+                .load("http://img.my.csdn.net/uploads/201309/01/1378037235_7476.jpg")
                 .placeholder(R.drawable.startpage)
                 .into(tempPage);
 
