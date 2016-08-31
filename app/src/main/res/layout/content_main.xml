@@ -166,7 +166,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="RxBind"
+            android:text="DataBinding"
             android:id="@+id/rxbind"
             android:layout_weight="1"/>
 
