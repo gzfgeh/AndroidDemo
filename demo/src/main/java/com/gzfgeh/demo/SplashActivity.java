@@ -26,8 +26,8 @@ public class SplashActivity extends AppCompatActivity {
     private ImageView tempPage;
     private ImageView ivLogo;
     private TextView tvLogoText;
-    private int secondTime = 2;
     private ViewPropertyAnimatorCompat viewAnimator;
+    private int secondTime = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +41,6 @@ public class SplashActivity extends AppCompatActivity {
 
         Glide.with(SplashActivity.this)
                 .load("http://img.my.csdn.net/uploads/201309/01/1378037235_7476.jpg")
-                .placeholder(R.drawable.startpage)
                 .into(tempPage);
 
         Observable.timer(secondTime, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
@@ -78,9 +77,9 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     /**
-     *  向上移动
+     * 向上移动
      */
-    private void logoAnimation(){
+    private void logoAnimation() {
         ViewCompat.animate(ivLogo)
                 .translationY(-200)
                 .setStartDelay(STARTUP_DELAY)
