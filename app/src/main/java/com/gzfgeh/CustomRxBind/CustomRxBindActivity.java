@@ -2,6 +2,7 @@ package com.gzfgeh.CustomRxBind;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 
 import com.gzfgeh.R;
 import com.gzfgeh.ShareUtils;
+import com.gzfgeh.databinding.ActivityBindBinding;
 import com.ogaclejapan.rx.binding.RxProperty;
 import com.ogaclejapan.rx.binding.RxView;
 
@@ -28,53 +30,10 @@ public class CustomRxBindActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bind);
-        initView();
-        initData();
-        initListener();
-    }
+        //setContentView(R.layout.activity_bind);
+        ActivityBindBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_bind);
+        Student student = new Student("my", 22);
+        binding.setUser(student);
 
-
-    /**
-     * 描述:初始化控件
-     * 作者:卜俊文
-     * 邮箱:344176791@qq.com
-     * 创建时间: 2016/8/10 10:17
-     */
-    private void initView() {
-        tv_name = (TextView) findViewById(R.id.activity_main_stu_name);
-        tv_age = (TextView) findViewById(R.id.activity_main_stu_age);
-        btn_setting = (Button) findViewById(R.id.activity_main_stu_setting);
-    }
-
-    /**
-     * 描述:初始化数据
-     * 作者:卜俊文
-     * 邮箱:344176791@qq.com
-     * 创建时间: 2016/8/10 10:19
-     */
-    private void initData() {
-        //创建一个学生对象
-        student = new Student("俊文", 22);
-        //根据学生对象赋值到控件上
-        tv_name.setText(student.getName());
-        tv_age.setText(String.valueOf(student.getAge()));
-    }
-
-    /**
-     * 描述:初始化监听
-     * 作者:卜俊文
-     * 邮箱:344176791@qq.com
-     * 创建时间: 2016/8/10 10:22
-     */
-    private void initListener() {
-        btn_setting.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //点击设置,更改Student对象的名字。
-                student.setName("卜俊文");
-                tv_name.setText(student.getName());
-            }
-        });
     }
 }
