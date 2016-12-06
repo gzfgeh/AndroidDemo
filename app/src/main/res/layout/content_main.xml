@@ -220,10 +220,17 @@
         android:layout_below="@+id/seven">
 
         <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Red View"
+        android:id="@+id/red_hot_view"
+        android:layout_weight="1"/>
+
+        <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Red View"
-            android:id="@+id/red_hot_view"
+            android:text="My View"
+            android:id="@+id/my_view"
             android:layout_weight="1"/>
     </LinearLayout>
 
