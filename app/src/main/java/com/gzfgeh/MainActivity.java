@@ -32,6 +32,7 @@ import com.gzfgeh.CustomViewGroup.CustomViewGroupActivity;
 import com.gzfgeh.EaseRecycler.EasyRecyclerActivity;
 import com.gzfgeh.FilterView.FilterViewActivity;
 import com.gzfgeh.MyView.MyViewActivity;
+import com.gzfgeh.NetChange.NetActivity;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -86,6 +87,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button redView;
     @Bind(R.id.my_view)
     Button myView;
+    @Bind(R.id.rxBus)
+    Button rxBus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,6 +119,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         hotFix.setOnClickListener(this);
         redView.setOnClickListener(this);
         myView.setOnClickListener(this);
+        rxBus.setOnClickListener(this);
     }
 
 
@@ -212,6 +216,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.my_view:
                 startActivity(new Intent(this, MyViewActivity.class));
+                break;
+
+            case R.id.rxBus:
+                startActivity(new Intent(this, NetActivity.class));
                 break;
         }
     }

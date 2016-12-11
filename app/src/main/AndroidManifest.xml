@@ -90,7 +90,13 @@
         <activity android:name=".FilterView.FilterViewActivity" />
         <activity android:name=".CustomHotFix.HotFixActivity" />
         <activity android:name=".CustomRedView.RedViewActivity" />
-        <activity android:name=".MyView.MyViewActivity"></activity>
+        <activity android:name=".MyView.MyViewActivity" />
+        <activity android:name=".NetChange.NetActivity" />
+
+        <service
+            android:name=".NetChange.NetWorkService"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
 
 </manifest>
