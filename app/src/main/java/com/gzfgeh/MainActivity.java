@@ -1,7 +1,9 @@
 package com.gzfgeh;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -31,6 +33,7 @@ import com.gzfgeh.CustomTextView.CustomTextviewActivity;
 import com.gzfgeh.CustomViewGroup.CustomViewGroupActivity;
 import com.gzfgeh.EaseRecycler.EasyRecyclerActivity;
 import com.gzfgeh.FilterView.FilterViewActivity;
+import com.gzfgeh.Login.LoginActivity;
 import com.gzfgeh.MyView.MyViewActivity;
 import com.gzfgeh.NetChange.NetActivity;
 
@@ -219,7 +222,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.rxBus:
-                startActivity(new Intent(this, NetActivity.class));
+                startActivity(new Intent(this, LoginActivity.class));
                 break;
         }
     }

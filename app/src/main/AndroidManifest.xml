@@ -96,7 +96,12 @@
         <service
             android:name=".NetChange.NetWorkService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true" />
+
+        <activity android:name=".Login.LoginActivity"
+            android:windowSoftInputMode="stateHidden|adjustResize"/>
+        <!--android:windowSoftInputMode="stateHidden|adjustResize"-->
+
     </application>
 
 </manifest>

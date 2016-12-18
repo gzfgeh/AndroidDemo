@@ -1,0 +1,177 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:id="@+id/login_ll_layout"
+    android:fitsSystemWindows="true">
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="500px"
+        android:gravity="center"
+        android:src="@mipmap/ic_launcher"
+        android:padding="50px"
+        android:id="@+id/login_logo"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/move_layout"
+        android:background="@android:color/holo_red_dark">
+
+        <View style="@style/setting_divider_line_style"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="200px"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:src="@mipmap/ic_launcher"
+                style="@style/login_pic_style"/>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/name_wrapper"
+                app:errorEnabled="true"
+                app:counterEnabled="true"
+                app:counterMaxLength="11">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/name"
+                    android:hint="-----"
+                    android:background="@null"
+                    android:digits="1234567890"
+                    android:maxLength="11"/>
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
+
+        <View style="@style/setting_divider_line_style"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="200px"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:id="@+id/ll_pwd_layout">
+
+            <ImageView
+                android:src="@mipmap/ic_launcher"
+                style="@style/login_pic_style"/>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/pwd_wrapper">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/pwd"
+                    android:hint="----"
+                    android:background="@null"
+                    android:digits="1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                    android:singleLine="true"
+                    android:maxLength="20"
+                    android:inputType="textPassword"/>
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="200px"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:id="@+id/ll_code_layout"
+            android:visibility="gone">
+
+            <ImageView
+                style="@style/login_pic_style"
+                android:src="@mipmap/ic_launcher"/>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="600px"
+                android:layout_height="match_parent"
+                android:id="@+id/code_wrapper">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/code"
+                    android:hint="-----"
+                    android:background="@null"
+                    android:digits="1234567890"
+                    android:inputType="phone"
+                    android:maxLength="6"/>
+            </android.support.design.widget.TextInputLayout>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="100px"
+                android:id="@+id/get_code"
+                android:text="----"
+                android:textSize="30px"
+                android:textColor="@color/colorAccent"/>
+
+        </LinearLayout>
+
+        <View style="@style/setting_divider_line_style"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="150px"
+            android:layout_margin="30px"
+            android:layout_marginTop="50px">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="忘记密码？"
+                android:layout_centerVertical="true"
+                android:textColor="@color/colorPrimary"
+                android:textSize="50px"
+                android:id="@+id/forget_pwd"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="----"
+                android:layout_centerVertical="true"
+                android:textColor="@color/colorPrimary"
+                android:textSize="50px"
+                android:layout_alignParentRight="true"
+                android:id="@+id/code_login"/>
+        </RelativeLayout>
+
+        <Button
+        android:layout_width="match_parent"
+        android:layout_height="150px"
+        android:text="登录"
+        android:layout_margin="30px"
+        android:textColor="@android:color/white"/>
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="150px"
+            android:text="注册"
+            android:layout_margin="30px"
+            android:textColor="@android:color/holo_red_dark"
+            android:id="@+id/register"/>
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
