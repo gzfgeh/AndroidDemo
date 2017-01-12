@@ -7,15 +7,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e9ee2e86-ea3e-4d2a-8b98-e55c783d434c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ttdemo/src/main/res/xml/accessibility.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/demo/demo.iml" afterPath="$PROJECT_DIR$/demo/demo.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ttdemo/build.gradle" afterPath="$PROJECT_DIR$/ttdemo/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ttdemo/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/ttdemo/src/main/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ttdemo/src/main/java/com/gzfgeh/ttdemo/MainActivity.java" afterPath="$PROJECT_DIR$/ttdemo/src/main/java/com/gzfgeh/ttdemo/MainActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ttdemo/src/main/java/com/gzfgeh/ttdemo/PowerOnReceiver.java" afterPath="$PROJECT_DIR$/ttdemo/src/main/java/com/gzfgeh/ttdemo/PowerOnReceiver.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ttdemo/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/ttdemo/src/main/res/values/strings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ttdemo/ttdemo.iml" afterPath="$PROJECT_DIR$/ttdemo/ttdemo.iml" />
     </list>
     <ignored path="AndroidDemo.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -54,21 +48,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ttdemo/src/main/java/com/gzfgeh/ttdemo/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="399">
-              <caret line="29" column="30" selection-start-line="29" selection-start-column="30" selection-end-line="29" selection-end-column="30" />
-              <folding />
+            <state relative-caret-position="247">
+              <caret line="20" column="16" selection-start-line="20" selection-start-column="16" selection-end-line="20" selection-end-column="16" />
+              <folding>
+                <element signature="e#542#688#0" expanded="true" />
+                <element signature="e#687#688#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PowerOnReceiver.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="PowerOnReceiver.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ttdemo/src/main/java/com/gzfgeh/ttdemo/PowerOnReceiver.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
-              <caret line="15" column="46" selection-start-line="15" selection-start-column="46" selection-end-line="15" selection-end-column="46" />
+            <state relative-caret-position="285">
+              <caret line="18" column="37" selection-start-line="18" selection-start-column="37" selection-end-line="18" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -3809,8 +3806,9 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/ttdemo/src/main/java/com/gzfgeh/ttdemo/PowerOnReceiver.java" />
         <option value="$PROJECT_DIR$/ttdemo/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/ttdemo/src/main/java/com/gzfgeh/ttdemo/PowerOnReceiver.java" />
+        <option value="$PROJECT_DIR$/ttdemo/src/main/java/com/gzfgeh/ttdemo/MainActivity.java" />
       </list>
     </option>
   </component>
@@ -4359,6 +4357,14 @@
       <option name="presentableId" value="Default" />
       <updated>1484226768953</updated>
     </task>
+    <task id="LOCAL-00001" summary="add file">
+      <created>1484228099442</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1484228099442</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -4401,6 +4407,10 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="add file" />
+    <option name="LAST_COMMIT_MESSAGE" value="add file" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
@@ -4425,19 +4435,22 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ttdemo/src/main/java/com/gzfgeh/ttdemo/MainActivity.java">
+    <entry file="file://$PROJECT_DIR$/ttdemo/src/main/java/com/gzfgeh/ttdemo/PowerOnReceiver.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="29" column="30" selection-start-line="29" selection-start-column="30" selection-end-line="29" selection-end-column="30" />
+        <state relative-caret-position="285">
+          <caret line="18" column="37" selection-start-line="18" selection-start-column="37" selection-end-line="18" selection-end-column="37" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ttdemo/src/main/java/com/gzfgeh/ttdemo/PowerOnReceiver.java">
+    <entry file="file://$PROJECT_DIR$/ttdemo/src/main/java/com/gzfgeh/ttdemo/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="15" column="46" selection-start-line="15" selection-start-column="46" selection-end-line="15" selection-end-column="46" />
-          <folding />
+        <state relative-caret-position="247">
+          <caret line="20" column="16" selection-start-line="20" selection-start-column="16" selection-end-line="20" selection-end-column="16" />
+          <folding>
+            <element signature="e#542#688#0" expanded="true" />
+            <element signature="e#687#688#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

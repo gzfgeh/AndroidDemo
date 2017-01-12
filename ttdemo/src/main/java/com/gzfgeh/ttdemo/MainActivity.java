@@ -18,16 +18,21 @@ public class MainActivity extends AppCompatActivity {
         tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PackageManager packageManager = getPackageManager();
-                Intent intent = packageManager.getLaunchIntentForPackage("com.alibaba.android.rimet");
-                startActivity(intent);
+                startDDApp();
             }
         });
 
         if (getIntent() != null){
             String s = getIntent().getStringExtra("main_activity");
             if (s != null && s.length() > 0)
-                tv.setText(s);
+                startDDApp();
         }
+    }
+
+
+    private void startDDApp(){
+        PackageManager packageManager = getPackageManager();
+        Intent intent = packageManager.getLaunchIntentForPackage("com.alibaba.android.rimet");
+        startActivity(intent);
     }
 }
