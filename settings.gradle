@@ -1,1 +1,1 @@
-include ':app', ':demo', ':javademo', ':ttdemo'
+include ':app', ':javademo', ':ttdemo', ':xposeddemo'

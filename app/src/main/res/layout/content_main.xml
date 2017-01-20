@@ -236,7 +236,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="RxBus"
+            android:text="Download"
             android:id="@+id/rxBus"
             android:layout_weight="1"/>
     </LinearLayout>

@@ -158,8 +158,6 @@ public class RedHotView extends View {
                         canvas.drawCircle(startCircleX, startCircleY, curRadius, paint);
                     }else{
                         level = 3;
-//                        RectF rectF = new RectF(0, 0, originWidth, originHeight);
-//                        canvas.drawOval(rectF, paint);
                         canvas.drawCircle(startCircleX, startCircleY, curRadius, paint);
                     }
                 }
@@ -201,16 +199,6 @@ public class RedHotView extends View {
 
             case MotionEvent.ACTION_UP:
                 isTouched = false;
-//                if (isArrivedMaxMoved){
-//                    changeViewHeight(this, originWidth, originHeight);
-//                    postInvalidate();
-//                    if (onHotDismissListener != null)
-//                        onHotDismissListener.onDismiss();
-//                    resetAfterDismiss();
-//                }else {
-//                    changeViewHeight(this, originWidth, originHeight);
-//                    startRollBackAnimation(500);
-//                }
                 changeViewHeight(this, originWidth, originHeight);
                 startRollBackAnimation(500);
                 downX = Float.MAX_VALUE;

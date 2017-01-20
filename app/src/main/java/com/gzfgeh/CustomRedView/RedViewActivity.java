@@ -28,7 +28,7 @@ public class RedViewActivity extends BaseActivity {
         setContentView(R.layout.activity_red_view);
         ButterKnife.bind(this);
 
-        hotOne.setText("");
+        hotOne.setText("88");
 //        hotTwo.setText("8");
 //        hotThree.setText("89");
 //        hotFour.setText("888");
