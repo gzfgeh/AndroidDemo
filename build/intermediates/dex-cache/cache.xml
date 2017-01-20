@@ -30,6 +30,15 @@
     </item>
     <item
         is-multidex="false"
+        jar="F:\AndroidStudio\Study\AndroidDemo\xposeddemo\lib\XposedBridgeApi-54.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.1"
+        sha1="5f16da4d2ecb2c95be2556550e4a63461f43a99b">
+        <dex dex="F:\AndroidStudio\Study\AndroidDemo\xposeddemo\build\intermediates\pre-dexed\debug\XposedBridgeApi-54_33c8cb6e9885ee451c95cc1902d301a98f92b429.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="F:\AndroidStudio\Study\AndroidDemo\xposeddemo\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\25.0.1\jars\classes.jar"
         jumboMode="false"
         optimize="true"
