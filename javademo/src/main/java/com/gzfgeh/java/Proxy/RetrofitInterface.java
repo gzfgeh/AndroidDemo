@@ -1,10 +1,8 @@
 package com.gzfgeh.java.Proxy;
 
 /**
- * Description:
- * Created by GUZHENFU on 2017/3/2 18:28.
+ * Description:代理接口
  */
-
 public interface RetrofitInterface {
-    void retrofitInterfaceFunc(String s);
+    String retrofitInterfaceFunc(String s);
 }
