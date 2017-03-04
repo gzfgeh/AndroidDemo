@@ -8,3 +8,7 @@
 app/build/
 demo/libs/
 demo/src/main/res/drawable/
+demo/
+javademo/libs/
+ttdemo/libs/
+ttdemo/src/main/res/drawable/
