@@ -1,7 +1,6 @@
 package com.gzfgeh.java.Clone;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Description:
@@ -11,7 +10,7 @@ import java.util.List;
 public class TestMain {
 
     public static void main(String[] args) {
-        User user = new User();
+        UserInfo user = new UserInfo();
         ArrayList<Info> list = new ArrayList<>();
         for (int i=0; i<3; i++){
             Info info = new Info(i+"", i);
@@ -22,7 +21,7 @@ public class TestMain {
 
         System.out.println(user.toString());
 
-        User u = user.clone();
+        UserInfo u = user.clone();
         Info info = new Info("888", 4);
         u.getList().add(info);
         u.setName("bbbbbb");
