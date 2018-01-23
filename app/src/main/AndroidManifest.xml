@@ -98,10 +98,12 @@
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".Login.LoginActivity"
-            android:windowSoftInputMode="stateHidden|adjustResize"/>
-        <!--android:windowSoftInputMode="stateHidden|adjustResize"-->
+        <activity
+            android:name=".Login.LoginActivity"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <!-- android:windowSoftInputMode="stateHidden|adjustResize" -->
 
+        <activity android:name=".DragImageView.DragImageViewActivity"></activity>
     </application>
 
 </manifest>

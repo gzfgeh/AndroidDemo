@@ -3,147 +3,372 @@
 
     <item
         is-multidex="false"
-        jar="F:\AndroidStudio\Study\AndroidDemo\xposeddemo\build\intermediates\exploded-aar\com.android.support\support-v4\25.0.1\jars\classes.jar"
+        jar="/Users/guzhenfu/.gradle/wrapper/dists/gradle-2.14.1-all/caches/modules-2/files-2.1/com.github.bumptech.glide/glide/3.7.0/9e9eeaf9948ee4d6c3ab354e8dc14368f16994a4/glide-3.7.0.jar"
         jumboMode="false"
         optimize="true"
-        revision="25.0.1"
-        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="F:\AndroidStudio\Study\AndroidDemo\xposeddemo\build\intermediates\pre-dexed\debug\com.android.support-support-v4-25.0.1_9e5162b2ac47efa5bb78ab16f949118b4f697dda.jar" />
+        revision="25.0.0"
+        sha1="9e9eeaf9948ee4d6c3ab354e8dc14368f16994a4">
+        <dex dex="/Users/guzhenfu/Documents/Studio Project/AndroidDemo/app/build/intermediates/pre-dexed/debug/glide-3.7.0_55718920f9cacf91081d81fb3fb95ecfbe759790.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="F:\AndroidStudio\Study\AndroidDemo\xposeddemo\build\intermediates\exploded-aar\com.android.support\support-media-compat\25.0.1\jars\classes.jar"
+        jar="/Users/guzhenfu/Documents/Studio Project/AndroidDemo/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/25.0.0/jars/libs/internal_impl-25.0.0.jar"
         jumboMode="false"
         optimize="true"
-        revision="25.0.1"
-        sha1="6a1479afe9f1b3645e1cd9a87318976893472818">
-        <dex dex="F:\AndroidStudio\Study\AndroidDemo\xposeddemo\build\intermediates\pre-dexed\debug\com.android.support-support-media-compat-25.0.1_66c633719be8c1e5685eccebc22a440ff7f02880.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="F:\AndroidStudio\Study\AndroidDemo\xposeddemo\build\intermediates\exploded-aar\com.android.support\support-media-compat\25.0.1\jars\libs\internal_impl-25.0.1.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.1"
-        sha1="f83b00041ecfba705603fec40363416c7de69719">
-        <dex dex="F:\AndroidStudio\Study\AndroidDemo\xposeddemo\build\intermediates\pre-dexed\debug\internal_impl-25.0.1_480872d13ca9b21639591cc5a8ef7a288ffd72a6.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="F:\AndroidStudio\Study\AndroidDemo\xposeddemo\lib\XposedBridgeApi-54.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.1"
-        sha1="5f16da4d2ecb2c95be2556550e4a63461f43a99b">
-        <dex dex="F:\AndroidStudio\Study\AndroidDemo\xposeddemo\build\intermediates\pre-dexed\debug\XposedBridgeApi-54_33c8cb6e9885ee451c95cc1902d301a98f92b429.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="F:\AndroidStudio\Study\AndroidDemo\xposeddemo\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\25.0.1\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.1"
-        sha1="772bed2d992b67b9d0327f766cc95cd63031dcd3">
-        <dex dex="F:\AndroidStudio\Study\AndroidDemo\xposeddemo\build\intermediates\pre-dexed\debug\com.android.support-animated-vector-drawable-25.0.1_0d3019acf348c9295a83e66b61f2bd9080fa33ef.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="F:\AndroidStudio\Study\AndroidDemo\xposeddemo\build\intermediates\exploded-aar\com.android.support\support-core-ui\25.0.1\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.1"
-        sha1="bc7e99e8d0fc279a05aa91378530f467ad62d443">
-        <dex dex="F:\AndroidStudio\Study\AndroidDemo\xposeddemo\build\intermediates\pre-dexed\debug\com.android.support-support-core-ui-25.0.1_5cf6653e43903b561c06bb30b1751cf6303ce485.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="F:\AndroidStudio\Study\AndroidDemo\xposeddemo\build\intermediates\exploded-aar\com.android.support\support-core-ui\25.0.1\jars\libs\internal_impl-25.0.1.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.1"
+        revision="25.0.0"
         sha1="e5343c9d19cb19ff55f6b268c7f3fe8c9d224f6f">
-        <dex dex="F:\AndroidStudio\Study\AndroidDemo\xposeddemo\build\intermediates\pre-dexed\debug\internal_impl-25.0.1_80576c5e1b8f3c56dc11f9ed16e08d8bf1785716.jar" />
+        <dex dex="/Users/guzhenfu/Documents/Studio Project/AndroidDemo/app/build/intermediates/pre-dexed/debug/internal_impl-25.0.0_f140871a9488c239bf72075ff09f2ab29918eb8e.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="F:\AndroidStudio\Study\AndroidDemo\xposeddemo\build\intermediates\exploded-aar\com.android.support\support-core-utils\25.0.1\jars\classes.jar"
+        jar="/Users/guzhenfu/Documents/Studio Project/AndroidDemo/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/25.0.0/jars/classes.jar"
         jumboMode="false"
         optimize="true"
-        revision="25.0.1"
-        sha1="00d4c8eebf2b681073c72a26bd0849549e51c7cb">
-        <dex dex="F:\AndroidStudio\Study\AndroidDemo\xposeddemo\build\intermediates\pre-dexed\debug\com.android.support-support-core-utils-25.0.1_e6991cbd9e9f319b86544ddeada05a73535c5221.jar" />
+        revision="25.0.0"
+        sha1="5e497d60f0cb6ce87c458ac5420a46d0fed49bd0">
+        <dex dex="/Users/guzhenfu/Documents/Studio Project/AndroidDemo/app/build/intermediates/pre-dexed/debug/com.android.support-recyclerview-v7-25.0.0_98348897f3957729b2f1a4017a1f0aa073546cef.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="F:\AndroidStudio\Study\AndroidDemo\xposeddemo\build\intermediates\exploded-aar\com.android.support\appcompat-v7\25.0.1\jars\classes.jar"
+        jar="/Users/guzhenfu/Documents/Studio Project/AndroidDemo/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/25.0.0/jars/classes.jar"
         jumboMode="false"
         optimize="true"
-        revision="25.0.1"
-        sha1="f7ac4b327fdb9e2ee386f5adc46164927658de4b">
-        <dex dex="F:\AndroidStudio\Study\AndroidDemo\xposeddemo\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-25.0.1_ce21a6ed67089243fea1f99e4d598e7a59185856.jar" />
+        revision="25.0.0"
+        sha1="d29714cc76b38157e3cbd034c66e1ec808eb4c19">
+        <dex dex="/Users/guzhenfu/Documents/Studio Project/AndroidDemo/app/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-25.0.0_768295f7b72fedcc8b69d19ae63177f4fe10ee0c.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="F:\AndroidStudio\Study\AndroidDemo\xposeddemo\build\intermediates\exploded-aar\com.android.support\support-fragment\25.0.1\jars\libs\internal_impl-25.0.1.jar"
+        jar="/Users/guzhenfu/Documents/Studio Project/AndroidDemo/app/build/intermediates/exploded-aar/com.github.traex.rippleeffect/library/1.3/jars/classes.jar"
         jumboMode="false"
         optimize="true"
-        revision="25.0.1"
-        sha1="c0bd6ffb002a85b5e7cad29f8558d1cc59539679">
-        <dex dex="F:\AndroidStudio\Study\AndroidDemo\xposeddemo\build\intermediates\pre-dexed\debug\internal_impl-25.0.1_da3c35ea57886eed3571e149aa329bce2acce85d.jar" />
+        revision="25.0.0"
+        sha1="ee17feb34ce104bc17d1a1e64346d7f779ebb066">
+        <dex dex="/Users/guzhenfu/Documents/Studio Project/AndroidDemo/app/build/intermediates/pre-dexed/debug/com.github.traex.rippleeffect-library-1.3_f9b94257555954ab9a9595c61a05ac40dcd7f54a.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="F:\sdk\extras\android\m2repository\com\android\support\support-annotations\25.0.1\support-annotations-25.0.1.jar"
+        jar="/Users/guzhenfu/.gradle/wrapper/dists/gradle-2.14.1-all/caches/modules-2/files-2.1/com.google.code.gson/gson/2.7/751f548c85fa49f330cecbb1875893f971b33c4e/gson-2.7.jar"
         jumboMode="false"
         optimize="true"
-        revision="25.0.1"
-        sha1="a09194311f8f89c3e6db09d79f50897a889d615e">
-        <dex dex="F:\AndroidStudio\Study\AndroidDemo\xposeddemo\build\intermediates\pre-dexed\debug\support-annotations-25.0.1_8d870179a47cd3a420eff42a7cb3fb32b1d36ed6.jar" />
+        revision="25.0.0"
+        sha1="751f548c85fa49f330cecbb1875893f971b33c4e">
+        <dex dex="/Users/guzhenfu/Documents/Studio Project/AndroidDemo/app/build/intermediates/pre-dexed/debug/gson-2.7_ef041b9d2ebc013d27da0ead8139fbf44f93077f.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="F:\AndroidStudio\Study\AndroidDemo\xposeddemo\build\intermediates\exploded-aar\com.android.support\support-compat\25.0.1\jars\libs\internal_impl-25.0.1.jar"
+        jar="/Users/guzhenfu/Documents/Studio Project/AndroidDemo/app/build/intermediates/exploded-aar/com.android.support.constraint/constraint-layout/1.0.0-beta4/jars/classes.jar"
         jumboMode="false"
         optimize="true"
-        revision="25.0.1"
-        sha1="3af8cc51ef7088e56f132780da8c0bd858b6a6ad">
-        <dex dex="F:\AndroidStudio\Study\AndroidDemo\xposeddemo\build\intermediates\pre-dexed\debug\internal_impl-25.0.1_754e76e55b967be5959266eb0146a5615f509f52.jar" />
+        revision="25.0.0"
+        sha1="662d7533b25a666c649c10a16b42edfb95f25a4f">
+        <dex dex="/Users/guzhenfu/Documents/Studio Project/AndroidDemo/app/build/intermediates/pre-dexed/debug/com.android.support.constraint-constraint-layout-1.0.0-beta4_24ed4ad8405d17308e614964805a4b06f7057e08.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="F:\AndroidStudio\Study\AndroidDemo\xposeddemo\build\intermediates\exploded-aar\com.android.support\support-compat\25.0.1\jars\classes.jar"
+        jar="/Users/guzhenfu/.gradle/wrapper/dists/gradle-2.14.1-all/caches/modules-2/files-2.1/com.squareup.retrofit2/converter-gson/2.1.0/aa557d71ead91cbf26e0c316a0f593d168303309/converter-gson-2.1.0.jar"
         jumboMode="false"
         optimize="true"
-        revision="25.0.1"
-        sha1="51eba4a4dd73044f90a9d58dd7ca34adbebfcf4e">
-        <dex dex="F:\AndroidStudio\Study\AndroidDemo\xposeddemo\build\intermediates\pre-dexed\debug\com.android.support-support-compat-25.0.1_3a82c24d392aea52c29c51901c24bf9907ebe692.jar" />
+        revision="25.0.0"
+        sha1="aa557d71ead91cbf26e0c316a0f593d168303309">
+        <dex dex="/Users/guzhenfu/Documents/Studio Project/AndroidDemo/app/build/intermediates/pre-dexed/debug/converter-gson-2.1.0_90239ecfaf771c4a3ab4e20cb78538bd6328d306.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="F:\AndroidStudio\Study\AndroidDemo\xposeddemo\build\intermediates\exploded-aar\com.android.support\support-fragment\25.0.1\jars\classes.jar"
+        jar="/Users/guzhenfu/Documents/Studio Project/AndroidDemo/app/build/intermediates/exploded-aar/com.zhy/base-adapter/2.0.0/jars/classes.jar"
         jumboMode="false"
         optimize="true"
-        revision="25.0.1"
-        sha1="26c6eef571592c91f29e56fda0bac73321de0c92">
-        <dex dex="F:\AndroidStudio\Study\AndroidDemo\xposeddemo\build\intermediates\pre-dexed\debug\com.android.support-support-fragment-25.0.1_e56d1d58cc81279cfcd7e88256e8826e66640f15.jar" />
+        revision="25.0.0"
+        sha1="c97eb410a1486e8ef79e9073ba91ba3be8fb9e42">
+        <dex dex="/Users/guzhenfu/Documents/Studio Project/AndroidDemo/app/build/intermediates/pre-dexed/debug/com.zhy-base-adapter-2.0.0_0617e79224645d3f4480968e1068a7baee2db0cd.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="F:\AndroidStudio\Study\AndroidDemo\xposeddemo\build\intermediates\exploded-aar\com.android.support\support-core-utils\25.0.1\jars\libs\internal_impl-25.0.1.jar"
+        jar="/Users/guzhenfu/Documents/Studio Project/AndroidDemo/app/build/intermediates/exploded-aar/com.android.databinding/adapters/1.2.1/jars/classes.jar"
         jumboMode="false"
         optimize="true"
-        revision="25.0.1"
-        sha1="c5b7145fb34779b6639147b8f2f8dd77c0db771b">
-        <dex dex="F:\AndroidStudio\Study\AndroidDemo\xposeddemo\build\intermediates\pre-dexed\debug\internal_impl-25.0.1_672c8b6fac95fe4ba2ec2863494d11769523761d.jar" />
+        revision="25.0.0"
+        sha1="c56d29136c2257f63f08c29c4e739efb03b06c7d">
+        <dex dex="/Users/guzhenfu/Documents/Studio Project/AndroidDemo/app/build/intermediates/pre-dexed/debug/com.android.databinding-adapters-1.2.1_c208344274873ef06561ad04494dc0c60b0c2e98.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="F:\AndroidStudio\Study\AndroidDemo\xposeddemo\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\25.0.1\jars\classes.jar"
+        jar="/Users/guzhenfu/Documents/Studio Project/AndroidDemo/app/build/intermediates/exploded-aar/com.android.support/support-v4/25.0.0/jars/classes.jar"
         jumboMode="false"
         optimize="true"
-        revision="25.0.1"
-        sha1="b24e1c688744078e1fa833ffadf696794761bbe5">
-        <dex dex="F:\AndroidStudio\Study\AndroidDemo\xposeddemo\build\intermediates\pre-dexed\debug\com.android.support-support-vector-drawable-25.0.1_60ee22721a5012ca48fa0c802a172df3403ef98b.jar" />
+        revision="25.0.0"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/Users/guzhenfu/Documents/Studio Project/AndroidDemo/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-25.0.0_41d9017e254cf0486006227d5c3cd1b9479e6f38.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/guzhenfu/.gradle/wrapper/dists/gradle-2.14.1-all/caches/modules-2/files-2.1/com.squareup.retrofit2/retrofit/2.3.0/bcacde6a8ccedcc56c127403d26b76072fe6214d/retrofit-2.3.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="bcacde6a8ccedcc56c127403d26b76072fe6214d">
+        <dex dex="/Users/guzhenfu/Documents/Studio Project/AndroidDemo/app/build/intermediates/pre-dexed/debug/retrofit-2.3.0_02b07bd09c124d97be88fa3f75dd99d979a3747b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/guzhenfu/Documents/Studio Project/AndroidDemo/app/build/intermediates/exploded-aar/com.android.support/support-fragment/25.0.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="07daa0b6e1d455c82a38422ffe287c18823d339a">
+        <dex dex="/Users/guzhenfu/Documents/Studio Project/AndroidDemo/app/build/intermediates/pre-dexed/debug/com.android.support-support-fragment-25.0.0_e3bdf7ecc9883b56b64c9d9fc46c06fbde9145b3.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/guzhenfu/Documents/adt/sdk/extras/m2repository/com/android/support/constraint/constraint-layout-solver/1.0.0-beta4/constraint-layout-solver-1.0.0-beta4.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="0a9cb567dc008f570c28531720168f19148da965">
+        <dex dex="/Users/guzhenfu/Documents/Studio Project/AndroidDemo/app/build/intermediates/pre-dexed/debug/constraint-layout-solver-1.0.0-beta4_2a30c3ed3151a9bacb61f5c2bd1093cb734bd329.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/guzhenfu/Documents/Studio Project/AndroidDemo/app/build/intermediates/exploded-aar/com.ogaclejapan/rxbinding/1.2.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="95f8d95f44b53eb05c0fd9735eb4ffffe2313f08">
+        <dex dex="/Users/guzhenfu/Documents/Studio Project/AndroidDemo/app/build/intermediates/pre-dexed/debug/com.ogaclejapan-rxbinding-1.2.0_d2d4da37c167b93e0553b4b5d4d59d830c4b346c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/guzhenfu/Documents/Studio Project/AndroidDemo/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/25.0.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="4ccbcda5c72027c7f7c14be9ff8640d9cb0d8da0">
+        <dex dex="/Users/guzhenfu/Documents/Studio Project/AndroidDemo/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-utils-25.0.0_e181bc66c921311cba225e10e7f5dc168370a279.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/guzhenfu/Documents/Studio Project/AndroidDemo/app/build/intermediates/exploded-aar/io.reactivex/rxandroid/1.2.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="927e8ef5711b115b65b2f35495d77352be2b3c09">
+        <dex dex="/Users/guzhenfu/Documents/Studio Project/AndroidDemo/app/build/intermediates/pre-dexed/debug/io.reactivex-rxandroid-1.2.0_bacf21cf4862e49cfd87ba5786d2be0f2cf09bc1.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/guzhenfu/Documents/Studio Project/AndroidDemo/app/build/intermediates/exploded-aar/com.zhy/autolayout/1.4.3/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="911eeaf6f474e74b7dbd9fa7f19aa56715a344ae">
+        <dex dex="/Users/guzhenfu/Documents/Studio Project/AndroidDemo/app/build/intermediates/pre-dexed/debug/com.zhy-autolayout-1.4.3_3c108daa3286ecd1c0da0a49ac73b495754d4cfc.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/guzhenfu/Documents/Studio Project/AndroidDemo/app/build/intermediates/exploded-aar/com.alipay.euler/andfix/0.3.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="1de293ae438f1031f515cb12dd8dfeb011f554c0">
+        <dex dex="/Users/guzhenfu/Documents/Studio Project/AndroidDemo/app/build/intermediates/pre-dexed/debug/com.alipay.euler-andfix-0.3.1_6991b192d9733ece86249dc7d55094e642f0cdf1.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/guzhenfu/Documents/Studio Project/AndroidDemo/app/build/intermediates/exploded-aar/com.android.support/support-compat/25.0.0/jars/libs/internal_impl-25.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="f2e3b9bc1ec25f652e8007ce7774c991e38f6a00">
+        <dex dex="/Users/guzhenfu/Documents/Studio Project/AndroidDemo/app/build/intermediates/pre-dexed/debug/internal_impl-25.0.0_59ae80d6599a81855e158f454aa83b56ba4289c2.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/guzhenfu/.gradle/wrapper/dists/gradle-2.14.1-all/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.8.0/5a11f020cce2d11eb71ba916700600e18c4547e7/okhttp-3.8.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="5a11f020cce2d11eb71ba916700600e18c4547e7">
+        <dex dex="/Users/guzhenfu/Documents/Studio Project/AndroidDemo/app/build/intermediates/pre-dexed/debug/okhttp-3.8.0_8d3ec0147df5c7f561113c1b3b7d5d3aa5274a73.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/guzhenfu/.gradle/wrapper/dists/gradle-2.14.1-all/caches/modules-2/files-2.1/javax.inject/javax.inject/1/6975da39a7040257bd51d21a231b76c915872d38/javax.inject-1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="6975da39a7040257bd51d21a231b76c915872d38">
+        <dex dex="/Users/guzhenfu/Documents/Studio Project/AndroidDemo/app/build/intermediates/pre-dexed/debug/javax.inject-1_f7126dd58453c26ac839b57b3004fd626f38edcf.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/guzhenfu/Documents/Studio Project/AndroidDemo/app/build/intermediates/exploded-aar/com.android.support/design/25.0.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="26384be22ddc74cfe197ebda9edbc7d1fd8bd537">
+        <dex dex="/Users/guzhenfu/Documents/Studio Project/AndroidDemo/app/build/intermediates/pre-dexed/debug/com.android.support-design-25.0.0_fa943670115a132da9d6c576bfb6fb1fdbbe8d28.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/guzhenfu/Documents/adt/sdk/extras/android/m2repository/com/android/support/support-annotations/25.0.0/support-annotations-25.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="a22d2cc94da87b254451fa8ed28afc30b4653773">
+        <dex dex="/Users/guzhenfu/Documents/Studio Project/AndroidDemo/app/build/intermediates/pre-dexed/debug/support-annotations-25.0.0_e724b21b9c722c53053cbb73118d7c12b0f969d0.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/guzhenfu/Documents/Studio Project/AndroidDemo/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.0.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="76fb65a4b41ea42dab8a1310ed772a2420c96b52">
+        <dex dex="/Users/guzhenfu/Documents/Studio Project/AndroidDemo/app/build/intermediates/pre-dexed/debug/com.android.support-support-media-compat-25.0.0_1ed08e1c8d2f8732e285a3ba5814a70346ef0d68.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/guzhenfu/.gradle/wrapper/dists/gradle-2.14.1-all/caches/modules-2/files-2.1/io.reactivex/rxjava/1.1.5/ece7b5d0870e66d8226dab6dcf47a2b12afff061/rxjava-1.1.5.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="ece7b5d0870e66d8226dab6dcf47a2b12afff061">
+        <dex dex="/Users/guzhenfu/Documents/Studio Project/AndroidDemo/app/build/intermediates/pre-dexed/debug/rxjava-1.1.5_d6ade6e3dc2c159a18ecd2ecd62f950a6e494800.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/guzhenfu/.gradle/wrapper/dists/gradle-2.14.1-all/caches/modules-2/files-2.1/com.squareup.okio/okio/1.13.0/a9283170b7305c8d92d25aff02a6ab7e45d06cbe/okio-1.13.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="a9283170b7305c8d92d25aff02a6ab7e45d06cbe">
+        <dex dex="/Users/guzhenfu/Documents/Studio Project/AndroidDemo/app/build/intermediates/pre-dexed/debug/okio-1.13.0_b7cabfa2a21316cc4abd449463d71d9c2b513e95.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/guzhenfu/.gradle/wrapper/dists/gradle-2.14.1-all/caches/modules-2/files-2.1/com.jakewharton/butterknife/7.0.1/d5d13ea991eab0252e3710e5df3d6a9d4b21d461/butterknife-7.0.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="d5d13ea991eab0252e3710e5df3d6a9d4b21d461">
+        <dex dex="/Users/guzhenfu/Documents/Studio Project/AndroidDemo/app/build/intermediates/pre-dexed/debug/butterknife-7.0.1_1c020b1a9042e0480620ed41ee3757ed8a32e266.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/guzhenfu/Documents/Studio Project/AndroidDemo/app/build/intermediates/exploded-aar/co.lujun/androidtagview/1.0.3/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="e69d1560e8b161be8d2b11c421e26b297253d0b7">
+        <dex dex="/Users/guzhenfu/Documents/Studio Project/AndroidDemo/app/build/intermediates/pre-dexed/debug/co.lujun-androidtagview-1.0.3_788d769ecb6dfcacad9594f6f9c0bf743b898761.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/guzhenfu/Documents/Studio Project/AndroidDemo/app/build/intermediates/exploded-aar/com.android.support/support-compat/25.0.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="75b1f366ff0bbc78f8b1f7cf0dc82e7c53afef6a">
+        <dex dex="/Users/guzhenfu/Documents/Studio Project/AndroidDemo/app/build/intermediates/pre-dexed/debug/com.android.support-support-compat-25.0.0_dc2bfbcbb58a173d969b2eafee7778f95527c458.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/guzhenfu/Documents/Studio Project/AndroidDemo/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.0.0/jars/libs/internal_impl-25.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="665d21a8a069c96b4d9e8b434f5096d865b4e261">
+        <dex dex="/Users/guzhenfu/Documents/Studio Project/AndroidDemo/app/build/intermediates/pre-dexed/debug/internal_impl-25.0.0_22addbf46f089dda7a1134b9080462fd8717de0c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/guzhenfu/Documents/Studio Project/AndroidDemo/app/build/intermediates/exploded-aar/com.android.support/support-fragment/25.0.0/jars/libs/internal_impl-25.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="ee5faf4dee5b6a4364bf51587871047dde7c703a">
+        <dex dex="/Users/guzhenfu/Documents/Studio Project/AndroidDemo/app/build/intermediates/pre-dexed/debug/internal_impl-25.0.0_0018a8f88d20925b55727ce22cea197a3f89aa45.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/guzhenfu/.gradle/wrapper/dists/gradle-2.14.1-all/caches/modules-2/files-2.1/com.google.dagger/dagger/2.0.2/de8416eda7b2fd7c25836b140c39e1cbf10542f6/dagger-2.0.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="de8416eda7b2fd7c25836b140c39e1cbf10542f6">
+        <dex dex="/Users/guzhenfu/Documents/Studio Project/AndroidDemo/app/build/intermediates/pre-dexed/debug/dagger-2.0.2_bc65c35cace0961afaafdd5ab5f66960763630ed.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/guzhenfu/Documents/Studio Project/AndroidDemo/app/build/intermediates/exploded-aar/com.android.databinding/library/1.2.1/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="957dc30b1495f8689271e00d56ab09cc9192df02">
+        <dex dex="/Users/guzhenfu/Documents/Studio Project/AndroidDemo/app/build/intermediates/pre-dexed/debug/com.android.databinding-library-1.2.1_e41655b9c165b23882cbfc730a58f11f48ac37d1.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/guzhenfu/Documents/Studio Project/AndroidDemo/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/25.0.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="53a420cd4f49274db6bd43475f8006ba67ef6bbd">
+        <dex dex="/Users/guzhenfu/Documents/Studio Project/AndroidDemo/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-25.0.0_d743cbb0b19c25c18d949f6b776e09b178c64a17.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/guzhenfu/.gradle/wrapper/dists/gradle-2.14.1-all/caches/modules-2/files-2.1/com.android.databinding/baseLibrary/2.2.2/5e227e2d794cf680dd34fb04dd564ce58d6c764d/baseLibrary-2.2.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="5e227e2d794cf680dd34fb04dd564ce58d6c764d">
+        <dex dex="/Users/guzhenfu/Documents/Studio Project/AndroidDemo/app/build/intermediates/pre-dexed/debug/baseLibrary-2.2.2_28fa112e679a8ef4779f308ef39a3a5502a7de93.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/guzhenfu/Documents/Studio Project/AndroidDemo/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/25.0.0/jars/libs/internal_impl-25.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="3b61a70884adaf0be3fc06c70c801e3e6df13133">
+        <dex dex="/Users/guzhenfu/Documents/Studio Project/AndroidDemo/app/build/intermediates/pre-dexed/debug/internal_impl-25.0.0_ba6dd61d5ee5781ebd13d0b8209d6e548d54f70f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/guzhenfu/Documents/Studio Project/AndroidDemo/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.0.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="8bc45ce1f63d1a391fd38b32a201be5a42f9c95d">
+        <dex dex="/Users/guzhenfu/Documents/Studio Project/AndroidDemo/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-25.0.0_e027a11811c4009f79f4a2d900a2ade4ce976868.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/guzhenfu/Documents/Studio Project/AndroidDemo/app/build/intermediates/exploded-aar/com.android.support/transition/25.0.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="0c6d948e6cb9ea6f535d175fb61ba2930719c0e9">
+        <dex dex="/Users/guzhenfu/Documents/Studio Project/AndroidDemo/app/build/intermediates/pre-dexed/debug/com.android.support-transition-25.0.0_52c4b5a50b6e287054ba1886d7cc2b45faa724eb.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/guzhenfu/.gradle/wrapper/dists/gradle-2.14.1-all/caches/modules-2/files-2.1/com.squareup.retrofit2/adapter-rxjava/2.1.0/693eddc23e87ab13f9cf5001707ce8e7e1d1ff01/adapter-rxjava-2.1.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="693eddc23e87ab13f9cf5001707ce8e7e1d1ff01">
+        <dex dex="/Users/guzhenfu/Documents/Studio Project/AndroidDemo/app/build/intermediates/pre-dexed/debug/adapter-rxjava-2.1.0_fe10fad9cf297c20f107ca2b952e392a48935bbf.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/guzhenfu/Documents/Studio Project/AndroidDemo/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/25.0.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="26674000177e45447a0326a6ad84612761199a13">
+        <dex dex="/Users/guzhenfu/Documents/Studio Project/AndroidDemo/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-ui-25.0.0_cae0d821de2f7ca502671a014a30d69d78b243a6.jar" />
     </item>
 
 </items>

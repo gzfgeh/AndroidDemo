@@ -11,4 +11,8 @@
     <color name="home_line">#c8c7cc</color>
 
     <color name="black_overlay">#66000000</color>
+
+    <color name="black">#000</color>
+    <color name="white">#fff</color>
+
 </resources>
